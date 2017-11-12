@@ -13,10 +13,8 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Global CSS
-  */
-  css: ['~/assets/css/main.css'],
+
+  css: ['~/assets/css/main.css', 'bootstrap/dist/css/bootstrap.css'],
   /*
   ** Add axios globally
   */

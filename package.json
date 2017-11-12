@@ -1,7 +1,7 @@
 {
   "name": "metronome-explorer",
   "version": "1.0.0",
-  "description": "Nuxt.js project",
+  "description": "🔎 Metronome Token Explorer",
   "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
   "private": true,
   "scripts": {
@@ -13,10 +13,13 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "bootstrap": "^3.3.7",
     "cross-env": "^5.0.1",
     "express": "^4.15.3",
+    "nedb-core": "^3.0.6",
     "nuxt": "^1.0.0-rc3",
-    "source-map-support": "^0.4.15"
+    "source-map-support": "^0.4.15",
+    "web3": "^0.19.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -28,6 +31,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "pug": "^2.0.0-rc.4"
   }
 }

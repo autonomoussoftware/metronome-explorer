@@ -1,17 +1,24 @@
-<template>
-  <section class="container">
-    <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title">
-      USERS
-    </h1>
-    <ul class="users">
-      <li v-for="(user, index) in users" :key="index" class="user">
-        <nuxt-link :to="{ name: 'id', params: { id: index }}">
-          {{ user.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </section>
+<template lang="pug">
+  section
+    h1.title Recent Transactions
+    table
+      thead
+        tr
+          th ID
+          th Type
+          th From
+          th To
+          th Amount
+          th Date
+      tbody
+        tr(v-for='e in events', :key='e._id')
+          td
+            nuxt-link(:to="{ name: 'event-id', params: { id: e._id }}") {{ e._id }}
+          td {{ e.event }}
+          td {{ e.args._from }}
+          td {{ e.args._to }}
+          td {{ e.args._value }}
+          td {{ e.timestamp }}
 </template>
 
 <script>
@@ -19,30 +26,20 @@ import axios from '~/plugins/axios'
 
 export default {
   async asyncData () {
-    let { data } = await axios.get('/api/users')
-    return { users: data }
+    let { data } = await axios.get('/api/event')
+    return { events: data }
   },
+
   head () {
     return {
-      title: 'Users'
+      title: 'Events'
     }
   }
 }
 </script>
 
-<style scoped>
-.title
-{
-  margin: 30px 0;
-}
-.users
-{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.user
-{
-  margin: 10px 0;
-}
+<style>
+  td {
+    padding: 5px;
+  }
 </style>
