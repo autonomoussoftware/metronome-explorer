@@ -1,7 +1,7 @@
 <template lang="pug">
   section
     h1.title Recent Transactions
-    table
+    table.table
       thead
         tr
           th ID
@@ -15,10 +15,11 @@
           td
             nuxt-link(:to="{ name: 'event-id', params: { id: e._id }}") {{ e._id }}
           td {{ e.event }}
-          td {{ e.args._from }}
+          td
+            nuxt-link(:to="{ name: 'account-id', params: { id: e.args._from }}") {{ e.args._from }}
           td {{ e.args._to }}
           td {{ e.args._value }}
-          td {{ e.timestamp }}
+          td {{ new Date(e.timestamp) }}
 </template>
 
 <script>
