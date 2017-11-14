@@ -1,7 +1,6 @@
 import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
 
-// import db from './db'
 import api from './api'
 import exporter from './exporter'
 

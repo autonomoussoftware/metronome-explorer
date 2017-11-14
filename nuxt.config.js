@@ -15,14 +15,12 @@ module.exports = {
   },
 
   css: ['~/assets/css/main.css', 'bootstrap/dist/css/bootstrap.css'],
-  /*
-  ** Add axios globally
-  */
+
+  plugins: ['~/plugins/moment'],
+
   build: {
     vendor: ['axios'],
-    /*
-    ** Run ESLINT on save
-    */
+
     extend (config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
