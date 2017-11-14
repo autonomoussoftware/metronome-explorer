@@ -2,7 +2,7 @@
   header
     nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.top
       .container
-        a.navbar-brand
+        nuxt-link.navbar-brand(to="/")
           img(src="../assets/img/logo-purple.png", alt="Metronome")
 </template>
 

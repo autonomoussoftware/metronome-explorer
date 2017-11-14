@@ -1,14 +1,16 @@
 <template lang="pug">
   section
-    h1.title Account {{ account._id }}
-    pre
-      code {{ account }}
+    h1.title Account {{ account.balance._id }}
+    mtn-event-table(:events="account.events")
 </template>
 
 <script>
+import MtnEventTable from '~/components/EventTable'
 import axios from '~/plugins/axios'
 
 export default {
+  components: { MtnEventTable },
+
   asyncData ({ params, error }) {
     return axios.get(`/api/account/${params.id}`)
       .then((res) => {
