@@ -5,12 +5,12 @@ import db from './db'
 import config from './config'
 
 const Exporter = function (config, db) {
-  // const self = this
   this.config = config
   this.db = db
 
   this.web3 = new Web3()
-  this.web3.setProvider(config.provider)
+  const provider = this.web3.providers.HttpProvider(config.rpcUrl)
+  this.web3.setProvider(provider)
 
   console.log(`Getting Info for token: ${config.tokenAddress}`)
 
