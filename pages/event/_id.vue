@@ -1,8 +1,10 @@
 <template lang="pug">
-  section
-    h1.title Event {{ event._id }}
-    pre
-      code {{ event }}
+  .container-fluid
+    .row
+      .col
+        h1.title Event {{ event._id }}
+        pre
+          code {{ event }}
 </template>
 
 <script>

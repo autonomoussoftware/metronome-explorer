@@ -1,16 +1,21 @@
 <template lang="pug">
-  section
-    h1.title Accounts
-    table.table
-      thead
-        tr
-          th ID
-          th Balance
-      tbody
-        tr(v-for='a in accounts', :key='a._id')
-          td
-            nuxt-link(:to="{ name: 'account-id', params: { id: a._id }}") {{ a._id }}
-          td {{ a.balance }}
+.container-fluid
+  .row
+    .col
+      h1.title Accounts
+  
+  .row
+    .col
+      table.table
+        thead
+          tr
+            th ID
+            th Balance
+        tbody
+          tr(v-for='a in accounts', :key='a._id')
+            td
+              nuxt-link(:to="{ name: 'account-id', params: { id: a._id }}") {{ a._id }}
+            td {{ a.balance }}
 </template>
 
 <script>
@@ -24,7 +29,7 @@ export default {
 
   head () {
     return {
-      title: 'Events'
+      title: 'Accounts'
     }
   }
 }

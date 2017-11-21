@@ -23,7 +23,7 @@ export default {
 
   head () {
     return {
-      title: `Account: ${this.account.name}`
+      title: `Account: ${this.account._id}`
     }
   }
 }

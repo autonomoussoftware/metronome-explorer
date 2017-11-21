@@ -1,14 +1,16 @@
 import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
 
+import db from './db'
 import api from './api'
-import exporter from './exporter'
+import config from './config'
+import Exporter from './exporter'
 
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
-app.set('db', exporter.db)
+app.set('db', db)
 app.set('port', port)
 
 app.use('/api', api)
@@ -25,5 +27,10 @@ if (nuxtConfig.dev) {
 
 app.use(nuxt.render)
 
-app.listen(port, host)
+const server = require('http').createServer(app)
+
+new Exporter(config, db) // eslint-disable-line
+
+server.listen(port)
+
 console.log(`Server listening on ${host}:${port}`) // eslint-disable-line no-console

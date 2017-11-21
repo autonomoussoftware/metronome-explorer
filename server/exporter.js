@@ -1,8 +1,8 @@
 import async from 'async'
 import Web3 from 'web3'
 
-import db from './db'
-import config from './config'
+// import db from './db'
+// import config from './config'
 
 const Exporter = function (config, db) {
   this.config = config
@@ -10,7 +10,7 @@ const Exporter = function (config, db) {
 
   this.web3 = new Web3()
   const provider = this.web3.providers.HttpProvider(config.rpcUrl)
-  this.web3.setProvider(provider)
+  this.web3.setProvider(config.provider)
 
   console.log(`Getting Info for token: ${config.tokenAddress}`)
 
@@ -20,7 +20,6 @@ const Exporter = function (config, db) {
 
   this.newEvents.watch((err, log) => {
     if (err) { return console.log(`Error receiving new log: ${err}`) }
-    console.log('New log received:', log)
 
     this.processLog(log, (err) => {
       if (err) { return console.log(`Error processing new log: ${err}`) }
@@ -58,30 +57,40 @@ const Exporter = function (config, db) {
 
     async.eachSeries(logs, this.processLog, (err) => {
       console.log('All historical logs processed')
-
-      async.eachSeries(
-        accounts,
-        (item, callback) => { this.exportBalance(item, callback) },
-        (err) => { console.log('All historical balances updated') }
-      )
+      this.exportBatchAccounts(accounts)
     })
   })
 
+  this.exportBatchAccounts = (accounts) => {
+    async.eachSeries(accounts,
+      (item, cb) => { this.exportBalance(item, cb) },
+      () => { console.log('All historical balances updated') }
+    )
+  }
+
   this.processLog = (log, cb) => {
     log._id = `${log.blockNumber}_${log.transactionIndex}_${log.logIndex}`
+    console.log(`Exporting log: ${log._id}`)
 
-    console.log(`Exporting log:', log._id`)
-
-    this.db.insert(log, (err, newLogs) => {
+    this.web3.eth.getBlock(log.blockNumber, false, (err, block) => {
       if (err) {
-        if (err.message.indexOf('unique') !== -1) {
-          return console.log(`The log: ${log._id} was already exported!`)
-        }
-
-        console.log(`Error inserting log: ${err}`)
+        console.log(`Error retrieving block information for log: ${err}`)
+        return cb()
       }
 
-      cb && cb()
+      log.timestamp = block.timestamp;
+      (log.args && log.args._value) && (log.args._value = log.args._value.toNumber())
+
+      this.db.insert(log, (err, newLogs) => {
+        if (err) {
+          if (err.message.indexOf('unique') !== -1) {
+            return console.log(`The log: ${log._id} was already exported!`)
+          }
+
+          console.log(`Error inserting log: ${err}`)
+        }
+        cb && cb()
+      })
     })
   }
 
@@ -105,4 +114,4 @@ const Exporter = function (config, db) {
   console.log('Exporter initialized, waiting for historical events...')
 }
 
-export default new Exporter(config, db)
+export default Exporter

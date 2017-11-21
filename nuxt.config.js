@@ -14,12 +14,12 @@ module.exports = {
     ]
   },
 
-  css: ['~/assets/css/main.css', 'bootstrap/dist/css/bootstrap.css'],
+  css: ['bootstrap/dist/css/bootstrap.css', '~/assets/css/main.css'],
 
   plugins: ['~/plugins/moment'],
 
   build: {
-    vendor: ['axios'],
+    vendor: ['axios', 'socket.io-client'],
 
     extend (config, ctx) {
       if (ctx.isClient) {

@@ -5,7 +5,7 @@
   "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "backpack dev",
+    "dev": "PORT=3333 backpack dev",
     "build": "nuxt build && backpack build",
     "start": "cross-env NODE_ENV=production node build/main.js",
     "precommit": "npm run lint",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "4.0.0",
     "cross-env": "^5.0.1",
     "express": "^4.15.3",
     "human-standard-token-abi": "^1.0.2",
@@ -34,6 +34,9 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "pug": "^2.0.0-rc.4"
+    "node-sass": "^4.6.1",
+    "pug": "^2.0.0-rc.4",
+    "sass-loader": "^6.0.6",
+    "socket.io": "^2.0.4"
   }
 }
