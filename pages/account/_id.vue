@@ -6,19 +6,19 @@
 
 <script>
 import MtnEventTable from '~/components/EventTable'
-import axios from '~/plugins/axios'
+// import trae from '~/plugins/trae'
 
 export default {
   components: { MtnEventTable },
 
   asyncData ({ params, error }) {
-    return axios.get(`/api/account/${params.id}`)
-      .then((res) => {
-        return { account: res.data }
-      })
-      .catch((e) => {
-        error({ statusCode: 404, message: JSON.stringify(e) })
-      })
+    // return trae.get(`/api/account/${params.id}`)
+    //   .then((res) => {
+    //     return { account: res.data }
+    //   })
+    //   .catch((e) => {
+    //     error({ statusCode: 404, message: JSON.stringify(e) })
+    //   })
   },
 
   head () {

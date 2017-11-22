@@ -3,7 +3,7 @@
   .row
     .col
       h1.title Accounts
-  
+
   .row
     .col
       table.table
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+// import trae from '~/plugins/trae'
 
 export default {
   async asyncData () {
-    let { data } = await axios.get('/api/account')
-    return { accounts: data.accounts }
+    // let { data } = await trae.get('/api/account')
+    // return { accounts: data.accounts }
   },
 
   head () {

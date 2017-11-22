@@ -18,7 +18,7 @@ module.exports = {
   plugins: ['~/plugins/moment'],
 
   build: {
-    vendor: ['trae', 'socket.io-client'],
+    vendor: ['axios', 'socket.io-client'],
 
     extend (config, ctx) {
       if (ctx.isClient) {

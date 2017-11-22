@@ -8,17 +8,17 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+// import trae from '~/plugins/trae'
 
 export default {
   asyncData ({ params, error }) {
-    return axios.get(`/api/event/${params.id}`)
-      .then((res) => {
-        return { event: res.data }
-      })
-      .catch((e) => {
-        error({ statusCode: 404, message: 'Event not found' })
-      })
+    // return trae.get(`/api/event/${params.id}`)
+    //   .then((res) => {
+    //     return { event: res.data }
+    //   })
+    //   .catch((e) => {
+    //     error({ statusCode: 404, message: 'Event not found' })
+    //   })
   },
 
   head () {

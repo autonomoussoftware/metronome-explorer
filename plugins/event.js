@@ -1,15 +1,15 @@
-import trae from './trae'
+import axios from './axios'
 
 const eventService = {}
 const endpoint = '/event'
 
 eventService.get = function () {
-  return trae.get(endpoint)
+  return axios.get(endpoint)
     .then(res => res.data)
 }
 
 eventService.getById = function (id) {
-  return trae.get(`${endpoint}/${id}`)
+  return axios.get(`${endpoint}/${id}`)
     .then(res => res.data)
 }
 

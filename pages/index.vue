@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import eventService from '~/plugins/event'
 import socket from '~/plugins/socket.io.js'
 
 import MtnEventTable from '~/components/EventTable'
@@ -24,8 +24,8 @@ export default {
   },
 
   async asyncData () {
-    let { data } = await axios.get('/api/event')
-    return { events: data }
+    let { events } = await eventService.get()
+    return { events }
   },
 
   created () {
