@@ -1,5 +1,5 @@
 <template lang="pug">
-div.justify-content-center
+div
   table.table
       thead
         tr
@@ -25,12 +25,15 @@ div.justify-content-center
             span(v-else) N/A
           td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
 
-  nav(v-if="count")
-    ul.pagination
-      li.page-item
-        a.page-link(v-show="!hasEnded", @click="previousPage") Previous
-      li.page-item
-        a.page-link(v-show="skip", @click="nextPage") Next
+  .d-flex.justify-content-end
+    nav(v-if="count")
+      ul.pagination
+        li.page-item(:class="{ disabled: hasEnded }")
+          a.page-link(@click="previousPage")
+            span(aria-hidden="true") Previous
+        li.page-item(:class="{ disabled: skip === 0 }")
+          a.page-link( @click="nextPage")
+            span(aria-hidden="true") Next
 </nav>
 </template>
 
@@ -71,3 +74,14 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+  .pagination {
+    li {
+      cursor: pointer;
+    }
+
+    li.disabled {
+      cursor: not-allowed;
+    }
+  }
+</style>
