@@ -13,9 +13,9 @@ module.exports = {
 
   loading: { color: '#7E66F4' },
 
-  css: ['bootstrap/dist/css/bootstrap.css', 'octicons/build/build.css', '~/assets/css/main.css'],
+  css: ['bootstrap/dist/css/bootstrap.css', '~/assets/css/main.css'],
 
-  plugins: ['~/plugins/moment'],
+  plugins: ['~/plugins/moment', '~/plugins/clipboard'],
 
   build: {
     vendor: ['axios', 'socket.io-client'],

@@ -15,14 +15,14 @@ div
             nuxt-link(:to="{ name: 'event-id', params: { id: e._id }}") {{ e._id }}
           td {{ e.metaData.event }}
           td
-            nuxt-link(v-if="e.metaData.returnValues", :to="{ name: 'account-address', params: { address: e.metaData.returnValues._from }}")
-              span {{ e.metaData.returnValues._from }}
-              img.clippy(src="~/assets/svg/clippy.svg")
+            span(v-if="e.metaData.returnValues")
+              nuxt-link(:to="{ name: 'account-address', params: { address: e.metaData.returnValues._from }}") {{ e.metaData.returnValues._from }}
+              img.clippy(v-clipboard="e.metaData.returnValues._from", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td
-            nuxt-link(v-if="e.metaData.returnValues", :to="{ name: 'account-address', params: { address: e.metaData.returnValues._to }}")
-              span {{ e.metaData.returnValues._to }}
-              img.clippy(src="~/assets/svg/clippy.svg")
+            span(v-if="e.metaData.returnValues")
+              nuxt-link(:to="{ name: 'account-address', params: { address: e.metaData.returnValues._to }}") {{ e.metaData.returnValues._to }}
+              img.clippy(v-clipboard="e.metaData.returnValues._to", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td
             span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value }}
@@ -98,5 +98,6 @@ export default {
 
   .clippy {
     margin-left: 10px;
+    cursor: copy;
   }
 </style>
