@@ -13,4 +13,9 @@ eventService.getById = function (id) {
     .then(res => res.data)
 }
 
+eventService.getByAccount = function (address, params) {
+  return axios.get(`${endpoint}/account/${address}`, { params })
+    .then(res => res.data)
+}
+
 export default eventService

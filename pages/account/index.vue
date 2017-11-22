@@ -2,14 +2,14 @@
 .container-fluid
   .row
     .col
-      h1.title Accounts
+      h2.title Accounts
 
   .row
     .col
       table.table
         thead
           tr
-            th ID
+            th Address
             th Balance
         tbody
           tr(v-for='a in accounts', :key='a._id')
@@ -19,12 +19,19 @@
 </template>
 
 <script>
-// import trae from '~/plugins/trae'
+import accountService from '~/plugins/account'
 
 export default {
-  async asyncData () {
-    // let { data } = await trae.get('/api/account')
-    // return { accounts: data.accounts }
+
+  data () {
+    return {
+      accounts: []
+    }
+  },
+
+  async asyncData ({ params }) {
+    let { accounts } = await accountService.get()
+    return { accounts }
   },
 
   head () {

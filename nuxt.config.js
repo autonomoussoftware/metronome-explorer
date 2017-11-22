@@ -11,7 +11,7 @@ module.exports = {
     ]
   },
 
-  loading: { color: '#3B8070' },
+  loading: { color: '#7E66F4' },
 
   css: ['bootstrap/dist/css/bootstrap.css', '~/assets/css/main.css'],
 

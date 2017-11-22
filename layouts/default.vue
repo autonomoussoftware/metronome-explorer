@@ -1,10 +1,10 @@
 <template lang="pug">
   main
     mtn-header
-    
+
     .main-container
       nuxt.app
-    
+
     mtn-footer
 </template>
 
@@ -25,12 +25,14 @@ export default {
   }
 
   .app {
-    padding-top: 150px;
+    padding-top: 130px;
+    padding-left: 40px;
+    padding-right: 40px;
     padding-bottom: 100px;
     background: #fff !important;
 
     td {
-      padding: 5px;
+      padding: 2px;
       font-size: 10px;
     }
   }

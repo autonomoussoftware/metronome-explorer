@@ -2,7 +2,7 @@
 .container-fluid
   .row
     .col
-      h1.title Recent Transactions
+      h2.title Recent Transactions
   .row
     .col
       mtn-event-table(:events="events")
