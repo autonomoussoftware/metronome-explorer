@@ -25,12 +25,12 @@ div.justify-content-center
             span(v-else) N/A
           td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
 
-  nav
+  nav(v-if="count")
     ul.pagination
       li.page-item
-        a.page-link(href="#") Previous
+        a.page-link(v-show="!hasEnded", @click="previousPage") Previous
       li.page-item
-        a.page-link(href="#") Next
+        a.page-link(v-show="skip", @click="nextPage") Next
 </nav>
 </template>
 
@@ -41,6 +41,31 @@ export default {
     events: {
       type: Array,
       default: () => []
+    },
+
+    count: {
+      type: Number,
+      default: 0
+    },
+
+    skip: {
+      type: Number,
+      default: 0
+    },
+
+    hasEnded: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  methods: {
+    previousPage () {
+      this.$emit('previous-page')
+    },
+
+    nextPage () {
+      this.$emit('next-page')
     }
   }
 }

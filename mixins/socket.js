@@ -3,7 +3,8 @@ import socket from '~/plugins/socket.io.js'
 const socketMixin = {
   data () {
     return {
-      events: []
+      events: [],
+      count: 0
     }
   },
 
