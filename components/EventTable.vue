@@ -15,25 +15,31 @@ div
             nuxt-link(:to="{ name: 'event-id', params: { id: e._id }}") {{ e._id }}
           td {{ e.metaData.event }}
           td
-            nuxt-link(v-if="e.metaData.returnValues", :to="{ name: 'account-address', params: { address: e.metaData.returnValues._from }}") {{ e.metaData.returnValues._from }}
+            nuxt-link(v-if="e.metaData.returnValues", :to="{ name: 'account-address', params: { address: e.metaData.returnValues._from }}")
+              span {{ e.metaData.returnValues._from }}
+              img.clippy(src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td
-            nuxt-link(v-if="e.metaData.returnValues", :to="{ name: 'account-address', params: { address: e.metaData.returnValues._to }}") {{ e.metaData.returnValues._to }}
+            nuxt-link(v-if="e.metaData.returnValues", :to="{ name: 'account-address', params: { address: e.metaData.returnValues._to }}")
+              span {{ e.metaData.returnValues._to }}
+              img.clippy(src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td
             span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value }}
             span(v-else) N/A
           td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
-
-  .d-flex.justify-content-end
-    nav(v-if="count && showPagination")
-      ul.pagination
-        li.page-item(:class="{ disabled: hasEnded }")
-          a.page-link(@click="previousPage")
-            span(aria-hidden="true") Previous
-        li.page-item(:class="{ disabled: skip === 0 }")
-          a.page-link( @click="nextPage")
-            span(aria-hidden="true") Next
+  .row.d-flex
+    .col.d-flex
+      small {{ count }} transactions found
+    .col.d-flex.justify-content-end
+      nav(v-if="count && showPagination")
+        ul.pagination
+          li.page-item(:class="{ disabled: hasEnded }")
+            a.page-link(@click="previousPage")
+              span(aria-hidden="true") Previous
+          li.page-item(:class="{ disabled: skip === 0 }")
+            a.page-link( @click="nextPage")
+              span(aria-hidden="true") Next
 </nav>
 </template>
 
@@ -88,5 +94,9 @@ export default {
     li.disabled {
       cursor: not-allowed;
     }
+  }
+
+  .clippy {
+    margin-left: 10px;
   }
 </style>

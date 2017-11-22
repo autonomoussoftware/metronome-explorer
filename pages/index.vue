@@ -6,7 +6,8 @@
     .col
       .input-group
         span.input-group-btn
-          button.btn.btn-secondary(@click="clearFilter") Clear
+          button.btn.btn-secondary(@click="clearFilter")
+            img(src="~/assets/svg/x.svg")
         input.form-control(type="search", v-model="filter", placeholder="Filter...")
   .row
     .col
@@ -22,6 +23,7 @@ import socketMixin from '~/mixins/socket'
 import eventService from '~/plugins/event'
 
 import MtnEventTable from '~/components/EventTable'
+import MtnIcon from '~/components/Icon'
 
 const limit = 20
 
@@ -29,7 +31,7 @@ export default {
   name: 'EventList',
 
   mixins: [socketMixin],
-  components: { MtnEventTable },
+  components: { MtnEventTable, MtnIcon },
 
   data () {
     return {

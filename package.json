@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "4.0.0-beta.2",
+    "font-awesome": "^4.7.0",
     "nuxt": "^1.0.0-rc11",
     "socket.io": "^2.0.4",
     "source-map-support": "^0.4.15",
