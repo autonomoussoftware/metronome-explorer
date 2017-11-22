@@ -24,7 +24,9 @@ export default {
   },
 
   async asyncData () {
-    let { events } = await eventService.get()
+    let { events } = await eventService.get({
+      $sort: '-metaData.timestamp'
+    })
     return { events }
   },
 

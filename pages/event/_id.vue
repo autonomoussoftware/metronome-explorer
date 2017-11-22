@@ -8,17 +8,19 @@
 </template>
 
 <script>
-// import trae from '~/plugins/trae'
+import eventService from '~/plugins/event'
 
 export default {
-  asyncData ({ params, error }) {
-    // return trae.get(`/api/event/${params.id}`)
-    //   .then((res) => {
-    //     return { event: res.data }
-    //   })
-    //   .catch((e) => {
-    //     error({ statusCode: 404, message: 'Event not found' })
-    //   })
+
+  data () {
+    return {
+      event: {}
+    }
+  },
+
+  async asyncData ({ params, error }) {
+    const event = await eventService.getById(params.id)
+    return { event }
   },
 
   head () {

@@ -3,8 +3,8 @@ import axios from './axios'
 const eventService = {}
 const endpoint = '/event'
 
-eventService.get = function () {
-  return axios.get(endpoint)
+eventService.get = function (params) {
+  return axios.get(endpoint, { params })
     .then(res => res.data)
 }
 
