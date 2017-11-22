@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bootstrap": "4.0.0",
-    "nuxt": "^1.0.0-rc3",
+    "bootstrap": "4.0.0-beta.2",
+    "nuxt": "^1.0.0-rc11",
     "source-map-support": "^0.4.15",
     "vue-moment": "^2.2.0",
     "socket.io": "^2.0.4"
