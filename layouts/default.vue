@@ -2,14 +2,9 @@
   main
     mtn-header
 
-    //- #top.site-section.come-in
-    //-   .container
-    //-     h1.text-center
-    //-       img.img-fluid(src="../assets/img/logo.png", alt="Metronome")
-    //-       br
-    //-       | Token Explorer
-    .container
-      nuxt
+    .main-container
+      nuxt.app
+
     mtn-footer
 </template>
 
@@ -21,3 +16,24 @@ export default {
   components: { MtnFooter, MtnHeader }
 }
 </script>
+
+<style lang="scss">
+  .main-container {
+    height: 90vh;
+    overflow: auto;
+    background: #fff;
+  }
+
+  .app {
+    padding-top: 130px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 100px;
+    background: #fff !important;
+
+    td {
+      padding: 2px;
+      font-size: 10px;
+    }
+  }
+</style>

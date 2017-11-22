@@ -1,19 +1,30 @@
 <template lang="pug">
-  section
-    h1.title Recent Transactions
-    mtn-event-table(:events="events")
+.container-fluid
+  .row
+    .col
+      h2.title Recent Transactions
+  .row
+    .col
+      mtn-event-table(:events="events")
 </template>
 
 <script>
+import socketMixin from '~/mixins/socket'
+import eventService from '~/plugins/event'
+
 import MtnEventTable from '~/components/EventTable'
-import axios from '~/plugins/axios'
 
 export default {
+  name: 'EventList',
+
+  mixins: [socketMixin],
   components: { MtnEventTable },
 
   async asyncData () {
-    let { data } = await axios.get('/api/event')
-    return { events: data }
+    let { events } = await eventService.get({
+      $sort: '-metaData.timestamp'
+    })
+    return { events }
   },
 
   head () {
@@ -25,7 +36,4 @@ export default {
 </script>
 
 <style>
-  td {
-    padding: 5px;
-  }
 </style>

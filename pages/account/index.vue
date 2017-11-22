@@ -1,30 +1,43 @@
 <template lang="pug">
-  section
-    h1.title Accounts
-    table.table
-      thead
-        tr
-          th ID
-          th Balance
-      tbody
-        tr(v-for='a in accounts', :key='a._id')
-          td
-            nuxt-link(:to="{ name: 'account-id', params: { id: a._id }}") {{ a._id }}
-          td {{ a.balance }}
+.container-fluid
+  .row
+    .col
+      h2.title Accounts
+
+  .row
+    .col
+      table.table
+        thead
+          tr
+            th Address
+            th Balance
+        tbody
+          tr(v-for='a in accounts', :key='a._id')
+            td
+              nuxt-link(:to="{ name: 'account-address', params: { address: a._id }}") {{ a._id }}
+            td {{ a.balance }}
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import accountService from '~/plugins/account'
 
 export default {
-  async asyncData () {
-    let { data } = await axios.get('/api/account')
-    return { accounts: data.accounts }
+  name: 'AccountList',
+
+  data () {
+    return {
+      accounts: []
+    }
+  },
+
+  async asyncData ({ params }) {
+    let { accounts } = await accountService.get()
+    return { accounts }
   },
 
   head () {
     return {
-      title: 'Events'
+      title: 'Accounts'
     }
   }
 }

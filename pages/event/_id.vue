@@ -1,27 +1,32 @@
 <template lang="pug">
-  section
-    h1.title Event {{ event._id }}
-    pre
-      code {{ event }}
+  .container-fluid
+    .row
+      .col
+        h1.title Event {{ event._id }}
+        pre
+          code {{ event }}
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import eventService from '~/plugins/event'
 
 export default {
-  asyncData ({ params, error }) {
-    return axios.get(`/api/event/${params.id}`)
-      .then((res) => {
-        return { event: res.data }
-      })
-      .catch((e) => {
-        error({ statusCode: 404, message: 'Event not found' })
-      })
+  name: 'EventDetail',
+
+  data () {
+    return {
+      event: {}
+    }
+  },
+
+  async asyncData ({ params }) {
+    const event = await eventService.getById(params.id)
+    return { event }
   },
 
   head () {
     return {
-      title: `Event: ${this.event.name}`
+      title: `Event: ${this.event._id}`
     }
   }
 }

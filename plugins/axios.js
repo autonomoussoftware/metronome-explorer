@@ -1,9 +1,15 @@
-import * as axios from 'axios'
+// import trae from 'trae'
+// import config from './config'
 
-let options = {}
-// The server-side needs a full url to works
-if (process.server) {
-  options.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`
+// trae.defaults({ baseUrl: config.api.url })
+
+// export default trae
+
+import * as axios from 'axios'
+import config from './config'
+
+let options = {
+  baseURL: config.api.url
 }
 
 export default axios.create(options)
