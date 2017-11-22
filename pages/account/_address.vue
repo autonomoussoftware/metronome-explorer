@@ -16,6 +16,8 @@ import accountService from '~/plugins/account'
 import MtnEventTable from '~/components/EventTable'
 
 export default {
+  name: 'AccountDetail',
+
   components: { MtnEventTable },
 
   data () {

@@ -11,6 +11,7 @@
 import eventService from '~/plugins/event'
 
 export default {
+  name: 'EventDetail',
 
   data () {
     return {
@@ -18,14 +19,14 @@ export default {
     }
   },
 
-  async asyncData ({ params, error }) {
+  async asyncData ({ params }) {
     const event = await eventService.getById(params.id)
     return { event }
   },
 
   head () {
     return {
-      title: `Event: ${this.event.name}`
+      title: `Event: ${this.event._id}`
     }
   }
 }

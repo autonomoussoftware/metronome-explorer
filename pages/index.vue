@@ -9,31 +9,22 @@
 </template>
 
 <script>
+import socketMixin from '~/mixins/socket'
 import eventService from '~/plugins/event'
-import socket from '~/plugins/socket.io.js'
 
 import MtnEventTable from '~/components/EventTable'
 
 export default {
-  components: { MtnEventTable },
+  name: 'EventList',
 
-  data () {
-    return {
-      events: []
-    }
-  },
+  mixins: [socketMixin],
+  components: { MtnEventTable },
 
   async asyncData () {
     let { events } = await eventService.get({
       $sort: '-metaData.timestamp'
     })
     return { events }
-  },
-
-  created () {
-    socket.on('event', (event) => {
-      console.log(event)
-    })
   },
 
   head () {
