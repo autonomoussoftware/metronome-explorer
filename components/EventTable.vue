@@ -26,7 +26,7 @@ div
           td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
 
   .d-flex.justify-content-end
-    nav(v-if="count")
+    nav(v-if="count && showPagination")
       ul.pagination
         li.page-item(:class="{ disabled: hasEnded }")
           a.page-link(@click="previousPage")
@@ -59,6 +59,11 @@ export default {
     hasEnded: {
       type: Boolean,
       default: false
+    },
+
+    showPagination: {
+      type: Boolean,
+      default: true
     }
   },
 

@@ -4,11 +4,15 @@
     .col
       h2.title Recent Transactions
     .col
-      input.form-control(type="search", v-model="filter", placeholder="Filter...")
+      .input-group
+        span.input-group-btn
+          button.btn.btn-secondary(@click="clearFilter") Clear
+        input.form-control(type="search", v-model="filter", placeholder="Filter...")
   .row
     .col
       mtn-event-table(
-        :events="filteredEvents", :count="count", :skip="skip", :has-ended="hasEnded"
+        :events="filteredEvents", :count="count", :skip="skip", :has-ended="hasEnded",
+        :show-pagination="showPagination",
         @next-page="getNextPage", @previous-page="getPreviousPage"
       )
 </template>
@@ -45,6 +49,10 @@ export default {
         return (e.metaData.returnValues._to.includes(this.filter)) ||
           (e.metaData.returnValues._from.includes(this.filter))
       })
+    },
+
+    showPagination () {
+      return !this.filter
     }
   },
 
@@ -63,6 +71,10 @@ export default {
   },
 
   methods: {
+    clearFilter () {
+      this.filter = ''
+    },
+
     async getEvents () {
       this.hasEnded = false
 
