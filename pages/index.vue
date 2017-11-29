@@ -8,7 +8,7 @@
         span.input-group-btn
           button.btn.btn-secondary(@click="clearFilter")
             img(src="~/assets/svg/x.svg")
-        input.form-control(type="search", v-model="filter", placeholder="Filter...")
+        input.form-control(type="search", v-model="filter", placeholder="Filter by account...")
   .row
     .col
       mtn-event-table(
