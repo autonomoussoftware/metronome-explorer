@@ -24,10 +24,11 @@ export default {
     background: #fff;
   }
 
+  .container-fluid {
+    padding: 0 80px;
+  }
+
   .app {
-    padding-top: 130px;
-    padding-left: 40px;
-    padding-right: 40px;
     padding-bottom: 100px;
     background: #fff !important;
 

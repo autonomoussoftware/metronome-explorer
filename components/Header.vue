@@ -19,6 +19,10 @@
 </template>
 
 <style lang="scss" scoped>
+  header {
+    height: 10vh;
+  }
+
   nav {
     border-bottom: 3px solid #7e61f8;
   }

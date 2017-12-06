@@ -1,21 +1,28 @@
 <template lang="pug">
-.container-fluid
-  .row
-    .col
-      h2.title Recent Transactions
-    .col
-      .input-group
-        span.input-group-btn
-          button.btn.btn-secondary(@click="clearFilter")
-            img(src="~/assets/svg/x.svg")
-        input.form-control(type="search", v-model="filter", placeholder="Filter by account...")
-  .row
-    .col
-      mtn-event-table(
-        :events="filteredEvents", :count="count", :skip="skip", :has-ended="hasEnded",
-        :show-pagination="showPagination",
-        @next-page="getNextPage", @previous-page="getPreviousPage"
-      )
+div
+  .container-fluid.about-container
+    .row
+      .col
+        h6 About Metronome Explorer
+        p Sunt qui voluptate excepteur est ullamco amet non et. Occaecat nostrud nulla velit dolore elit. In non ut et ut sunt ex nostrud excepteur minim sunt do occaecat deserunt exercitation. Mollit irure amet proident ea laboris labore ex aute dolore sunt. Amet pariatur in voluptate deserunt nostrud velit consequat. Ipsum elit nostrud reprehenderit non commodo officia. Eiusmod non duis qui duis occaecat.
+
+  .container-fluid
+    .row
+      .col
+        h2.title Recent Transactions
+      .col
+        .input-group
+          span.input-group-btn
+            button.btn.btn-secondary(@click="clearFilter")
+              img(src="~/assets/svg/x.svg")
+          input.form-control(type="search", v-model="filter", placeholder="Filter by account...")
+    .row
+      .col
+        mtn-event-table(
+          :events="filteredEvents", :count="count", :skip="skip", :has-ended="hasEnded",
+          :show-pagination="showPagination",
+          @next-page="getNextPage", @previous-page="getPreviousPage"
+        )
 </template>
 
 <script>
@@ -111,5 +118,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .about-container {
+    h6 {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    background: #EDEDED;
+    margin-bottom: 30px;
+    padding: 40px 80px;
+  }
 </style>
