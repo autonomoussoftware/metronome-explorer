@@ -1,8 +1,8 @@
 <template lang="pug">
-  .container-fluid
+  .container-fluid.event-container
     .row
       .col
-        h1.title Event {{ event._id }}
+        h4 Event {{ event._id }}
         pre
           code {{ event }}
 </template>
@@ -31,3 +31,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .event-container {
+    margin-top: 50px;
+  }
+</style>
