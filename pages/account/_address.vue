@@ -6,7 +6,7 @@
       p Balance: {{ balance | mtn }}
   .row
     .col
-      mtn-event-table(:events="events")
+      mtn-event-table(:events="events", :count="events.length", :show-pagination="false")
 </template>
 
 <script>

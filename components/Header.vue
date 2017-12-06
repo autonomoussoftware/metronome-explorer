@@ -12,11 +12,32 @@
           li.nav-item
             nuxt-link.nav-link(to="/account") Accounts
 
-        form.form-inline
+        form.form-inline(@submit.prevent="goToAccount")
           .input-group.input-search
-            input.form-control(type="text", placeholder='Search Accounts')
-            button.btn.btn-outline-success.input-group-btn(type='submit') Search
+            input.form-control(type="text", v-model="address" placeholder="Search an account")
+            button.btn.input-group-btn(type="submit") Search
 </template>
+
+<script>
+export default {
+  name: 'Header',
+
+  data () {
+    return {
+      address: ''
+    }
+  },
+
+  methods: {
+    goToAccount () {
+      if (!this.address) { return }
+      this.$router.push({ name: 'account-address', params: { address: this.address } })
+      this.address = ''
+    }
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
   header {
@@ -42,7 +63,12 @@
     .input-search {
       width: 400px;
 
+      input: {
+        color: #fff;
+      }
+
       input:focus {
+        color: #fff;
         background: transparent;
         border-color: #7e61f8;
       }
