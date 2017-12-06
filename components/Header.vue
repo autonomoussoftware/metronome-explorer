@@ -3,7 +3,7 @@
 
     nav.navbar.navbar-expand-xl.navbar-light.fixed-top
       nuxt-link.navbar-brand(to="/")
-        img(src="../assets/img/logo-purple.png", alt="Metronome")
+        img(src="../assets/img/logo.png", alt="Metronome")
 
       .collapse.navbar-collapse
 
@@ -13,7 +13,22 @@
           li.nav-item
             nuxt-link.nav-link(to="/account") Accounts
 
-        form.form-inline.my-2.my-lg-0
-          input.form-control.mr-sm-2(type="search", placeholder='Search Accounts')
-          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+        form.form-inline
+          .input-group.input-search
+            input.form-control(type="text", placeholder='Search Accounts')
+            button.btn.btn-outline-success.input-group-btn(type='submit') Search
 </template>
+
+<style lang="scss" scoped>
+  .navbar-brand {
+    margin-left: 80px;
+  }
+
+  .collapse.navbar-collapse{
+    margin-left: 40px;
+  }
+
+  .input-search {
+    width: 400px;
+  }
+</style>
