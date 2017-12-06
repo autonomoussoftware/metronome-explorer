@@ -28,18 +28,20 @@ div
             span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value | mtn }}
             span(v-else) N/A
           td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
+
   .row.d-flex
-    .col.d-flex
-      small {{ count }} transactions found
-    .col.d-flex.justify-content-end
+    .col-sm-10.d-flex.justify-content-start
       nav(v-if="count && showPagination")
         ul.pagination
-          li.page-item(:class="{ disabled: hasEnded }")
-            a.page-link(@click="previousPage")
+          li.page-item
+            a.btn(@click="previousPage", :class="{ disabled: hasEnded }")
               span(aria-hidden="true") Previous
-          li.page-item(:class="{ disabled: skip === 0 }")
-            a.page-link( @click="nextPage")
+          li.page-item
+            a.btn( @click="nextPage", :class="{ disabled: skip === 0 }")
               span(aria-hidden="true") Next
+    .col-sm-2.text-right
+      small
+        b {{ count }} transactions found.
 </nav>
 </template>
 
@@ -87,17 +89,28 @@ export default {
 
 <style lang="scss" scoped>
   .pagination {
-    li {
-      cursor: pointer;
-    }
-
-    li.disabled {
-      cursor: not-allowed;
+    .btn {
+      background: #EDEDED;
+      margin-left: 5px;
+      border: none;
+      padding: 5px 15px;
+      color: #7e61f8;
+      text-transform: none;
+      font-weight: 700;
     }
   }
 
   .clippy {
     margin-left: 10px;
     cursor: copy;
+  }
+
+  th {
+    padding: 5px 10px;
+  }
+
+  td {
+    padding: 15px 10px;
+    font-size: 0.7em;
   }
 </style>

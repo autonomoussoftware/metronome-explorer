@@ -68,7 +68,9 @@ export default {
       $limit: limit
     })
 
-    return { events, count }
+    const hasEnded = count <= limit
+
+    return { events, count, hasEnded }
   },
 
   head () {
@@ -135,7 +137,10 @@ export default {
   }
 
   .title-container {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    h3 {
+      margin-top: 10px;
+    }
   }
 
   input, input:focus {

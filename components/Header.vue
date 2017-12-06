@@ -36,16 +36,20 @@
     margin-left: 40px;
   }
 
-  .input-search {
-    width: 400px;
+  .form-inline {
+    margin-right: 65px;
 
-    input:focus {
-      background: transparent;
-      border-color: #7e61f8;
-    }
+    .input-search {
+      width: 400px;
 
-    button {
-      font-weight: 200;
+      input:focus {
+        background: transparent;
+        border-color: #7e61f8;
+      }
+
+      button {
+        font-weight: 200;
+      }
     }
   }
 </style>

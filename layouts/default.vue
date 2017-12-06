@@ -31,10 +31,5 @@ export default {
   .app {
     padding-bottom: 100px;
     background: #fff !important;
-
-    td {
-      padding: 2px;
-      font-size: 10px;
-    }
   }
 </style>
