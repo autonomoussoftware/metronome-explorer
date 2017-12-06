@@ -15,7 +15,12 @@ module.exports = {
 
   css: ['bootstrap/dist/css/bootstrap.css', '~/assets/css/main.css'],
 
-  plugins: ['~/plugins/moment', '~/plugins/clipboard', '~/plugins/token'],
+  plugins: [
+    '~/plugins/moment',
+    '~/plugins/token',
+    '~/plugins/minter',
+    '~/plugins/clipboard'
+  ],
 
   build: {
     vendor: ['axios', 'socket.io-client'],

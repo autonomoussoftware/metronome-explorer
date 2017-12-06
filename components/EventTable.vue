@@ -104,13 +104,4 @@ export default {
     margin-left: 10px;
     cursor: copy;
   }
-
-  th {
-    padding: 5px 10px;
-  }
-
-  td {
-    padding: 15px 10px;
-    font-size: 0.7em;
-  }
 </style>

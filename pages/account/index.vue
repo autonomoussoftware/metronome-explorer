@@ -1,8 +1,8 @@
 <template lang="pug">
-.container-fluid
-  .row
-    .col
-      h2.title Accounts
+.container-fluid.account-container
+  .row.title-container
+    .col-sm-8
+      h4 Accounts
 
   .row
     .col
@@ -12,7 +12,7 @@
             th Address
             th Balance
         tbody
-          tr(v-for='a in accounts', :key='a._id')
+          tr(v-for='a in accounts', :key='a._id', v-if="a._id !== '0x0000000000000000000000000000000000000000'")
             td
               nuxt-link(:to="{ name: 'account-address', params: { address: a._id }}") {{ a._id }}
             td {{ a.balance | mtn }}
@@ -43,8 +43,8 @@ export default {
 }
 </script>
 
-<style>
-  td {
-    padding: 5px;
+<style lang="scss" scoped>
+  .account-container {
+    margin-top: 50px;
   }
 </style>

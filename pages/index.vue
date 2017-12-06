@@ -9,7 +9,7 @@ div
   .container-fluid
     .row.title-container
       .col-sm-8
-        h3 Recent Transactions
+        h4 Recent Transactions
       .col-sm-4
         .input-group
           span.input-group-btn
@@ -134,13 +134,6 @@ export default {
     background: #EDEDED;
     margin-bottom: 30px;
     padding: 40px 80px;
-  }
-
-  .title-container {
-    margin-bottom: 15px;
-    h3 {
-      margin-top: 10px;
-    }
   }
 
   input, input:focus {

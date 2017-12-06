@@ -31,5 +31,24 @@ export default {
   .app {
     padding-bottom: 100px;
     background: #fff !important;
+
+    .title-container {
+      margin-bottom: 15px;
+      h4 {
+        margin-top: 10px;
+      }
+    }
+
+    thead {
+      th {
+        border-top: 2px solid #7e61f8;
+        border-bottom: 2px solid #7e61f8;
+      }
+    }
+
+    td {
+      padding: 15px 25px 15px 5px;
+      font-size: 0.7em;
+    }
   }
 </style>
