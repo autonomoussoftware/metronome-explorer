@@ -1,13 +1,22 @@
 <template lang="pug">
   footer.container
-    p Metronome &copy; {{ new Date().getFullYear() }}
+    p Copyright &copy; {{ new Date().getFullYear() }} Bloq, Inc. All Rights Reseverd
+      br
+      | Metronome was build by &nbsp;
+      a(href="https://bloq.com") BloqLabs.
 </template>
 
-<style>
+<style lang="scss" scoped>
   footer {
-    height: 7vh;
-    padding: 20px;
+    height: 8vh;
+    padding: 32px 0;
     text-align: center;
-    color: #fff;
+    color: #4D4D4D;
+
+    p {
+      font-size: 0.9em;
+      margin-bottom: 5px;
+      margin-top: 0;
+    }
   }
 </style>
