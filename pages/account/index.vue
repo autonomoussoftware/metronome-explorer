@@ -15,7 +15,7 @@
           tr(v-for='a in accounts', :key='a._id')
             td
               nuxt-link(:to="{ name: 'account-address', params: { address: a._id }}") {{ a._id }}
-            td {{ a.balance }}
+            td {{ a.balance | mtn }}
 </template>
 
 <script>

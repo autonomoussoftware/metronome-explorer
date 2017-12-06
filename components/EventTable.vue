@@ -25,7 +25,7 @@ div
               img.clippy(v-clipboard="e.metaData.returnValues._to", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td
-            span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value }}
+            span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value | mtn }}
             span(v-else) N/A
           td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
   .row.d-flex
