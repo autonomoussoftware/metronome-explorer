@@ -1,9 +1,9 @@
 <template lang="pug">
-.container-fluid
+.container-fluid.account-container
   .row
     .col
-      h2.title Account {{ $route.params.address }}
-      p Balance: {{ balance }}
+      h4 Account {{ $route.params.address }}
+      p Balance: {{ balance | mtn }}
   .row
     .col
       mtn-event-table(:events="events")
@@ -40,3 +40,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .account-container {
+    margin-top: 50px;
+  }
+</style>
