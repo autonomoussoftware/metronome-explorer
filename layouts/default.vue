@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss">
   .main-container {
-    height: 90vh;
+    height: 86vh;
     overflow: auto;
     background: #fff;
   }

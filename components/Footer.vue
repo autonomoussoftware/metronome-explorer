@@ -5,7 +5,7 @@
 
 <style>
   footer {
-    height: 5vh;
+    height: 7vh;
     padding: 20px;
     text-align: center;
     color: #fff;

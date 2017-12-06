@@ -7,15 +7,15 @@ div
         p Sunt qui voluptate excepteur est ullamco amet non et. Occaecat nostrud nulla velit dolore elit. In non ut et ut sunt ex nostrud excepteur minim sunt do occaecat deserunt exercitation. Mollit irure amet proident ea laboris labore ex aute dolore sunt. Amet pariatur in voluptate deserunt nostrud velit consequat. Ipsum elit nostrud reprehenderit non commodo officia. Eiusmod non duis qui duis occaecat.
 
   .container-fluid
-    .row
-      .col
-        h2.title Recent Transactions
-      .col
+    .row.title-container
+      .col-sm-8
+        h3 Recent Transactions
+      .col-sm-4
         .input-group
           span.input-group-btn
-            button.btn.btn-secondary(@click="clearFilter")
-              img(src="~/assets/svg/x.svg")
-          input.form-control(type="search", v-model="filter", placeholder="Filter by account...")
+          input.form-control(type="text", v-model="filter", placeholder="Filter by account...")
+          button.btn.btn-secondary(@click="clearFilter")
+            img(src="~/assets/svg/x.svg")
     .row
       .col
         mtn-event-table(
@@ -132,5 +132,13 @@ export default {
     background: #EDEDED;
     margin-bottom: 30px;
     padding: 40px 80px;
+  }
+
+  .title-container {
+    margin-bottom: 30px;
+  }
+
+  input, input:focus {
+    border: 3px solid #7e61f8;
   }
 </style>
