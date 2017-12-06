@@ -35,10 +35,7 @@ export default {
 
   data () {
     return {
-      skip: 0,
-      limit,
       filter: '',
-
       hasEnded: false
     }
   },
@@ -59,10 +56,11 @@ export default {
   },
 
   async asyncData () {
-    let { events, count } = await eventService.get({
+    const { events, count } = await eventService.get({
       $sort: '-metaData.timestamp',
       $limit: limit
     })
+
     return { events, count }
   },
 
