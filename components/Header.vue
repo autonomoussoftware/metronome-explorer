@@ -28,6 +28,7 @@
   }
 
   .navbar-brand {
+    margin: 0;
     margin-left: 80px;
   }
 
