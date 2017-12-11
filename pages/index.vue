@@ -12,10 +12,11 @@ div
         h4 Recent Transactions
       .col-sm-4
         .input-group
-          span.input-group-btn
+          //- span.input-group-btn
           input.form-control(type="text", v-model="filter", placeholder="Filter by account...")
-          button.btn.btn-secondary(@click="clearFilter")
-            img(src="~/assets/svg/x.svg")
+          //- button.btn.btn-secondary(@click="clearFilter") &times;
+          span.clear(@click="clearFilter") &times;
+            //- img(src="~/assets/svg/x.svg")
     .row
       .col
         mtn-event-table(
@@ -122,6 +123,10 @@ export default {
 
 <style lang="scss" scoped>
   .about-container {
+    background: #EDEDED;
+    margin-bottom: 30px;
+    padding: 40px 80px;
+
     h6 {
       text-transform: uppercase;
       font-weight: 500;
@@ -130,13 +135,18 @@ export default {
     p {
       margin-bottom: 0;
     }
-
-    background: #EDEDED;
-    margin-bottom: 30px;
-    padding: 40px 80px;
   }
 
-  input, input:focus {
-    border: 3px solid #7e61f8;
+  .clear {
+    margin-left: -10px;
+    cursor: pointer;
+    font-size: 1.3em;
+  }
+
+  input.form-control, input.form-control:focus {
+    border: none;
+    border-bottom: 2px solid #7e61f8;
+    color: #000;
+    box-shadow: none;
   }
 </style>

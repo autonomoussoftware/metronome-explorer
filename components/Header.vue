@@ -41,7 +41,7 @@ export default {
 
 <style lang="scss" scoped>
   header {
-    height: 7vh;
+    height: 80px;
   }
 
   nav {
