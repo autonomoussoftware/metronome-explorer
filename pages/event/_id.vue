@@ -36,4 +36,9 @@ export default {
   .event-container {
     margin-top: 50px;
   }
+
+  pre {
+    max-width: 100%;
+    overflow: auto;
+  }
 </style>

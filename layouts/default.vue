@@ -24,10 +24,6 @@ export default {
     background: #fff;
   }
 
-  .container-fluid {
-    padding: 0 80px;
-  }
-
   .app {
     padding-bottom: 100px;
     background: #fff !important;
@@ -49,6 +45,12 @@ export default {
     td {
       padding: 15px 25px 15px 5px;
       font-size: 0.7em;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container-fluid {
+      padding: 0 80px;
     }
   }
 </style>

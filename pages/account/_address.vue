@@ -1,8 +1,9 @@
 <template lang="pug">
 .container-fluid.account-container
   .row
-    .col
-      h4 Account {{ $route.params.address }}
+    .col-sm-12
+      h4.title Account {{ $route.params.address }}
+    .col-sm-12
       p Balance: {{ balance | mtn }}
   .row
     .col
@@ -44,5 +45,11 @@ export default {
 <style lang="scss" scoped>
   .account-container {
     margin-top: 50px;
+  }
+
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  table.table
+  table.table.table-responsive
       thead
         tr
           th ID

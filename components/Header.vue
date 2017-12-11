@@ -48,14 +48,13 @@ export default {
     border-bottom: 3px solid #7e61f8;
   }
 
-  .navbar-brand {
-    margin: 0;
-    margin-left: 80px;
-  }
-
   .collapse.navbar-collapse{
     margin-left: 40px;
   }
+
+   .navbar-brand {
+      margin: 0;
+   }
 
   .form-inline {
     margin-right: 65px;
@@ -76,6 +75,12 @@ export default {
       button {
         font-weight: 200;
       }
+    }
+  }
+
+  @media (min-width: 992px) {
+    .navbar-brand {
+      margin-left: 80px;
     }
   }
 </style>

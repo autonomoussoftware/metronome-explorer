@@ -6,7 +6,7 @@
 
   .row
     .col
-      table.table
+      table.table.table-responsive
         thead
           tr
             th Address
