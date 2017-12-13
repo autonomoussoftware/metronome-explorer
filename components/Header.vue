@@ -1,6 +1,6 @@
 <template lang="pug">
   header
-    nav.navbar.navbar-expand-xl.navbar-light.fixed-top
+    nav.navbar.navbar-expand-md.navbar-light.fixed-top
       nuxt-link.navbar-brand(to="/")
         img(src="../assets/img/logo.png", alt="Metronome")
 
@@ -17,7 +17,7 @@
 
         form.form-inline(@submit.prevent="goToAccount")
           .input-group.input-search
-            input.form-control(type="text", v-model="address" placeholder="Search an account")
+            input.form-control(type="search", v-model="address" placeholder="Search an account")
             button.btn.input-group-btn(type="submit") Search
 </template>
 
@@ -50,7 +50,8 @@ export default {
     height: 80px;
   }
 
-  nav {
+  .navbar {
+    background: #282828;
     border-bottom: 3px solid #7e61f8;
   }
 
@@ -60,6 +61,25 @@ export default {
 
   .navbar-brand {
     margin: 0;
+  }
+
+  .navbar-toggler.collapsed:focus {
+    outline: 0
+  }
+
+  .navbar-nav {
+    padding-top: 25px
+  }
+
+  .navbar-brand img {
+    max-width: 253px
+  }
+
+  .navbar .nav-link.nuxt-link-exact-active,.navbar .nav-link:hover {
+    color: #7e61f8!important;
+    border-bottom: 2px solid;
+    border-color: #7e61f8;
+    transition: border-color .5s ease-out
   }
 
   .navbar-toggler {
@@ -95,5 +115,32 @@ export default {
     .input-search {
       width: 400px;
     }
+  }
+
+  @media (min-width: 1200px) {
+    .navbar {
+        background-color:#282828;
+        transition: background-color .25s ease-out
+    }
+
+    .navbar.top {
+      background-color: transparent
+    }
+  }
+
+  .navbar .container {
+    position: relative
+  }
+
+  .navbar .nav-link {
+    margin: 10px 3px;
+    padding-right: 0!important;
+    padding-left: 0!important;
+    border-bottom: 2px solid;
+    border-color: transparent;
+    color: #fff!important;
+    font-size:16px;
+    font-weight: 100;
+    margin: 5px 10px
   }
 </style>
