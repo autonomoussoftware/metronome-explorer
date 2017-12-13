@@ -31,7 +31,6 @@ import socketMixin from '~/mixins/socket'
 import eventService from '~/plugins/event'
 
 import MtnEventTable from '~/components/EventTable'
-import MtnIcon from '~/components/Icon'
 
 const limit = 20
 
@@ -39,7 +38,7 @@ export default {
   name: 'EventList',
 
   mixins: [socketMixin],
-  components: { MtnEventTable, MtnIcon },
+  components: { MtnEventTable },
 
   data () {
     return {
