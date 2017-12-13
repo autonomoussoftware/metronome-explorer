@@ -4,7 +4,10 @@
       nuxt-link.navbar-brand(to="/")
         img(src="../assets/img/logo.png", alt="Metronome")
 
-      .collapse.navbar-collapse
+      button.navbar-toggler
+        span.navbar-toggler-icon(@click="toggleCollapse")
+
+      .collapse.navbar-collapse(:class="{ 'show': showCollapse }")
 
         ul.navbar-nav.mr-auto
           li.nav-item.active
@@ -20,11 +23,10 @@
 
 <script>
 export default {
-  name: 'Header',
-
   data () {
     return {
-      address: ''
+      address: '',
+      showCollapse: false
     }
   },
 
@@ -33,6 +35,10 @@ export default {
       if (!this.address) { return }
       this.$router.push({ name: 'account-address', params: { address: this.address } })
       this.address = ''
+    },
+
+    toggleCollapse () {
+      this.showCollapse = !this.showCollapse
     }
   }
 }
@@ -52,9 +58,14 @@ export default {
     margin-left: 40px;
   }
 
-   .navbar-brand {
-      margin: 0;
-   }
+  .navbar-brand {
+    margin: 0;
+  }
+
+  .navbar-toggler {
+    background: #fff;
+    border: 3px solid #ccc;
+  }
 
   .form-inline {
     margin-right: 65px;
