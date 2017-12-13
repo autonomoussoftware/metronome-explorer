@@ -71,8 +71,6 @@ export default {
     margin-right: 65px;
 
     .input-search {
-      width: 400px;
-
       input: {
         color: #fff;
       }
@@ -92,6 +90,10 @@ export default {
   @media (min-width: 992px) {
     .navbar-brand {
       margin-left: 80px;
+    }
+
+    .input-search {
+      width: 400px;
     }
   }
 </style>
