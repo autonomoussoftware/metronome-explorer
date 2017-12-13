@@ -88,8 +88,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  svg * { fill: red; }
-
   .pagination {
     .btn {
       background: #EDEDED;
