@@ -104,4 +104,10 @@ export default {
     margin-left: 10px;
     cursor: copy;
   }
+
+  @media (min-width: 992px) {
+    .table-responsive {
+      display: table;
+    }
+  }
 </style>
