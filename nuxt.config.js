@@ -13,7 +13,7 @@ module.exports = {
 
   loading: { color: '#7E66F4', height: '3px' },
 
-  css: ['bootstrap/dist/css/bootstrap.css', '~/assets/css/main.css'],
+  css: ['bootstrap/dist/css/bootstrap.css'],
 
   plugins: [
     '~/plugins/moment',
