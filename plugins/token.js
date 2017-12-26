@@ -2,6 +2,7 @@ import Vue from 'vue'
 import BigNumber from 'bignumber.js'
 
 const getNumber = function (value, prefix) {
+  if (!value) { return 0 }
   const ret = new BigNumber(value.toString())
   const divisor = (new BigNumber(10)).toPower(18)
   return `${ret.dividedBy(divisor)} ${prefix}`
