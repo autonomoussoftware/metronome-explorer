@@ -1,10 +1,10 @@
 const config = {
   api: {
-    url: 'http://localhost:3000'
+    url: 'http://mtn-dev.sa-east-1.elasticbeanstalk.com'
   },
 
   socket: {
-    url: 'http://localhost:3000'
+    url: 'http://mtn-dev.sa-east-1.elasticbeanstalk.com'
   }
 }
 
