@@ -17,7 +17,7 @@
 
         form.form-inline(@submit.prevent="goToAccount")
           .input-group.input-search
-            input.form-control(type="search", v-model="address" placeholder="Search an account")
+            input.form-control(type="search", v-model="address" placeholder="Search account or transaction")
             button.btn.input-group-btn(type="submit") Search
 </template>
 
@@ -33,7 +33,13 @@ export default {
   methods: {
     goToAccount () {
       if (!this.address) { return }
-      this.$router.push({ name: 'account-address', params: { address: this.address } })
+
+      if (this.address.length > 60) {
+        this.$router.push({ name: 'transaction-hash', params: { hash: this.address } })
+      } else {
+        this.$router.push({ name: 'account-address', params: { address: this.address } })
+      }
+
       this.address = ''
     },
 

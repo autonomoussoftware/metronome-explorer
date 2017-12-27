@@ -1,6 +1,6 @@
 <template lang="pug">
   section.container
-    img.logo(src="../assets/img/logo.png", alt="Nuxt.js Logo")
+    img.logo(src="../assets/img/logo.png", alt="Metronome")
     h1.title
       | {{ error.statusCode }}
     h2.info
