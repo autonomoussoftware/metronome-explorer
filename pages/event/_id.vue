@@ -1,10 +1,16 @@
 <template lang="pug">
   .container-fluid.event-container
     .row
-      .col
+      .col-sm-10
         h4 Event {{ event._id }}
+      .col-sm-2
+        nuxt-link(:to="{ name: 'transaction-hash', params: { hash: event.metaData.transactionHash } }")
+          | Check Transaction
+    .row
+      .col
         pre
           code {{ event.metaData }}
+
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template lang="pug">
   .container-fluid.transaction-container
     .row
-      .col
+      .col-sm-12
         h4 Transaction {{ transaction.hash }}
         pre
           code {{ transaction }}
