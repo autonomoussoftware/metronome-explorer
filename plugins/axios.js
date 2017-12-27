@@ -1,4 +1,4 @@
-import * as axios from 'axios'
+import axios from 'axios'
 
 let options = {
   baseURL: process.env.apiUrl

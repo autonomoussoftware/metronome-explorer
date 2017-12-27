@@ -13,7 +13,8 @@ module.exports = {
 
   env: {
     apiUrl: process.env.API_URL || 'http://localhost:3000',
-    socketUrl: process.env.SOCKET_URL || 'http://localhost:3000'
+    socketUrl: process.env.SOCKET_URL || 'http://localhost:3000',
+    ethUrl: process.env.ETH_URL || 'ws://35.153.248.198:8546'
   },
 
   loading: { color: '#7E66F4', height: '3px' },
