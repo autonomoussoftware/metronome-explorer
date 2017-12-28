@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "PORT=3333 nuxt",
     "build": "nuxt build",
-    "prestart": "npm i && nuxt build",
+    "prestart": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "precommit": "npm run lint",
@@ -23,9 +23,7 @@
     "source-map-support": "^0.4.15",
     "vue-clipboards": "^1.2.0",
     "vue-moment": "^2.2.0",
-    "web3": "^1.0.0-beta.27"
-  },
-  "devDependencies": {
+    "web3": "^1.0.0-beta.27",
     "babel-eslint": "^7.2.3",
     "backpack-core": "^0.4.1",
     "eslint": "^4.3.0",
