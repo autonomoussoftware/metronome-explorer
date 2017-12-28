@@ -23,7 +23,7 @@ module.exports = {
 
   plugins: [
     '~/plugins/filters',
-    '~/plugins/clipboard'
+    '~/plugins/directives'
   ],
 
   build: {
