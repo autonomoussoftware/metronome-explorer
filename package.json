@@ -6,8 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "PORT=3333 nuxt",
-    "build": "nuxt build",
-    "prebuild": "npm i",
+    "build": "npm i && nuxt build",
     "prestart": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
