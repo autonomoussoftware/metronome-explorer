@@ -52,6 +52,8 @@ export default {
       if (!this.filter) { return this.events }
 
       return this.events.filter(e => {
+        if (!e.metaData.returnValues._to && e.metaData.returnValues._from) { return false }
+
         return (e.metaData.returnValues._to.includes(this.filter)) ||
           (e.metaData.returnValues._from.includes(this.filter))
       })
