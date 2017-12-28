@@ -1,14 +1,5 @@
-# dependencies
 node_modules
-
-# logs
 npm-debug.log
-
-# Nuxt generate
 dist
-
-# Backpack build
 build
-
-# OS Files
- .DS_Store
+.DS_Store
