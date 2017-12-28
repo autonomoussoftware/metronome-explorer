@@ -12,8 +12,8 @@ module.exports = {
   },
 
   env: {
-    apiUrl: process.env.API_URL || 'http://localhost:3000',
-    socketUrl: process.env.SOCKET_URL || 'http://localhost:3000',
+    apiUrl: process.env.API_URL || 'http://mtn-dev.sa-east-1.elasticbeanstalk.com/',
+    socketUrl: process.env.SOCKET_URL || 'http://mtn-dev.sa-east-1.elasticbeanstalk.com/',
     ethUrl: process.env.ETH_URL || 'ws://35.153.248.198:8546'
   },
 
