@@ -22,9 +22,7 @@ module.exports = {
   css: ['bootstrap/dist/css/bootstrap.css'],
 
   plugins: [
-    '~/plugins/moment',
-    '~/plugins/token',
-    '~/plugins/minter',
+    '~/plugins/filters',
     '~/plugins/clipboard'
   ],
 
