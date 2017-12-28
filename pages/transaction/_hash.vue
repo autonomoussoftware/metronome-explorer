@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import web3 from '~/plugins/web3'
+import web3 from '~/services/web3'
 
 export default {
   name: 'TransactionDetail',

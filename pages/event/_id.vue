@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import eventService from '~/plugins/event'
+import eventService from '~/services/event'
 
 export default {
   name: 'EventDetail',

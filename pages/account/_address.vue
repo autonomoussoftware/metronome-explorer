@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import eventService from '~/plugins/event'
-import accountService from '~/plugins/account'
+import eventService from '~/services/event'
+import accountService from '~/services/account'
 
 import MtnEventTable from '~/components/EventTable'
 

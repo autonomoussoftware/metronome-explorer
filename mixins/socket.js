@@ -1,4 +1,4 @@
-import socket from '~/plugins/socket.io.js'
+import socket from '~/services/socket.io.js'
 
 const limit = 20
 

@@ -28,7 +28,7 @@ div
 
 <script>
 import socketMixin from '~/mixins/socket'
-import eventService from '~/plugins/event'
+import eventService from '~/services/event'
 
 import MtnEventTable from '~/components/EventTable'
 

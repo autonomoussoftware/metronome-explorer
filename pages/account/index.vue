@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import accountService from '~/plugins/account'
+import accountService from '~/services/account'
 
 export default {
   name: 'AccountList',
