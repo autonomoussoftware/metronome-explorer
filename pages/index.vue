@@ -9,7 +9,7 @@ div
   .container-fluid
     .row.title-container
       .col-sm-8
-        h4 Recent Transactions
+        h4 Recent Events
       .col-sm-4
         .input-group
           //- span.input-group-btn
