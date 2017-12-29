@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import BigNumber from 'bignumber.js'
 
+BigNumber.config({
+  EXPONENTIAL_AT: 1e+9,
+  FORMAT: {
+    decimalSeparator: '.',
+    groupSeparator: ',',
+    groupSize: 3
+  }
+})
+
 const getNumber = function (value, prefix) {
   if (!value) { return 0 }
   const ret = new BigNumber(value.toString())
   const divisor = (new BigNumber(10)).toPower(18)
-  return `${ret.dividedBy(divisor)} ${prefix}`
-}
-
-const ethFilter = {
-  install (Vue) {
-    Vue.filter('eth', function (value) {
-      return getNumber(value, 'ETH')
-    })
-  }
+  return `${ret.dividedBy(divisor).toFormat()} ${prefix}`
 }
 
 const mtnFilter = {
@@ -24,5 +25,4 @@ const mtnFilter = {
   }
 }
 
-Vue.use(ethFilter)
 Vue.use(mtnFilter)

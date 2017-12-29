@@ -15,12 +15,12 @@ div
             nuxt-link(:to="{ name: 'event-id', params: { id: e._id }}") {{ e._id }}
           td {{ e.metaData.event }}
           td
-            span(v-if="e.metaData.returnValues")
+            span(v-if="e.metaData.returnValues && e.metaData.returnValues._from")
               nuxt-link(:to="{ name: 'account-address', params: { address: e.metaData.returnValues._from }}") {{ e.metaData.returnValues._from | minter }}
               //- img.clippy(v-clipboard="e.metaData.returnValues._from", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td
-            span(v-if="e.metaData.returnValues")
+            span(v-if="e.metaData.returnValues && e.metaData.returnValues._to")
               nuxt-link(:to="{ name: 'account-address', params: { address: e.metaData.returnValues._to }}") {{ e.metaData.returnValues._to | minter }}
               //- img.clippy(v-clipboard="e.metaData.returnValues._to", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
