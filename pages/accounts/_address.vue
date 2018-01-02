@@ -1,13 +1,15 @@
 <template lang="pug">
 .container-fluid.account-container
   .row
-    .col-sm-12
+    .col-sm-8
       h4.title Account {{ $route.params.address }}
-    .col-sm-12
-      p Balance: {{ balance | mtn }}
+      p
+        b Balance: {{ balance | mtn }}
+    .col-sm-4
+      mtn-account-filter(:filter.sync="filter")
   .row
     .col
-      mtn-event-table(:events="events", :count="events.length", :show-pagination="false")
+      mtn-event-table(:events="filteredEvents", :count="events.length", :show-pagination="false")
 </template>
 
 <script>
@@ -15,14 +17,16 @@ import eventService from '~/services/event'
 import accountService from '~/services/account'
 
 import MtnEventTable from '~/components/EventTable'
+import MtnAccountFilter from '~/components/AccountFilter'
 
 export default {
   name: 'AccountDetail',
 
-  components: { MtnEventTable },
+  components: { MtnEventTable, MtnAccountFilter },
 
   data () {
     return {
+      filter: '',
       events: [],
       balance: 0
     }
@@ -37,6 +41,19 @@ export default {
   head () {
     return {
       title: `Account: ${this.$route.params.address}`
+    }
+  },
+
+  computed: {
+    filteredEvents () {
+      if (!this.filter) { return this.events }
+
+      return this.events.filter(e => {
+        if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) { return false }
+
+        return (e.metaData.returnValues._to.includes(this.filter)) ||
+          (e.metaData.returnValues._from.includes(this.filter))
+      })
     }
   }
 }

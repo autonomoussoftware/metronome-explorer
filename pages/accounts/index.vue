@@ -33,7 +33,8 @@ export default {
 
   data () {
     return {
-      filter: ''
+      filter: '',
+      accounts: []
     }
   },
 

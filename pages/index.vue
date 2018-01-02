@@ -26,8 +26,8 @@ div
 import socketMixin from '~/mixins/socket'
 import eventService from '~/services/event'
 
-import MtnAccountFilter from '~/components/AccountFilter'
 import MtnEventTable from '~/components/EventTable'
+import MtnAccountFilter from '~/components/AccountFilter'
 
 const limit = 20
 
