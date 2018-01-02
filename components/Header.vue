@@ -130,6 +130,10 @@ export default {
       button {
         font-weight: 200;
       }
+
+      button:disabled {
+        cursor: not-allowed;
+      }
     }
   }
 
