@@ -29,7 +29,6 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "estraverse": "^4.2.0",
     "node-sass": "^4.6.1",
     "nuxt": "^1.0.0-rc11",
     "pug": "^2.0.0-rc.4",
@@ -43,8 +42,5 @@
   "engines": {
     "node": "8",
     "npm": "5"
-  },
-  "devDependencies": {
-    "eb-fix-npm": "^1.2.5"
   }
 }
