@@ -16,10 +16,11 @@ div
     .row
       .col
         mtn-event-table(
-          :events="filteredEvents", :count="count", :skip="skip", :has-ended="hasEnded",
-          :show-pagination="showPagination",
+          v-show="filteredEvents.length", :events="filteredEvents", :count="count",
+          :skip="skip", :has-ended="hasEnded", :show-pagination="showPagination",
           @next-page="getNextPage", @previous-page="getPreviousPage"
         )
+        p(v-show="!filteredEvents.length") No events were found.
 </template>
 
 <script>
