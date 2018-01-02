@@ -18,8 +18,8 @@
         form.form-inline(@submit.prevent="goToAccount")
           .input-group.input-search
             input.form-control(type="search", v-model="search", placeholder="Search account or transaction")
-            small(v-show="")
             button.btn.input-group-btn(type="submit", :disabled="!isSearchValid") Search
+          small(v-show="showSearchToolTip") The search does not match a account or address.
 </template>
 
 <script>
@@ -36,6 +36,10 @@ export default {
   computed: {
     isSearchValid () {
       return this.search.match(SEARCH_PATTERN)
+    },
+
+    showSearchToolTip () {
+      return this.search && !this.isSearchValid
     }
   },
 
@@ -104,6 +108,13 @@ export default {
 
   .form-inline {
     margin-right: 65px;
+    flex-direction: columns;
+    align-items: flex-start;
+
+    small {
+      color: #fff;
+      margin-left: 5px;
+    }
 
     .input-search {
       input: {
