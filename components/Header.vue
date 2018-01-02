@@ -108,7 +108,7 @@ export default {
 
   .form-inline {
     margin-right: 65px;
-    flex-direction: columns;
+    flex-direction: column;
     align-items: flex-start;
 
     small {
