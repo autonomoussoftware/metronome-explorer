@@ -15,10 +15,9 @@ const socketMixin = {
 
   created () {
     socket.on('NEW_EVENT', (event) => {
+      this.count += 1
       if (this.skip === 0) {
-        if (this.events.length === this.limit) {
-          this.events.pop()
-        }
+        if (this.events.length === this.limit) { this.events.pop() }
         this.events.unshift(event)
       }
     })
