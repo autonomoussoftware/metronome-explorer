@@ -134,18 +134,4 @@ export default {
       margin-bottom: 0;
     }
   }
-
-  .clear {
-    margin-left: 0;
-    border-bottom: 2px solid #525252;
-    cursor: pointer;
-    font-size: 1.5em;
-  }
-
-  input.form-control, input.form-control:focus {
-    border: none;
-    border-bottom: 2px solid #525252;
-    color: #000;
-    box-shadow: none;
-  }
 </style>

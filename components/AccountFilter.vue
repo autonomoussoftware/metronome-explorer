@@ -12,7 +12,7 @@ export default {
 
   methods: {
     clearFilter () {
-      this.$emit('clear')
+      this.$emit('update:filter', '')
     },
 
     updateFilter (e) {
@@ -28,5 +28,12 @@ export default {
     border-bottom: 2px solid #525252;
     color: #000;
     box-shadow: none;
+  }
+
+  .clear {
+    margin-left: 0;
+    border-bottom: 2px solid #525252;
+    cursor: pointer;
+    font-size: 1.5em;
   }
 </style>
