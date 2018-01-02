@@ -14,7 +14,7 @@ const socketMixin = {
   },
 
   created () {
-    socket.on('event', (event) => {
+    socket.on('NEW_EVENT', (event) => {
       if (this.skip === 0) {
         if (this.events.length === this.limit) {
           this.events.pop()
