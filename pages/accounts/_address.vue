@@ -9,7 +9,11 @@
       mtn-account-filter(:filter.sync="filter")
   .row
     .col
-      mtn-event-table(:events="filteredEvents", :count="events.length", :show-pagination="false")
+      mtn-event-table(
+        v-show="filteredEvents.length", :events="filteredEvents",
+        :count="events.length", :show-pagination="false"
+      )
+      p(v-show="!filteredEvents.length") No events were found.
 </template>
 
 <script>

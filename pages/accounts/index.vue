@@ -8,7 +8,7 @@
 
   .row
     .col-sm-12
-      table.table.table-responsive
+      table.table.table-responsive(v-show="filteredAccounts.length")
         thead
           tr
             th Address
@@ -20,6 +20,7 @@
               nuxt-link(:to="{ name: 'accounts-address', params: { address: a._id }}") {{ a._id }}
             td {{ a.balance | mtn }}
             td {{ a.updatedAt | moment('from') }}
+      p(v-show="!filteredAccounts.length") No accounts were found.
 </template>
 
 <script>
