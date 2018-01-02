@@ -19,9 +19,9 @@ module.exports = {
   },
 
   env: {
-    apiUrl: process.env.API_URL || 'http://mtn-dev.sa-east-1.elasticbeanstalk.com/',
-    socketUrl: process.env.SOCKET_URL || 'http://mtn-dev.sa-east-1.elasticbeanstalk.com/',
-    ethUrl: process.env.ETH_URL || 'ws://35.153.248.198:8546'
+    apiUrl: process.env.MTN_API_URL || 'http://localhost:3000',
+    socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3000',
+    ethUrl: process.env.ETH_NODE_URL || 'ws://35.153.248.198:8546'
   },
 
   loading: { color: '#7E66F4', height: '3px' },

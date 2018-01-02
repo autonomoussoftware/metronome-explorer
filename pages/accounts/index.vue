@@ -1,8 +1,11 @@
 <template lang="pug">
 .container-fluid.account-container
   .row.title-container
-    .col-sm-12
+    .col-sm-8
       h4 Accounts
+    .col-sm-4
+      mtn-account-filter(:filter.sync="filter")
+
 
   .row
     .col-sm-12
@@ -21,14 +24,17 @@
 </template>
 
 <script>
+import MtnAccountFilter from '~/components/AccountFilter'
 import accountService from '~/services/account'
 
 export default {
   name: 'AccountList',
 
+  components: { MtnAccountFilter },
+
   data () {
     return {
-      accounts: []
+      filter: ''
     }
   },
 

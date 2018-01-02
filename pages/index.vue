@@ -12,11 +12,8 @@ div
         h4 Recent Events
       .col-sm-4
         .input-group
-          //- span.input-group-btn
           input.form-control(type="text", v-model="filter", placeholder="Filter by account...")
-          //- button.btn.btn-secondary(@click="clearFilter") &times;
           span.clear(@click="clearFilter") &times;
-            //- img(src="~/assets/svg/x.svg")
     .row
       .col
         mtn-event-table(
