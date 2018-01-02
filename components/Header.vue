@@ -17,30 +17,43 @@
 
         form.form-inline(@submit.prevent="goToAccount")
           .input-group.input-search
-            input.form-control(type="search", v-model="address" placeholder="Search account or transaction")
-            button.btn.input-group-btn(type="submit") Search
+            input.form-control(type="search", v-model="search", placeholder="Search account or transaction")
+            button.btn.input-group-btn(type="submit", :disabled="!isSearchValid") Search
+          small(v-show="showSearchToolTip") The search does not match a account or address.
 </template>
 
 <script>
+const SEARCH_PATTERN = /^0x[a-fA-F0-9]{40}$|^0x[a-fA-F0-9]{64}$/
+
 export default {
   data () {
     return {
-      address: '',
+      search: '',
       showCollapse: false
+    }
+  },
+
+  computed: {
+    isSearchValid () {
+      return this.search.match(SEARCH_PATTERN)
+    },
+
+    showSearchToolTip () {
+      return this.search && !this.isSearchValid
     }
   },
 
   methods: {
     goToAccount () {
-      if (!this.address) { return }
+      if (!this.search) { return }
 
-      if (this.address.length > 60) {
-        this.$router.push({ name: 'transactions-hash', params: { hash: this.address } })
+      if (this.search.length > 60) {
+        this.$router.push({ name: 'transactions-hash', params: { hash: this.search } })
       } else {
-        this.$router.push({ name: 'accounts-address', params: { address: this.address } })
+        this.$router.push({ name: 'accounts-address', params: { address: this.search } })
       }
 
-      this.address = ''
+      this.search = ''
     },
 
     toggleCollapse () {
@@ -95,6 +108,13 @@ export default {
 
   .form-inline {
     margin-right: 65px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    small {
+      color: #fff;
+      margin-left: 5px;
+    }
 
     .input-search {
       input: {
@@ -109,6 +129,10 @@ export default {
 
       button {
         font-weight: 200;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
       }
     }
   }
