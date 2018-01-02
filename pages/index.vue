@@ -11,12 +11,8 @@ div
       .col-sm-8
         h4 Recent Events
       .col-sm-4
-        .input-group
-          //- span.input-group-btn
-          input.form-control(type="text", v-model="filter", placeholder="Filter by account...")
-          //- button.btn.btn-secondary(@click="clearFilter") &times;
-          span.clear(@click="clearFilter") &times;
-            //- img(src="~/assets/svg/x.svg")
+        mtn-account-filter(:filter.sync="filter")
+
     .row
       .col
         mtn-event-table(
@@ -31,6 +27,7 @@ import socketMixin from '~/mixins/socket'
 import eventService from '~/services/event'
 
 import MtnEventTable from '~/components/EventTable'
+import MtnAccountFilter from '~/components/AccountFilter'
 
 const limit = 20
 
@@ -38,7 +35,7 @@ export default {
   name: 'EventList',
 
   mixins: [socketMixin],
-  components: { MtnEventTable },
+  components: { MtnEventTable, MtnAccountFilter },
 
   data () {
     return {
@@ -82,10 +79,6 @@ export default {
   },
 
   methods: {
-    clearFilter () {
-      this.filter = ''
-    },
-
     async getEvents () {
       this.hasEnded = false
 
@@ -136,19 +129,5 @@ export default {
     p {
       margin-bottom: 0;
     }
-  }
-
-  .clear {
-    margin-left: 0;
-    border-bottom: 2px solid #525252;
-    cursor: pointer;
-    font-size: 1.5em;
-  }
-
-  input.form-control, input.form-control:focus {
-    border: none;
-    border-bottom: 2px solid #525252;
-    color: #000;
-    box-shadow: none;
   }
 </style>
