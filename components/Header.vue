@@ -13,7 +13,7 @@
           li.nav-item.active
             nuxt-link.nav-link(to="/") Events
           li.nav-item
-            nuxt-link.nav-link(to="/account") Accounts
+            nuxt-link.nav-link(to="/accounts") Accounts
 
         form.form-inline(@submit.prevent="goToAccount")
           .input-group.input-search
@@ -35,9 +35,9 @@ export default {
       if (!this.address) { return }
 
       if (this.address.length > 60) {
-        this.$router.push({ name: 'transaction-hash', params: { hash: this.address } })
+        this.$router.push({ name: 'transactions-hash', params: { hash: this.address } })
       } else {
-        this.$router.push({ name: 'account-address', params: { address: this.address } })
+        this.$router.push({ name: 'accounts-address', params: { address: this.address } })
       }
 
       this.address = ''

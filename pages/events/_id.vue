@@ -4,7 +4,7 @@
       .col-sm-10
         h4 Event {{ event._id }}
       .col-sm-2
-        nuxt-link(:to="{ name: 'transaction-hash', params: { hash: event.metaData.transactionHash } }")
+        nuxt-link(:to="{ name: 'transactions-hash', params: { hash: event.metaData.transactionHash } }")
           | Check Transaction
     .row
       .col
