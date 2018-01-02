@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import MtnAccountFilter from '~/components/AccountFilter'
 import accountService from '~/services/account'
+import MtnAccountFilter from '~/components/AccountFilter'
 
 export default {
   name: 'AccountList',

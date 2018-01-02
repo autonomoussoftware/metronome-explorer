@@ -11,9 +11,8 @@ div
       .col-sm-8
         h4 Recent Events
       .col-sm-4
-        .input-group
-          input.form-control(type="text", v-model="filter", placeholder="Filter by account...")
-          span.clear(@click="clearFilter") &times;
+        mtn-account-filter(:filter.sync="filter")
+
     .row
       .col
         mtn-event-table(
@@ -27,6 +26,7 @@ div
 import socketMixin from '~/mixins/socket'
 import eventService from '~/services/event'
 
+import MtnAccountFilter from '~/components/AccountFilter'
 import MtnEventTable from '~/components/EventTable'
 
 const limit = 20
@@ -35,7 +35,7 @@ export default {
   name: 'EventList',
 
   mixins: [socketMixin],
-  components: { MtnEventTable },
+  components: { MtnEventTable, MtnAccountFilter },
 
   data () {
     return {
@@ -79,10 +79,6 @@ export default {
   },
 
   methods: {
-    clearFilter () {
-      this.filter = ''
-    },
-
     async getEvents () {
       this.hasEnded = false
 
