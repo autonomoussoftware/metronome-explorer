@@ -1,6 +1,6 @@
 <template lang="pug">
 .container-fluid.account-container
-  .row
+  .row.title-container
     .col-sm-8
       h4.title Account {{ $route.params.address }}
       p
