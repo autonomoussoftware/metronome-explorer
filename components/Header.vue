@@ -17,30 +17,39 @@
 
         form.form-inline(@submit.prevent="goToAccount")
           .input-group.input-search
-            input.form-control(type="search", v-model="address" placeholder="Search account or transaction")
-            button.btn.input-group-btn(type="submit") Search
+            input.form-control(type="search", v-model="search", placeholder="Search account or transaction")
+            small(v-show="")
+            button.btn.input-group-btn(type="submit", :disabled="!isSearchValid") Search
 </template>
 
 <script>
+const SEARCH_PATTERN = /^0x[a-fA-F0-9]{40}$|^0x[a-fA-F0-9]{64}$/
+
 export default {
   data () {
     return {
-      address: '',
+      search: '',
       showCollapse: false
+    }
+  },
+
+  computed: {
+    isSearchValid () {
+      return this.search.match(SEARCH_PATTERN)
     }
   },
 
   methods: {
     goToAccount () {
-      if (!this.address) { return }
+      if (!this.search) { return }
 
-      if (this.address.length > 60) {
-        this.$router.push({ name: 'transactions-hash', params: { hash: this.address } })
+      if (this.search.length > 60) {
+        this.$router.push({ name: 'transactions-hash', params: { hash: this.search } })
       } else {
-        this.$router.push({ name: 'accounts-address', params: { address: this.address } })
+        this.$router.push({ name: 'accounts-address', params: { address: this.search } })
       }
 
-      this.address = ''
+      this.search = ''
     },
 
     toggleCollapse () {
