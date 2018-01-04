@@ -1,5 +1,5 @@
 <template lang="pug">
-  .container-fluid.transaction-container
+  .container-fluid
     .row
       .col-sm-12
         h4 Transaction {{ transaction.hash }}
@@ -27,10 +27,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .transaction-container {
-    margin-top: 50px;
-  }
-
   pre {
     max-width: 100%;
     overflow: auto;

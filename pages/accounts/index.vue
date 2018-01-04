@@ -1,5 +1,5 @@
 <template lang="pug">
-.container-fluid.account-container
+.container-fluid
   .row.title-container
     .col-sm-8
       h4 Accounts
@@ -35,7 +35,7 @@ import accountService from '~/services/account'
 import MtnPagination from '~/components/Pagination'
 import MtnAccountFilter from '~/components/AccountFilter'
 
-const LIMIT = 5
+const LIMIT = 20
 
 export default {
   name: 'AccountList',
@@ -124,10 +124,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .account-container {
-    margin-top: 50px;
-  }
-
   @media (min-width: 992px) {
     .table-responsive {
       display: table;

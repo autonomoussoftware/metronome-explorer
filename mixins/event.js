@@ -53,6 +53,10 @@ const eventMixin = {
 
   created () {
     socketService.on('NEW_EVENT', (event) => {
+      const address = this.$route.params.address
+      if (address && event.metaData.returnValues._from !== address &&
+        event.metaData.returnValues._to !== address) { return }
+
       this.count += 1
       if (this.skip === 0) {
         if (this.events.length === LIMIT) { this.events.pop() }

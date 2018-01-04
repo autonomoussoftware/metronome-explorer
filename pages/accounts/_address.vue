@@ -1,5 +1,5 @@
 <template lang="pug">
-.container-fluid.account-container
+.container-fluid
   .row.title-container
     .col-sm-8
       h4.title Account {{ $route.params.address }}
@@ -44,10 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .account-container {
-    margin-top: 50px;
-  }
-
   .title {
     white-space: nowrap;
     overflow: hidden;

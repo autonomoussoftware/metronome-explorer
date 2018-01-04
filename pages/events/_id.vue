@@ -1,5 +1,5 @@
 <template lang="pug">
-  .container-fluid.event-container
+  .container-fluid
     .row
       .col-sm-10
         h4 Event {{ event._id }}
@@ -33,10 +33,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .event-container {
-    margin-top: 50px;
-  }
-
   pre {
     max-width: 100%;
     overflow: auto;
