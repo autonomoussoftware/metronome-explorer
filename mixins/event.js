@@ -68,22 +68,27 @@ const eventMixin = {
   methods: {
     async getEvents () {
       this.hasEnded = false
-      let events
 
       if (this.$route.params.address) {
-        events = await eventService.getByAccount(this.$route.params.address, {
+        let { events } = await eventService.getByAccount(this.$route.params.address, {
           $sort: '-metaData.timestamp',
           $limit: LIMIT,
           $skip: this.skip
-        }).events
-      } else {
-        events = await eventService.get({
-          $sort: '-metaData.timestamp',
-          $limit: this.limit,
-          $skip: this.skip
-        }).events
-      }
+        })
 
+        this.setNewPage(events)
+      } else {
+        let { events } = await eventService.get({
+          $sort: '-metaData.timestamp',
+          $limit: LIMIT,
+          $skip: this.skip
+        })
+
+        this.setNewPage(events)
+      }
+    },
+
+    setNewPage (events) {
       if (!events || !events.length) {
         this.hasEnded = true
         return
