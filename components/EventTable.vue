@@ -41,7 +41,7 @@ div
               span(aria-hidden="true") Next
     .col-sm-2.text-right
       small
-        b {{ count }} transactions found.
+        b {{ count }} events found.
 </nav>
 </template>
 

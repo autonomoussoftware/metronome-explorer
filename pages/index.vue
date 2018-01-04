@@ -30,7 +30,7 @@ import eventService from '~/services/event'
 import MtnEventTable from '~/components/EventTable'
 import MtnAccountFilter from '~/components/AccountFilter'
 
-const limit = 20
+const LIMIT = 20
 
 export default {
   name: 'EventList',
@@ -65,10 +65,10 @@ export default {
   async asyncData () {
     const { events, count } = await eventService.get({
       $sort: '-metaData.timestamp',
-      $limit: limit
+      $limit: LIMIT
     })
 
-    const hasEnded = count <= limit
+    const hasEnded = count <= LIMIT
 
     return { events, count, hasEnded }
   },
