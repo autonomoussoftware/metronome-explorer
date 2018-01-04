@@ -15,16 +15,16 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     region: "sa-east-1"
     app: "metronome-explorer"
-    env: "metronome-explorer-dev"
+    env: "metronome-explorer-prod"
     bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
     on:
-      branch: develop
+      branch: master
   - provider: elasticbeanstalk
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     region: "sa-east-1"
     app: "metronome-explorer"
-    env: "metronome-explorer-prod"
+    env: "metronome-explorer-dev"
     bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
     on:
-      branch: master
+      branch: develop
