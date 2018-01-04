@@ -18,7 +18,9 @@ deploy:
   env: "metronome-explorer-dev"
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
   on:
-    branch: develop
+    branches:
+      only:
+        - develop
   provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
@@ -27,4 +29,6 @@ deploy:
   env: "metronome-explorer-prod"
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
   on:
-    branch: master
+    branches:
+      only:
+        - master
