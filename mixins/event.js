@@ -24,13 +24,11 @@ const eventMixin = {
       $limit: LIMIT
     })
 
-    let balance = 0
-    if (params.address) {
-      balance = await accountService.getByAddress(params.address).balance
-    }
-
     const hasEnded = count <= LIMIT
 
+    if (!params.address) { return { events, count, hasEnded } }
+
+    const { balance } = await accountService.getByAddress(params.address)
     return { events, count, hasEnded, balance }
   },
 
