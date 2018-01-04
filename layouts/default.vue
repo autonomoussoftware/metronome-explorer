@@ -27,6 +27,7 @@ export default {
   .app {
     padding-bottom: 100px;
     background: #fff !important;
+    padding-top: 50px;
 
     .title-container {
       margin-bottom: 15px;
@@ -49,8 +50,9 @@ export default {
   }
 
   @media (min-width: 992px) {
-    .container-fluid {
-      padding: 0 80px;
+    .app {
+      padding-left: 80px;
+      padding-right: 80px;
     }
   }
 
