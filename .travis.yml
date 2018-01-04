@@ -18,6 +18,7 @@ deploy:
   env: "metronome-explorer-dev"
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
   on:
+    repo: MetronomeToken/metronome-explorer
     branches:
       only:
         - develop
@@ -29,6 +30,7 @@ deploy:
   env: "metronome-explorer-prod"
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
   on:
+    repo: MetronomeToken/metronome-explorer
     branches:
       only:
         - master
