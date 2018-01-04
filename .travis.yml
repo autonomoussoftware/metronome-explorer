@@ -16,6 +16,7 @@ deploy:
     region: "sa-east-1"
     app: "metronome-explorer"
     env: "metronome-explorer-dev"
+    bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
     on:
       branch: develop
   - provider: elasticbeanstalk
@@ -24,5 +25,6 @@ deploy:
     region: "sa-east-1"
     app: "metronome-explorer"
     env: "metronome-explorer-prod"
+    bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
     on:
       branch: master
