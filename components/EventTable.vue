@@ -29,24 +29,20 @@ div
             span(v-else) N/A
           td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
 
-  .row.d-flex
-    .col-sm-10.d-flex.justify-content-start
-      nav(v-if="count && showPagination")
-        ul.pagination
-          li.page-item
-            a.btn(@click="previousPage", :class="{ disabled: hasEnded }")
-              span(aria-hidden="true") Previous
-          li.page-item
-            a.btn( @click="nextPage", :class="{ disabled: skip === 0 }")
-              span(aria-hidden="true") Next
-    .col-sm-2.text-right
-      small
-        b {{ count }} events found.
+  mtn-pagination(
+    v-show="showPagination",
+    :count="count", :skip="skip", :has-ended="hasEnded",
+    @next-page="nextPage", @previous-page="previousPage"
+  )
 </nav>
 </template>
 
 <script>
+import MtnPagination from '~/components/Pagination'
+
 export default {
+
+  components: { MtnPagination },
 
   props: {
     events: {
@@ -88,18 +84,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .pagination {
-    .btn {
-      background: #EDEDED;
-      margin-left: 5px;
-      border: none;
-      padding: 5px 15px;
-      color: #7e61f8;
-      text-transform: none;
-      font-weight: 700;
-    }
-  }
-
   .clippy {
     margin-left: 10px;
     cursor: copy;
