@@ -20,7 +20,7 @@ export default {
 
   head () {
     return {
-      title: `Transaction: ${this.transaction.hash}`
+      title: `Transaction: ${this.transaction.hash} | Metronome Explorer`
     }
   }
 }

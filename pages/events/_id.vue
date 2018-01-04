@@ -26,7 +26,7 @@ export default {
 
   head () {
     return {
-      title: `Event: ${this.event._id}`
+      title: `Event: ${this.event._id} | Metronome Explorer`
     }
   }
 }
