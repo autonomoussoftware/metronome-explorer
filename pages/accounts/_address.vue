@@ -10,8 +10,9 @@
   .row
     .col
       mtn-event-table(
-        v-show="filteredEvents.length", :events="filteredEvents",
-        :count="events.length", :show-pagination="false"
+        v-show="filteredEvents.length", :events="filteredEvents", :count="count",
+        :skip="skip", :has-ended="hasEnded", :show-pagination="showPagination",
+        @next-page="getNextPage", @previous-page="getPreviousPage"
       )
       p(v-show="!filteredEvents.length") No events were found.
 </template>
@@ -23,6 +24,8 @@ import accountService from '~/services/account'
 import MtnEventTable from '~/components/EventTable'
 import MtnAccountFilter from '~/components/AccountFilter'
 
+const LIMIT = 5
+
 export default {
   name: 'AccountDetail',
 
@@ -31,15 +34,25 @@ export default {
   data () {
     return {
       filter: '',
+      skip: 0,
+      hasEnded: false,
+      count: 0,
       events: [],
       balance: 0
     }
   },
 
   async asyncData ({ params }) {
-    let { events } = await eventService.getByAccount(params.address, { $sort: '-metaData.timestamp' })
+    const { events, count } = await eventService.getByAccount(params.address, {
+      $sort: '-metaData.timestamp',
+      $limit: LIMIT
+    })
+
+    const hasEnded = count <= LIMIT
+
     let { balance } = await accountService.getByAddress(params.address)
-    return { events, balance }
+
+    return { events, count, hasEnded, balance }
   },
 
   head () {
@@ -58,6 +71,45 @@ export default {
         return (e.metaData.returnValues._to.includes(this.filter)) ||
           (e.metaData.returnValues._from.includes(this.filter))
       })
+    },
+
+    showPagination () {
+      return !this.filter
+    }
+  },
+
+  methods: {
+    async getEvents () {
+      this.hasEnded = false
+
+      let { events } = await eventService.getByAccount(this.$route.params.address, {
+        $sort: '-metaData.timestamp',
+        $limit: LIMIT,
+        $skip: this.skip
+      })
+
+      if (!events || !events.length) {
+        this.hasEnded = true
+        return
+      }
+
+      if (events.length < LIMIT) {
+        this.hasEnded = true
+      }
+
+      this.events = events
+    },
+
+    getNextPage () {
+      if (!this.skip) { return }
+      this.skip -= LIMIT
+      this.getEvents()
+    },
+
+    getPreviousPage () {
+      if (this.skip >= this.count) { return }
+      this.skip += LIMIT
+      this.getEvents()
     }
   }
 }
