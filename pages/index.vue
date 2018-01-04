@@ -24,93 +24,20 @@ div
 </template>
 
 <script>
-import socketMixin from '~/mixins/socket'
-import eventService from '~/services/event'
+import eventMixin from '~/mixins/event'
 
 import MtnEventTable from '~/components/EventTable'
 import MtnAccountFilter from '~/components/AccountFilter'
 
-const LIMIT = 20
-
 export default {
   name: 'EventList',
 
-  mixins: [socketMixin],
+  mixins: [eventMixin],
   components: { MtnEventTable, MtnAccountFilter },
-
-  data () {
-    return {
-      filter: '',
-      hasEnded: false
-    }
-  },
-
-  computed: {
-    filteredEvents () {
-      if (!this.filter) { return this.events }
-
-      return this.events.filter(e => {
-        if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) { return false }
-
-        return (e.metaData.returnValues._to.includes(this.filter)) ||
-          (e.metaData.returnValues._from.includes(this.filter))
-      })
-    },
-
-    showPagination () {
-      return !this.filter
-    }
-  },
-
-  async asyncData () {
-    const { events, count } = await eventService.get({
-      $sort: '-metaData.timestamp',
-      $limit: LIMIT
-    })
-
-    const hasEnded = count <= LIMIT
-
-    return { events, count, hasEnded }
-  },
 
   head () {
     return {
-      title: 'Events'
-    }
-  },
-
-  methods: {
-    async getEvents () {
-      this.hasEnded = false
-
-      let { events } = await eventService.get({
-        $sort: '-metaData.timestamp',
-        $limit: this.limit,
-        $skip: this.skip
-      })
-
-      if (!events || !events.length) {
-        this.hasEnded = true
-        return
-      }
-
-      if (events.length < this.limit) {
-        this.hasEnded = true
-      }
-
-      this.events = events
-    },
-
-    getNextPage () {
-      if (!this.skip) { return }
-      this.skip -= this.limit
-      this.getEvents()
-    },
-
-    getPreviousPage () {
-      if (this.skip >= this.count) { return }
-      this.skip += this.limit
-      this.getEvents()
+      title: 'Events | Metronome Explorer'
     }
   }
 }

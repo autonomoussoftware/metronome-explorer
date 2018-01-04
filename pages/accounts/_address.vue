@@ -18,98 +18,26 @@
 </template>
 
 <script>
-import eventService from '~/services/event'
-import accountService from '~/services/account'
+import eventMixin from '~/mixins/event'
 
 import MtnEventTable from '~/components/EventTable'
 import MtnAccountFilter from '~/components/AccountFilter'
 
-const LIMIT = 5
-
 export default {
   name: 'AccountDetail',
 
+  mixins: [eventMixin],
   components: { MtnEventTable, MtnAccountFilter },
 
   data () {
     return {
-      filter: '',
-      skip: 0,
-      hasEnded: false,
-      count: 0,
-      events: [],
       balance: 0
     }
   },
 
-  async asyncData ({ params }) {
-    const { events, count } = await eventService.getByAccount(params.address, {
-      $sort: '-metaData.timestamp',
-      $limit: LIMIT
-    })
-
-    const hasEnded = count <= LIMIT
-
-    let { balance } = await accountService.getByAddress(params.address)
-
-    return { events, count, hasEnded, balance }
-  },
-
   head () {
     return {
-      title: `Account: ${this.$route.params.address}`
-    }
-  },
-
-  computed: {
-    filteredEvents () {
-      if (!this.filter) { return this.events }
-
-      return this.events.filter(e => {
-        if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) { return false }
-
-        return (e.metaData.returnValues._to.includes(this.filter)) ||
-          (e.metaData.returnValues._from.includes(this.filter))
-      })
-    },
-
-    showPagination () {
-      return !this.filter
-    }
-  },
-
-  methods: {
-    async getEvents () {
-      this.hasEnded = false
-
-      let { events } = await eventService.getByAccount(this.$route.params.address, {
-        $sort: '-metaData.timestamp',
-        $limit: LIMIT,
-        $skip: this.skip
-      })
-
-      if (!events || !events.length) {
-        this.hasEnded = true
-        return
-      }
-
-      if (events.length < LIMIT) {
-        this.hasEnded = true
-      }
-
-      this.events = events
-    },
-
-    getNextPage () {
-      if (!this.skip) { return }
-      this.skip -= LIMIT
-      this.getEvents()
-    },
-
-    getPreviousPage () {
-      if (this.skip >= this.count) { return }
-      this.skip += LIMIT
-      this.getEvents()
+      title: `Account: ${this.$route.params.address} | Metronome Explorer`
     }
   }
 }
