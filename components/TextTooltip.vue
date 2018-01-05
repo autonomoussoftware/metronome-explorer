@@ -15,7 +15,7 @@ export default {
 <style lang="scss" scoped>
 span {
   padding-bottom: 4px;
-  border-bottom: 2px dotted #e9ecef;
+  border-bottom: 1px dotted #959da5;
 }
 
 [data-tooltip] {
