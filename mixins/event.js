@@ -3,6 +3,7 @@ import socketService from '~/services/socket.io.js'
 import accountService from '~/services/account'
 
 const LIMIT = 20
+const SORT = '-_id'
 
 const eventMixin = {
   data () {
@@ -20,7 +21,7 @@ const eventMixin = {
 
   async asyncData ({ params }) {
     const { events, count } = await eventService.getByAccount(params.address, {
-      $sort: '-metaData.timestamp',
+      $sort: SORT,
       $limit: LIMIT
     })
 
@@ -66,22 +67,17 @@ const eventMixin = {
   methods: {
     async getEvents () {
       this.hasEnded = false
+      const params = {
+        $sort: SORT,
+        $limit: LIMIT,
+        $skip: this.skip
+      }
 
       if (this.$route.params.address) {
-        let { events } = await eventService.getByAccount(this.$route.params.address, {
-          $sort: '-metaData.timestamp',
-          $limit: LIMIT,
-          $skip: this.skip
-        })
-
+        let { events } = await eventService.getByAccount(this.$route.params.address, params)
         this.setNewPage(events)
       } else {
-        let { events } = await eventService.get({
-          $sort: '-metaData.timestamp',
-          $limit: LIMIT,
-          $skip: this.skip
-        })
-
+        let { events } = await eventService.get(params)
         this.setNewPage(events)
       }
     },
