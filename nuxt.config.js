@@ -24,6 +24,10 @@ module.exports = {
     ethUrl: process.env.ETH_NODE_URL || 'ws://35.153.248.198:8546'
   },
 
+  serverMiddleware: [
+    { path: '/health', handler: '~/middlewares/health.js' }
+  ],
+
   loading: { color: '#7E66F4', height: '3px' },
 
   css: ['bootstrap/dist/css/bootstrap.css'],
