@@ -35,6 +35,7 @@ export default {
 
   computed: {
     isSearchValid () {
+      if (this.isMinter(this.search)) { return false }
       return this.search.match(SEARCH_PATTERN)
     },
 
@@ -47,6 +48,8 @@ export default {
     goToAccount () {
       if (!this.search) { return }
 
+      if (this.isMinter(this.search)) { return }
+
       if (this.search.length > 60) {
         this.$router.push({ name: 'transactions-hash', params: { hash: this.search } })
       } else {
@@ -54,6 +57,10 @@ export default {
       }
 
       this.search = ''
+    },
+
+    isMinter (address) {
+      return this.search === '0x0000000000000000000000000000000000000000'
     },
 
     toggleCollapse () {
