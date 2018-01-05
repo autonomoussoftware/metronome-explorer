@@ -26,10 +26,11 @@ div
               nuxt-link(:to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._to }}") {{ e.metaData.returnValues._to }}
               //- img.clippy(v-clipboard="e.metaData.returnValues._to", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
-          td
+          td.text-right
             span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value | mtn }}
             span(v-else) N/A
-          td {{ new Date(e.metaData.timestamp * 1000) | moment('from') }}
+          td
+            mtn-text-tooltip(:text="new Date(e.metaData.timestamp * 1000) | moment('from')", :tooltip="new Date(e.metaData.timestamp * 1000) | moment('LLLL')")
 
   mtn-pagination(
     v-show="showPagination",
@@ -41,10 +42,11 @@ div
 
 <script>
 import MtnPagination from '~/components/Pagination'
+import MtnTextTooltip from '~/components/TextTooltip'
 
 export default {
 
-  components: { MtnPagination },
+  components: { MtnPagination, MtnTextTooltip },
 
   props: {
     events: {
