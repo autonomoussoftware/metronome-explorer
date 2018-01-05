@@ -15,7 +15,7 @@
             th Balance
             th Updated
         tbody
-          tr(v-for='a in filteredAccounts', :key='a._id')
+          tr(v-if="a._id !== '0x0000000000000000000000000000000000000000'", v-for='a in filteredAccounts', :key='a._id')
             td
               nuxt-link(:to="{ name: 'accounts-address', params: { address: a._id }}") {{ a._id }}
             td {{ a.balance | mtn }}
