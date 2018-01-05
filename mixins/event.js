@@ -15,7 +15,8 @@ const eventMixin = {
       filter: '',
       hasEnded: false,
 
-      skip: 0
+      skip: 0,
+      limit: LIMIT
     }
   },
 

@@ -1,7 +1,7 @@
 <template lang="pug">
   .row.d-flex
       .col-sm-10.d-flex.justify-content-start
-        nav(v-if="count")
+        nav(v-if="totalCount")
           ul.pagination
             li.page-item
               a.btn(@click="previousPage", :class="{ disabled: hasEnded }")
@@ -10,16 +10,23 @@
               a.btn( @click="nextPage", :class="{ disabled: skip === 0 }")
                 span(aria-hidden="true") Next
       .col-sm-2.text-right
-        small(v-if="count")
-          b {{ count }} elements found.
+        small(v-if="totalCount")
+          | Showing&nbsp;
+          b {{ skip + 1 }}
+          | -
+          b {{ pageCount < limit ? pageCount + skip : limit + skip }}
+          | &nbsp;of&nbsp;
+          b {{ totalCount }}
 </template>
 
 <script>
 export default {
   props: {
     skip: { type: Number, required: true },
+    limit: { type: Number, required: true },
     hasEnded: { type: Boolean, required: true },
-    count: { type: Number, defult: 0 }
+    totalCount: { type: Number, defult: 0 },
+    pageCount: { type: Number, defult: 0 }
   },
 
   methods: {
