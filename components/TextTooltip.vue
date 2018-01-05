@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss" scoped>
 span {
-  padding-bottom: 4px;
+  padding-bottom: 2px;
   border-bottom: 1px dotted #959da5;
 }
 
