@@ -19,7 +19,11 @@ const eventMixin = {
     }
   },
 
-  async asyncData ({ params }) {
+  async asyncData ({ params, error }) {
+    if (params.address === '0x0000000000000000000000000000000000000000') {
+      return error({ statusCode: 404, message: 'Address not found' })
+    }
+
     const { events, count } = await eventService.getByAccount(params.address, {
       $sort: SORT,
       $limit: LIMIT
