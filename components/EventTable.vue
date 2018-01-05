@@ -33,8 +33,8 @@ div
             mtn-text-tooltip(:text="new Date(e.metaData.timestamp * 1000) | moment('from')", :tooltip="new Date(e.metaData.timestamp * 1000) | moment('LLLL')")
 
   mtn-pagination(
-    v-show="showPagination",
-    :count="count", :skip="skip", :has-ended="hasEnded",
+    v-show="showPagination", :limit="limit", :page-count="events.length"
+    :total-count="count", :skip="skip", :has-ended="hasEnded",
     @next-page="nextPage", @previous-page="previousPage"
   )
 </nav>
@@ -49,30 +49,12 @@ export default {
   components: { MtnPagination, MtnTextTooltip },
 
   props: {
-    events: {
-      type: Array,
-      default: () => []
-    },
-
-    count: {
-      type: Number,
-      default: 0
-    },
-
-    skip: {
-      type: Number,
-      default: 0
-    },
-
-    hasEnded: {
-      type: Boolean,
-      default: false
-    },
-
-    showPagination: {
-      type: Boolean,
-      default: true
-    }
+    events: { type: Array, default: () => [] },
+    count: { type: Number, default: 0 },
+    limit: { type: Number, default: 0 },
+    skip: { type: Number, default: 0 },
+    hasEnded: { type: Boolean, default: false },
+    showPagination: { type: Boolean, default: true }
   },
 
   methods: {
