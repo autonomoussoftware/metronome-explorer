@@ -25,7 +25,7 @@
   mtn-pagination(
     v-show="filteredAccounts.length && showPagination",
     :count="count", :skip="skip", :has-ended="hasEnded",
-    @next-page="getNextPage", @previous-page="getPreviousPage"
+    :limit="limit", @next-page="getNextPage", @previous-page="getPreviousPage"
   )
 
 </template>
@@ -49,7 +49,8 @@ export default {
 
       count: 0,
       skip: 0,
-      hasEnded: false
+      hasEnded: false,
+      limit: LIMIT
     }
   },
 

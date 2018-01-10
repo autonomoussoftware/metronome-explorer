@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "PORT=3333 nuxt",
+    "dev:test": "MTN_SOCKET_URL=ws://api.mtn.bloqrock.net MTN_API_URL=http://api.mtn.bloqrock.net PORT=3333 nuxt",
     "build": "nuxt build",
     "prestart": "nuxt build",
     "start": "nuxt start",
@@ -29,6 +30,7 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-vue": "^4.1.0",
     "node-sass": "^4.6.1",
     "nuxt": "^1.0.0-rc11",
     "pug": "^2.0.0-rc.4",
