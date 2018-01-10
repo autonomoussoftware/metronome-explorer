@@ -1,4 +1,5 @@
 <template lang="pug">
+div
   .container-fluid
     .row.title-container
       .col-sm-8
@@ -35,3 +36,6 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>

@@ -25,4 +25,13 @@ const mtnFilter = {
   }
 }
 
+const ethFilter = {
+  install (Vue) {
+    Vue.filter('eth', function (value) {
+      return getNumber(value, 'ETH')
+    })
+  }
+}
+
 Vue.use(mtnFilter)
+Vue.use(ethFilter)
