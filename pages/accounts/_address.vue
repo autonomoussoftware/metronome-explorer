@@ -6,7 +6,7 @@
       p
         b Balance: {{ balance | mtn }}
     .col-sm-4
-      mtn-account-filter(:filter.sync="filter")
+      mtn-account-filter.hidden-md-down(:filter.sync="filter")
   .row
     .col
       mtn-event-table(
