@@ -2,7 +2,7 @@
   main
     mtn-header
 
-    mtn-status
+    //- mtn-status
 
     .main-container
       nuxt.app
@@ -152,6 +152,12 @@ export default {
   @media (min-width: 768px) {
     .btn {
         padding:10px 30px
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hidden-md-down {
+      display: none;
     }
   }
 
