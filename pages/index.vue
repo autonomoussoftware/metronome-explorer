@@ -5,7 +5,7 @@ div
       .col-sm-8
         h4 Recent Events
       .col-sm-4
-        mtn-account-filter(:filter.sync="filter")
+        mtn-account-filter.hidden-md-down(:filter.sync="filter")
 
     .row
       .col
