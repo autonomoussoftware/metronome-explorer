@@ -4,7 +4,7 @@
 
     .main-container
       h5 {{ error.statusCode }} ERROR
-      h2 {{ error.message }}
+      h3 {{ error.message }}
 
       div(v-if="error.statusCode === 404")
         h6 Try one of these links:
@@ -39,8 +39,9 @@ export default {
       margin-bottom: 20px;
     }
 
-    h2 {
+    h3 {
       margin-bottom: 30px;
+      text-transform: capitalize;
     }
 
     ul {
