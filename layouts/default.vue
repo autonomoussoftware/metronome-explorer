@@ -2,8 +2,6 @@
   main
     mtn-header
 
-    //- mtn-status
-
     .main-container
       nuxt.app
 
@@ -13,10 +11,9 @@
 <script>
 import MtnFooter from '~/components/Footer.vue'
 import MtnHeader from '~/components/Header.vue'
-import MtnStatus from '~/components/Status.vue'
 
 export default {
-  components: { MtnFooter, MtnHeader, MtnStatus }
+  components: { MtnFooter, MtnHeader }
 }
 </script>
 
@@ -169,5 +166,23 @@ export default {
     color: #fff;
     background-color: #5742b0;
     border: 3px solid #5742b0
+  }
+
+  .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .green {
+    color: green
+  }
+
+  .red {
+    color: tomato
+  }
+
+  .violet {
+    color: #7e61f8;
   }
 </style>
