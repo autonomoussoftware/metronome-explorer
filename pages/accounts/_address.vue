@@ -2,7 +2,7 @@
 .container-fluid
   .row.title-container
     .col-sm-8
-      h4.title Account {{ $route.params.address }}
+      h4.ellipsis Account {{ $route.params.address }}
       p
         b Balance: {{ balance | mtn }}
     .col-sm-4
@@ -42,11 +42,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-</style>

@@ -1,10 +1,23 @@
 <template lang="pug">
   footer.container
+    .row
+      .col-sm-12
+        mtn-status
+
     p Copyright &copy; {{ new Date().getFullYear() }} Bloq, Inc. All Rights Reseverd
       br
       | Metronome was build by &nbsp;
       a(href="https://bloq.com") BloqLabs.
 </template>
+
+<script>
+import MtnStatus from '~/components/Status.vue'
+
+export default {
+  components: { MtnStatus }
+}
+</script>
+
 
 <style lang="scss" scoped>
   footer {
