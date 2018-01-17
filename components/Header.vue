@@ -109,8 +109,11 @@ export default {
   }
 
   .navbar-toggler {
-    background: #fff;
-    border: 3px solid #ccc;
+    border: 1px solid #7e61f8;
+
+    .navbar-toggler-icon {
+      background-image: url("~/assets/img/hamburger.svg")
+    }
   }
 
   .form-inline {
