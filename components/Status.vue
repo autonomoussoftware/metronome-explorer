@@ -1,29 +1,26 @@
 <template lang="pug">
-  .container-fluid
-    .row
-      .col-sm-7.offset-sm-5
-        table.table
-          tbody
-            tr
-              td
-                b.violet Current Price
-              td {{ auctionStatus.currentPrice | eth }}
-              td
-                b.violet Last Block
-              td {{ block.number }}
-            tr
-              td
-                b.violet Token Circulation
-              td {{ auctionStatus.tokenCirculation | mtn }}
-              td
-                b.violet Connection
-              td
-                b(:class="wsStatus === 'ON' ? 'green' : 'red'") {{ wsStatus }}
+.container-fluid
+  .row
+    .col-sm-12.col-md-4.ellipsis
+      span.title Current Price
+      span.violet {{ auctionStatus.currentPrice | eth }}
 
-            tr
-              td
-                b.violet Contract Address
-              td {{ tokenAddress }}
+    .col-sm-12.col-md-2.ellipsis
+      span.title Block Height
+      span.violet {{ block.number }}
+
+    .col-sm-12.col-md-6.ellipsis
+      span.title Token Circulation
+      span.violet {{ auctionStatus.tokenCirculation | mtn }}
+
+  .row
+    .col-sm-12.col-md-8.ellipsis
+      span.title Contract Address
+      span.violet {{ tokenAddress }}
+
+    .col-sm-12.col-md-2.ellipsis
+      span.title Connection
+      b(:class="wsStatus === 'ON' ? 'green' : 'red'") {{ wsStatus }}
 </template>
 
 <script>
@@ -66,42 +63,20 @@ export default {
 
 
 <style lang="scss" scoped>
+  @media (max-width: 768px) {
+    .container-fluid {
+      text-align: left;
+    }
+  }
+
   .container-fluid {
-    background: #EDEDED;
-    padding: 25px 80px 0 80px;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    padding: 0 5px;
+  }
 
-    .green {
-      color: green
-    }
-
-    .red {
-      color: tomato
-    }
-
-    table {
-      line-height: 0;
-      font-size: 0.7em;
-
-      td {
-        border-bottom: 1px solid #fff;
-      }
-    }
-
-    .violet {
-      color: #7e61f8;
-    }
-
-    h6 {
-      text-transform: uppercase;
-      font-weight: 500;
-      span {
-      color: #000
-      }
-    }
-
-    p {
-      margin-bottom: 0;
-    }
+  .title {
+    margin-right: 5px;
   }
 </style>
 
