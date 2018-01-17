@@ -4,6 +4,7 @@ npm-debug.log
 dist
 build
 .DS_Store
+*.DS_Store
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
