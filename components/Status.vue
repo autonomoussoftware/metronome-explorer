@@ -1,9 +1,10 @@
 <template lang="pug">
 .container-fluid
-  .row
+  .row(v-show="isLoading")
     .col.text-center
       mtn-loader(:width="44")
-  .row
+
+  .row(v-show="!isLoading")
     .col-sm-12.col-md-4.ellipsis
       span.title Current Price
       span.violet {{ auctionStatus.currentPrice | eth }}
@@ -16,20 +17,19 @@
       span.title Token Circulation
       span.violet {{ auctionStatus.tokenCirculation | mtn }}
 
-  .row
+  .row(v-show="!isLoading")
     .col-sm-12.col-md-8.ellipsis
       span.title Contract Address
       span.violet {{ tokenAddress }}
 
     .col-sm-12.col-md-2.ellipsis
       span.title Connection
-      b(:class="wsStatus === 'ON' ? 'green' : 'red'") {{ wsStatus }}
+      b(:class="apiStatus === 'ON' ? 'green' : 'red'") {{ apiStatus }}
 </template>
 
 <script>
 import MtnLoader from '~/components/Loader'
 
-import web3 from '~/services/web3'
 import socketService from '~/services/socket.io.js'
 import statusService from '~/services/status'
 import configService from '~/services/config'
@@ -43,8 +43,8 @@ export default {
       block: {},
       tokenAddress: '',
       auctionStatus: {},
-      apiStatus: 'ERROR',
-      wsStatus: 'OFF'
+      apiStatus: 'OFF',
+      isLoading: true
     }
   },
 
@@ -54,16 +54,16 @@ export default {
     socketService.on('AUCTION_STATUS_TASK', auctionStatus => (this.auctionStatus = auctionStatus))
     socketService.on('LATEST_BLOCK', block => (this.block = block))
 
-    this.wsStatus = socketService.connected ? 'ON' : 'OFF'
+    const results = await this.getStatus()
+    this.tokenAddress = results[0].tokenAddress
+    this.apiStatus = socketService.connected && results[1] === 204 ? 'ON' : 'OFF'
+    this.isLoading = false
+  },
 
-    const config = await configService.get()
-    this.tokenAddress = config.tokenAddress
-
-    const apiStatus = await statusService.get()
-    this.apiStatus = apiStatus
-
-    const block = await web3.eth.getBlock('latest')
-    this.block = block
+  methods: {
+    async getStatus () {
+      return Promise.all([configService.get(), statusService.get()])
+    }
   }
 }
 </script>
