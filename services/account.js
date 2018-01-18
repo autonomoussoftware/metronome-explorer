@@ -11,6 +11,7 @@ accountService.get = function (params) {
 accountService.getByAddress = function (address) {
   return axios.get(`${endpoint}/${address}`)
     .then(res => res.data)
+    .catch(err => err)
 }
 
 export default accountService

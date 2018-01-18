@@ -11,6 +11,7 @@ eventService.get = function (params) {
 eventService.getById = function (id) {
   return axios.get(`${endpoint}/${id}`)
     .then(res => res.data)
+    .catch(() => {})
 }
 
 eventService.getByAccount = function (address, params) {

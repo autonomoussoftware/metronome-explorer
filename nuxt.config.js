@@ -30,7 +30,10 @@ module.exports = {
 
   loading: { color: '#7E66F4', height: '3px' },
 
-  css: ['bootstrap/dist/css/bootstrap.css'],
+  css: [
+    'bootstrap/dist/css/bootstrap.css',
+    '~/assets/main.scss'
+  ],
 
   plugins: [
     '~/plugins/filters',

@@ -23,7 +23,7 @@ const eventMixin = {
 
   async asyncData ({ params, error }) {
     if (params.address === '0x0000000000000000000000000000000000000000') {
-      return error({ statusCode: 404, message: 'Address not found' })
+      return error({ statusCode: 500, message: 'Minter address is not allowed ' })
     }
 
     const { events, count } = await eventService.getByAccount(params.address, {
@@ -36,6 +36,11 @@ const eventMixin = {
     if (!params.address) { return { events, count, hasEnded } }
 
     const { balance } = await accountService.getByAddress(params.address)
+
+    if (!balance) {
+      return error({ statusCode: 404, message: `The address ${params.address} was not found` })
+    }
+
     return { events, count, hasEnded, balance }
   },
 
