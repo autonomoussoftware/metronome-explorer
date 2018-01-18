@@ -14,6 +14,7 @@ const eventMixin = {
 
       filter: '',
       hasEnded: false,
+      isLoading: false,
 
       skip: 0,
       limit: LIMIT
@@ -71,6 +72,7 @@ const eventMixin = {
 
   methods: {
     async getEvents () {
+      this.isLoading = true
       this.hasEnded = false
       const params = {
         $sort: SORT,
@@ -88,6 +90,8 @@ const eventMixin = {
     },
 
     setNewPage (events) {
+      this.isLoading = false
+
       if (!events || !events.length) {
         this.hasEnded = true
         return
