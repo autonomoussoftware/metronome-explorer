@@ -1,6 +1,9 @@
 <template lang="pug">
 .container-fluid
   .row
+    .col.text-center
+      mtn-loader(:width="44")
+  .row
     .col-sm-12.col-md-4.ellipsis
       span.title Current Price
       span.violet {{ auctionStatus.currentPrice | eth }}
@@ -24,12 +27,16 @@
 </template>
 
 <script>
+import MtnLoader from '~/components/Loader'
+
 import web3 from '~/services/web3'
 import socketService from '~/services/socket.io.js'
 import statusService from '~/services/status'
 import configService from '~/services/config'
 
 export default {
+
+  components: { MtnLoader },
 
   data () {
     return {
