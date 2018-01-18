@@ -7,7 +7,10 @@ div
       .col-sm-4
         mtn-account-filter.hidden-md-down(:filter.sync="filter")
 
-    .row
+    .row(v-show="isLoading")
+      .col.text-center
+        mtn-loader
+    .row(v-show="!isLoading")
       .col
         mtn-event-table(
           v-show="filteredEvents.length", :events="filteredEvents", :count="count",
@@ -20,6 +23,7 @@ div
 <script>
 import eventMixin from '~/mixins/event'
 
+import MtnLoader from '~/components/Loader'
 import MtnEventTable from '~/components/EventTable'
 import MtnAccountFilter from '~/components/AccountFilter'
 
@@ -27,7 +31,7 @@ export default {
   name: 'EventList',
 
   mixins: [eventMixin],
-  components: { MtnEventTable, MtnAccountFilter },
+  components: { MtnLoader, MtnEventTable, MtnAccountFilter },
 
   head () {
     return {
