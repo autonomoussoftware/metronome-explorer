@@ -19,8 +19,13 @@ import eventService from '~/services/event'
 export default {
   name: 'EventDetail',
 
-  async asyncData ({ params }) {
+  async asyncData ({ params, error }) {
     const event = await eventService.getById(params.id)
+
+    if (!event) {
+      return error({ statusCode: 404, message: `The event ${params.id} was not found` })
+    }
+
     return { event }
   },
 
