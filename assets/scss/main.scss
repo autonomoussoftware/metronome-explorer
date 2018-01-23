@@ -150,3 +150,9 @@ input::placeholder {
   background-color: #5742b0;
   border: 3px solid #5742b0
 }
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
