@@ -20,6 +20,12 @@ export default {
 
 
 <style lang="scss" scoped>
+  @media (max-width: 768px) {
+    .container {
+      width: 80%;
+    }
+  }
+
   footer {
     height: 140px;
     padding: 22px 0;

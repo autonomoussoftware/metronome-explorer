@@ -32,7 +32,7 @@ module.exports = {
 
   css: [
     'bootstrap/dist/css/bootstrap.css',
-    '~/assets/main.scss'
+    '~/assets/scss/main.scss'
   ],
 
   plugins: [

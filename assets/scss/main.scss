@@ -1,12 +1,14 @@
+@import './variables.scss';
+
 .main-container {
   overflow: auto;
-  background: #fff;
+  background: $WHITE;
   min-height: 600px;
 }
 
 .app {
   padding-bottom: 100px;
-  background: #fff !important;
+  background: $WHITE !important;
   padding-top: 50px;
 
   .title-container {
@@ -18,8 +20,8 @@
 
   thead {
     th {
-      border-top: 2px solid #7e61f8;
-      border-bottom: 2px solid #7e61f8;
+      border-top: 2px solid $VIOLET;
+      border-bottom: 2px solid $VIOLET;
     }
   }
 
@@ -52,15 +54,15 @@ body {
 }
 
 a,a:visited {
-  color: #7e61f8
+  color: $VIOLET
 }
 
 h1,h2,h3,h4,h5,h6 {
-  color: #7e61f8
+  color: $VIOLET
 }
 
 h1 {
-  color: #7e61f8;
+  color: $VIOLET;
   font-weight: 300;
   font-size: 40px
 }
@@ -87,9 +89,9 @@ ol li {
 input[type=email],input[type=text],input[type=search] {
   display: inline-block;
   margin: 0;
-  border: 3px solid #7e61f8;
+  border: 3px solid $VIOLET;
   background: transparent;
-  color: #fff;
+  color: $WHITE;
   padding: 10px 6px;
   font-size: 13px;
   line-height: 12px;
@@ -100,23 +102,23 @@ input[type=email],input[type=text],input[type=search] {
 }
 
 input::-webkit-input-placeholder {
-  color: #fff
+  color: $WHITE
 }
 
 input:-ms-input-placeholder {
-  color: #fff
+  color: $WHITE
 }
 
 input::placeholder {
-  color: #fff
+  color: $WHITE
 }
 
 .btn {
   display: inline-block;
-  background-color: #7e61f8;
+  background-color: $VIOLET;
   border-radius: 0;
-  border: 3px solid #7e61f8;
-  color: #fff;
+  border: 3px solid $VIOLET;
+  color: $WHITE;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: .1rem;
@@ -140,11 +142,17 @@ input::placeholder {
 }
 
 .btn:visited {
-  color: #fff
+  color: $WHITE
 }
 
 .btn:hover {
-  color: #fff;
+  color: $WHITE;
   background-color: #5742b0;
   border: 3px solid #5742b0
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
