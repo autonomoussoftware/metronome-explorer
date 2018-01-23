@@ -6,7 +6,11 @@
     .col-sm-4
       mtn-account-filter.hidden-md-down(:filter.sync="filter")
 
-  .row
+  .row(v-show="isLoading")
+      .col.text-center
+        mtn-loader
+
+  .row(v-show="!isLoading")
     .col-sm-12
       table.table.table-responsive(v-show="filteredAccounts.length")
         thead.hidden-md-down
@@ -36,16 +40,18 @@
 </template>
 
 <script>
-import accountService from '~/services/account'
+import MtnLoader from '~/components/Loader'
 import MtnPagination from '~/components/Pagination'
 import MtnAccountFilter from '~/components/AccountFilter'
 
-const LIMIT = 2
+import accountService from '~/services/account'
+
+const LIMIT = 20
 
 export default {
   name: 'AccountList',
 
-  components: { MtnAccountFilter, MtnPagination },
+  components: { MtnLoader, MtnAccountFilter, MtnPagination },
 
   data () {
     return {
@@ -55,6 +61,7 @@ export default {
       count: 0,
       skip: 0,
       hasEnded: false,
+      isLoading: false,
       limit: LIMIT
     }
   },
@@ -94,6 +101,7 @@ export default {
 
   methods: {
     async getAccounts () {
+      this.isLoading = true
       this.hasEnded = false
 
       let { accounts } = await accountService.get({
@@ -101,6 +109,12 @@ export default {
         $limit: LIMIT,
         $skip: this.skip
       })
+
+      this.setNewPage(accounts)
+    },
+
+    setNewPage (accounts) {
+      this.isLoading = false
 
       if (!accounts || !accounts.length) {
         this.hasEnded = true

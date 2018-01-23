@@ -79,6 +79,7 @@ const eventMixin = {
     async getEvents () {
       this.isLoading = true
       this.hasEnded = false
+
       const params = {
         $sort: SORT,
         $limit: LIMIT,
