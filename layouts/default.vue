@@ -16,4 +16,3 @@ export default {
   components: { MtnFooter, MtnHeader }
 }
 </script>
-</style>
