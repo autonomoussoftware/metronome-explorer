@@ -70,6 +70,10 @@ export default {
 
 
 <style lang="scss" scoped>
+.green { color: green }
+.red { color: tomato }
+.violet { color: #7e61f8 }
+
   @media (max-width: 768px) {
     .container-fluid {
       text-align: left;
