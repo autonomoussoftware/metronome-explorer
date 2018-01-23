@@ -77,11 +77,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .clippy {
-    margin-left: 10px;
-    cursor: copy;
-  }
-
   @media (min-width: 768px) {
     .table-responsive {
       display: table;

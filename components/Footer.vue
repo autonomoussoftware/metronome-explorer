@@ -22,7 +22,7 @@ export default {
 <style lang="scss" scoped>
   @media (max-width: 768px) {
     .container {
-      width: 80%;
+      width: 90%;
     }
   }
 
