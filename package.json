@@ -8,6 +8,7 @@
     "dev": "PORT=3333 nuxt",
     "dev:test": "MTN_SOCKET_URL=ws://api.mtn.bloqrock.net MTN_API_URL=http://api.mtn.bloqrock.net PORT=3333 nuxt",
     "build": "nuxt build",
+    "prestart": "nuxt build",
     "start": "nuxt start",
     "test": "echo 'TBA'",
     "generate": "nuxt generate",
