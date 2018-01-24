@@ -11,6 +11,8 @@ cache:
 
 before_deploy:
   - npm run build
+  - git config user.email "ignacio@bloq.com"
+  - git config user.name "Ignacio Anaya"
   - git add --force .nuxt
   - git commit -m 'Add .nuxt folder'
 
