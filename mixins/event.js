@@ -1,3 +1,4 @@
+import web3 from '~/services/web3'
 import eventService from '~/services/event'
 import socketService from '~/services/socket.io.js'
 import accountService from '~/services/account'
@@ -22,6 +23,10 @@ const eventMixin = {
   },
 
   async asyncData ({ params, error }) {
+    if (params.address) {
+      params.address = web3.utils.toChecksumAddress(params.address)
+    }
+
     if (params.address === '0x0000000000000000000000000000000000000000') {
       return error({ statusCode: 500, message: 'Minter address is not allowed ' })
     }
