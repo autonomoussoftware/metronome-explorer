@@ -103,8 +103,7 @@ export default {
 
   .navbar .nav-link.nuxt-link-exact-active,.navbar .nav-link:hover {
     color: #7e61f8!important;
-    border-bottom: 2px solid;
-    border-color: #7e61f8;
+    border-bottom: #7e61f8 2px solid;
     transition: border-color .5s ease-out
   }
 
@@ -144,6 +143,32 @@ export default {
       button:disabled {
         cursor: not-allowed;
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .collapse.navbar-collapse {
+      margin: 0;
+    }
+
+    .form-inline {
+      margin: 20px 0;
+    }
+
+    .navbar .nav-link.nuxt-link-exact-active, .navbar .nav-link:hover {
+      color: #7e61f8!important;
+      border: none;
+      transition: border-color .5s ease-out
+    }
+  }
+
+  @media (max-width: 992px) {
+    .form-inline {
+      margin: 0;
+    }
+
+    .input-group {
+      width: 100%;
     }
   }
 
