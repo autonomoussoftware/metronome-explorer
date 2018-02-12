@@ -4,7 +4,7 @@ div
     .row.title-container
       .col-sm-8
         h4 Recent Events
-      .col-sm-4
+      .col-sm-4(v-show="events.length")
         mtn-account-filter.hidden-md-down(:filter.sync="filter")
 
     .row(v-show="isLoading")

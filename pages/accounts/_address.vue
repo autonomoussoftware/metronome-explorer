@@ -5,7 +5,7 @@
       h4.ellipsis Account {{ $route.params.address }}
       p
         b Balance: {{ balance | mtn }}
-    .col-sm-4
+    .col-sm-4(v-show="events.length")
       mtn-account-filter.hidden-md-down(:filter.sync="filter")
 
   .row(v-show="isLoading")
