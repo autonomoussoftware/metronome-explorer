@@ -8,7 +8,7 @@ div
           th Date
           th From
           th To
-          th Amount
+          th.amount Amount
       tbody
         tr(v-for="e in events", :key="e._id")
           td.inline
@@ -25,13 +25,19 @@ div
             span(v-if="e.metaData.returnValues && e.metaData.returnValues._from")
               b(v-if="e.metaData.returnValues._from === '0x0000000000000000000000000000000000000000'") MINTER
               nuxt-link(v-else, :to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._from }}") {{ e.metaData.returnValues._from }}
-              //- img.clippy(v-clipboard="e.metaData.returnValues._from", src="~/assets/svg/clippy.svg")
+            span(v-else-if="e.metaData.returnValues && e.metaData.returnValues._owner")
+              b(v-if="e.metaData.returnValues._owner === '0x0000000000000000000000000000000000000000'") MINTER
+              nuxt-link(v-else, :to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._owner }}") {{ e.metaData.returnValues._owner }}
+              //- img.clippy(v-clipboard="e.metaData.returnValues._from || e.metaData.returnValues._owner", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td
             span.title To
             span(v-if="e.metaData.returnValues && e.metaData.returnValues._to")
               b(v-if="e.metaData.returnValues._to === '0x0000000000000000000000000000000000000000'") MINTER
               nuxt-link(:to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._to }}") {{ e.metaData.returnValues._to }}
+            span(v-else-if="e.metaData.returnValues && e.metaData.returnValues._spender")
+              b(v-if="e.metaData.returnValues._spender === '0x0000000000000000000000000000000000000000'") MINTER
+              nuxt-link(:to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._spender }}") {{ e.metaData.returnValues._spender }}
               //- img.clippy(v-clipboard="e.metaData.returnValues._to", src="~/assets/svg/clippy.svg")
             span(v-else) N/A
           td.text-right
@@ -87,6 +93,11 @@ export default {
         display: none;
       }
     }
+  }
+
+  .amount {
+    text-align: right;
+    padding-right: 25px;
   }
 
   @media (max-width: 768px) {
