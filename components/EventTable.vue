@@ -19,31 +19,26 @@ div
             span {{ e.metaData.event }}
           td.inline
             span.title Date
-            mtn-text-tooltip(:text="new Date(e.metaData.timestamp * 1000) | moment('from')", :tooltip="new Date(e.metaData.timestamp * 1000) | moment('LLLL')")
+            mtn-text-tooltip(
+              :text="new Date(e.metaData.timestamp * 1000) | moment('from')",
+              :tooltip="new Date(e.metaData.timestamp * 1000) | moment('LLLL')"
+            )
           td
             span.title From
-            span(v-if="e.metaData.returnValues && e.metaData.returnValues._from")
-              b(v-if="e.metaData.returnValues._from === '0x0000000000000000000000000000000000000000'") MINTER
-              nuxt-link(v-else, :to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._from }}") {{ e.metaData.returnValues._from }}
-            span(v-else-if="e.metaData.returnValues && e.metaData.returnValues._owner")
-              b(v-if="e.metaData.returnValues._owner === '0x0000000000000000000000000000000000000000'") MINTER
-              nuxt-link(v-else, :to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._owner }}") {{ e.metaData.returnValues._owner }}
-              //- img.clippy(v-clipboard="e.metaData.returnValues._from || e.metaData.returnValues._owner", src="~/assets/svg/clippy.svg")
+            span(v-if="hasAddresses(e)")
+              i.fa.fa-copy(v-clipboard="e.metaData.returnValues._from || e.metaData.returnValues._owner")
+              b(v-if="isMinter(e)") MINTER
+              a(v-else, @click="goToAddress(e)") {{ e.metaData.returnValues._from || e.metaData.returnValues._owner  }}
             span(v-else) N/A
           td
             span.title To
-            span(v-if="e.metaData.returnValues && e.metaData.returnValues._to")
-              b(v-if="e.metaData.returnValues._to === '0x0000000000000000000000000000000000000000'") MINTER
-              nuxt-link(:to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._to }}") {{ e.metaData.returnValues._to }}
-            span(v-else-if="e.metaData.returnValues && e.metaData.returnValues._spender")
-              b(v-if="e.metaData.returnValues._spender === '0x0000000000000000000000000000000000000000'") MINTER
-              nuxt-link(:to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._spender }}") {{ e.metaData.returnValues._spender }}
-              //- img.clippy(v-clipboard="e.metaData.returnValues._to", src="~/assets/svg/clippy.svg")
+            span(v-if="hasAddresses(e)")
+              i.fa.fa-copy(v-clipboard="e.metaData.returnValues._to || e.metaData.returnValues._spender")
+              a(@click="goToAddress(e, 'to')") {{ e.metaData.returnValues._to || e.metaData.returnValues._spender  }}
             span(v-else) N/A
           td.text-right
             span.title Amount
-            span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value | mtn }}
-            span(v-else) N/A
+            span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value || 0 | mtn }}
 
   mtn-pagination(
     v-show="showPagination", :limit="limit", :page-count="events.length"
@@ -75,6 +70,28 @@ export default {
       this.$emit('previous-page')
     },
 
+    isMinter (e) {
+      if (!e.metaData.returnValues) { return false }
+
+      const minter = '0x0000000000000000000000000000000000000000'
+      if (e.metaData.returnValues._from === minter) { return true }
+      if (e.metaData.returnValues._owner === minter) { return true }
+
+      return false
+    },
+
+    goToAddress (e, type = 'from') {
+      const address = type === 'from' ? e.metaData.returnValues._from || e.metaData.returnValues._owner
+        : e.metaData.returnValues._to || e.metaData.returnValues._spender
+
+      this.$router.push({ name: 'accounts-address', params: { address } })
+    },
+
+    hasAddresses (e) {
+      return (e.metaData.returnValues && e.metaData.returnValues._from) ||
+        (e.metaData.returnValues && e.metaData.returnValues._owner)
+    },
+
     nextPage () {
       this.$emit('next-page')
     }
@@ -100,7 +117,16 @@ export default {
     padding-right: 25px;
   }
 
+  .fa-copy {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
   @media (max-width: 768px) {
+
+    .fa-copy {
+      display: none;
+    }
 
     td {
       display: block;

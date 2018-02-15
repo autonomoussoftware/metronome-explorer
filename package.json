@@ -17,6 +17,7 @@
     "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@nuxtjs/font-awesome": "^1.0.3",
     "axios": "^0.16.2",
     "babel-eslint": "^7.2.3",
     "backpack-core": "^0.4.1",

@@ -35,6 +35,10 @@ module.exports = {
     '~/assets/scss/main.scss'
   ],
 
+  modules: [
+    '@nuxtjs/font-awesome'
+  ],
+
   plugins: [
     '~/plugins/filters',
     '~/plugins/directives'
