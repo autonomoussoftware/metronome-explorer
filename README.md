@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.com/MetronomeToken/metronome-explorer.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-🔎 Metronome Token Explorer
+# 🔎 Metronome Token Explorer
 
 ## Build Setup
 
