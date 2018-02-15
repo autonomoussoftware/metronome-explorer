@@ -1,5 +1,5 @@
-<h1 align="center" width="50%">
-  <img src="./assets/img/logo-black.png" alt="Metronome Explorer">
+<h1 align="center">
+  <img src="./assets/img/logo-black.png" alt="Metronome Explorer" width="50%">
 </h1>
 
 [![Build Status](https://travis-ci.com/MetronomeToken/metronome-explorer.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
