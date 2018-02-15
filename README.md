@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="center" width="50%">
   <img src="./assets/img/logo-black.png" alt="Metronome Explorer">
 </h1>
 
