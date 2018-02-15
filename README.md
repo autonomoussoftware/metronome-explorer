@@ -1,6 +1,11 @@
-# metronome-explorer
+<h1 align="center">
+  <img src="./assets/img/logo-black.png" alt="Metronome Explorer">
+</h1>
 
-> 🔎 Metronome Token Explorer
+[![Build Status](https://travis-ci.com/MetronomeToken/metronome-explorer.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+🔎 Metronome Token Explorer
 
 ## Build Setup
 
