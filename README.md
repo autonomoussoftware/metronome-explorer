@@ -7,6 +7,14 @@
 [![Build Status](https://travis-ci.com/MetronomeToken/metronome-explorer.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Configuration
+
+The following environment variables are needed for the explorer to work:
+
+- `MTN_API_URL`is the Metronome JSON-RTP API server URL. I.e. `http://api.metronome.io`.
+- `MTN_SOCKET_URL` is to the Metronome WS API server URL. I.e. `http://api.metronome.io`.
+- `ETH_NODE_URL` is the websocket URL of the Ethereum node. I.e. `ws://node.metronome.io:8546`.
+
 ## Build Setup
 
 ``` bash
