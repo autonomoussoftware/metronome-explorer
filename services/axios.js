@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-let options = {
-  baseURL: process.env.apiUrl
-}
+let options = { baseURL: process.env.apiUrl }
 
 export default axios.create(options)
