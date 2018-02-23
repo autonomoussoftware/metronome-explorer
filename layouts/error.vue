@@ -1,20 +1,15 @@
 <template lang="pug">
   main
-    mtn-header
+    h5 {{ error.statusCode }} ERROR
+    h3 {{ error.message }}
 
-    .main-container
-      h5 {{ error.statusCode }} ERROR
-      h3 {{ error.message }}
-
-      div(v-if="error.statusCode === 404")
-        h6 Try one of these links:
-        ul
-          li
-            nuxt-link.button(to="/") Events
-          li
-            nuxt-link.button(to="/accounts") Accounts
-
-    mtn-footer
+    div(v-if="error.statusCode === 404")
+      h6 Try one of these links:
+      ul
+        li
+          nuxt-link.button(to="/") Events
+        li
+          nuxt-link.button(to="/accounts") Accounts
 </template>
 
 <script>
