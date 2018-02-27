@@ -20,7 +20,7 @@ const getNumber = function (value, prefix) {
 const mtnFilter = {
   install (Vue) {
     Vue.filter('mtn', function (value) {
-      return getNumber(value, 'MTN')
+      return getNumber(value, 'MET')
     })
   }
 }
