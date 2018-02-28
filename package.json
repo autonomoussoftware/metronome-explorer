@@ -10,6 +10,7 @@
     "build": "nuxt build",
     "prestart": "nuxt build",
     "start": "nuxt start",
+    "prod": "nuxt start",
     "test": "echo 'TBA'",
     "generate": "nuxt generate",
     "precommit": "npm run lint",

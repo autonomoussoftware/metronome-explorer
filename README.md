@@ -15,7 +15,7 @@ The following environment variables are needed for the explorer to work:
 - `MTN_SOCKET_URL` is to the Metronome WS API server URL. I.e. `http://api.metronome.io`.
 - `ETH_NODE_URL` is the websocket URL of the Ethereum node. I.e. `ws://node.metronome.io:8546`.
 
-## Build Setup
+## Development Setup
 
 ``` bash
 # install dependencies
@@ -23,9 +23,18 @@ $ npm install # Or yarn install
 
 # serve with hot reload at localhost:3000
 $ npm run dev
+```
 
-# build for production and launch server
-$ npm start
+## Production Setup
+
+``` bash
+# install dependencies
+$ npm install # Or yarn install
+
+# run nuxt release build
+$ npm run build
+
+$ PORT=8080 HOST=0.0.0.0 npm run prod
 ```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
