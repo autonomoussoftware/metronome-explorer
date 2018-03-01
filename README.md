@@ -12,7 +12,7 @@
 The following environment variables are needed for the explorer to work:
 
 - `MTN_API_URL`is the Metronome JSON-RTP API server URL. I.e. `http://api.metronome.io`.
-- `MTN_SOCKET_URL` is to the Metronome WS API server URL. I.e. `http://api.metronome.io`.
+- `MTN_SOCKET_URL` is to the Metronome WS API server URL. I.e. `ws://api.metronome.io`.
 - `ETH_NODE_URL` is the websocket URL of the Ethereum node. I.e. `ws://node.metronome.io:8546`.
 
 ## Development Setup
