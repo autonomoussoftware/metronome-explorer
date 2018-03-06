@@ -25,6 +25,12 @@ $ npm install # Or yarn install
 # serve with hot reload at localhost:3000
 $ npm run dev
 ```
+## Memory watch
+
+``` bash
+# install dependencies
+$ MEM_WATCH_INTERVAL=60000 MEM_WATCH=true npm run dev:test
+```
 
 ## Production Setup
 
