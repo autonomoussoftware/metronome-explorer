@@ -21,7 +21,7 @@ module.exports = {
   env: {
     apiUrl: process.env.MTN_API_URL || 'http://localhost:3000',
     socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3000',
-    ethUrl: process.env.ETH_NODE_URL || 'ws://parity.bloqrock.net:8546',
+    ethUrl: process.env.ETH_NODE_URL || 'http://parity.bloqrock.net:8545',
     tracerUrl: process.env.TRACER_URL || 'http://tracer.bloqrock.net'
   },
 
