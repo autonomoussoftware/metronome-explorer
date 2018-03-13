@@ -6,17 +6,19 @@ if (process.env.MEM_WATCH === "true") {
 
   console.log("starting memwatch and heapdump");
 
+  const createSnapshot = dir => {
+    heapdump.writeSnapshot(dir, function(err, filename) {
+      console.log("dump written to", filename);
+    });
+  };
+
   setInterval(function() {
-    heapdump.writeSnapshot(
-      "./analytics/" + Date.now() + ".heapsnapshot",
-      function(err, filename) {
-        console.log("dump written to", filename);
-      }
-    );
+    createSnapshot("./analytics/" + Date.now() + ".heapsnapshot");
   }, process.env.MEM_WATCH_INTERVAL);
 
   memwatch.on("leak", info => {
     console.error("Memory leak detected:\n", info);
+    createSnapshot("./analytics/" + Date.now() + "-leaked" + ".heapsnapshot");
   });
 }
 
