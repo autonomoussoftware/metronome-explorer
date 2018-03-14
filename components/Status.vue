@@ -48,7 +48,7 @@ export default {
     }
   },
 
-  async created () {
+  async mounted () {
     socketService.on('connect', () => (this.wsStatus = 'ON'))
     socketService.on('disconnect', () => (this.wsStatus = 'OFF'))
     socketService.on('AUCTION_STATUS_TASK', auctionStatus => (this.auctionStatus = auctionStatus))
