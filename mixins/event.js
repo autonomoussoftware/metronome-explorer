@@ -66,8 +66,8 @@ const eventMixin = {
     }
   },
 
-  created () {
-    socketService.on('NEW_EVENT', (event) => {
+  mount () {
+    socketService.on('NEW_EVENT', function newEventHandler (event) {
       const address = this.$route.params.address
       if (address && event.metaData.returnValues._from !== address &&
         event.metaData.returnValues._to !== address) { return }
