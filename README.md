@@ -27,9 +27,14 @@ $ npm run dev
 ```
 ## Memory watch
 
-``` bash
-# install dependencies
-$ MEM_WATCH_INTERVAL=60000 MEM_WATCH=true npm run dev:test
+Install dependencies and connect with the test server, also added the env variables tosetup the memory snapshot process
+
+ * `MEM_WATCH_INTERVAL=60000` - Interval time tyo take a Memory snapshot
+ * `MEM_WATCH=true`  - Switch to enable Memory snapshot
+ * `MEM_DUMP_PATH=./analytics/` - Path where leave the taked snapshots, please create the directory before run the explorer in this mode.
+
+```bash
+$ MEM_WATCH_INTERVAL=60000 MEM_WATCH=true MEM_DUMP_PATH=./analytics/ npm run dev:test
 ```
 
 ## Production Setup
