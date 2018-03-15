@@ -1,6 +1,11 @@
+const path = require("path");
 require("dotenv").config();
 
 if (process.env.MEM_WATCH === "true") {
+  const REPORT_PATH = process.env.MEM_DUMP_PATH
+    ? process.env.MEM_DUMP_PATH
+    : "./analytics/";
+
   var heapdump = require("heapdump");
   var memwatch = require("memwatch-next");
 
@@ -13,12 +18,14 @@ if (process.env.MEM_WATCH === "true") {
   };
 
   setInterval(function() {
-    createSnapshot("./analytics/" + Date.now() + ".heapsnapshot");
+    createSnapshot(path.join(REPORT_PATH, Date.now() + ".heapsnapshot"));
   }, process.env.MEM_WATCH_INTERVAL);
 
   memwatch.on("leak", info => {
     console.error("Memory leak detected:\n", info);
-    createSnapshot("./analytics/" + Date.now() + "-leaked" + ".heapsnapshot");
+    createSnapshot(
+      path.join(REPORT_PATH, Date.now() + "-leaked" + ".heapsnapshot")
+    );
   });
 }
 
@@ -61,10 +68,10 @@ module.exports = {
   },
 
   env: {
-    apiUrl: process.env.MTN_API_URL || 'http://localhost:3000',
-    socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3000',
-    ethUrl: process.env.ETH_NODE_URL || 'http://parity.bloqrock.net:8545',
-    tracerUrl: process.env.TRACER_URL || 'http://tracer.bloqrock.net'
+    apiUrl: process.env.MTN_API_URL || "http://localhost:3000",
+    socketUrl: process.env.MTN_SOCKET_URL || "http://localhost:3000",
+    ethUrl: process.env.ETH_NODE_URL || "http://parity.bloqrock.net:8545",
+    tracerUrl: process.env.TRACER_URL || "http://tracer.bloqrock.net"
   },
 
   serverMiddleware: [{ path: "/health", handler: "~/middlewares/health.js" }],
