@@ -60,6 +60,10 @@ export default {
     this.isLoading = false
   },
 
+  destroyed () {
+    socketService.removeAllListeners()
+  },
+
   methods: {
     async getStatus () {
       return Promise.all([configService.get(), statusService.get()])
