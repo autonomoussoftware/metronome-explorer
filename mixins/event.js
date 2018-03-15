@@ -28,7 +28,10 @@ const eventMixin = {
     }
 
     if (params.address === '0x0000000000000000000000000000000000000000') {
-      return error({ statusCode: 500, message: 'Minter address is not allowed ' })
+      return error({
+        statusCode: 500,
+        message: 'Minter address is not allowed '
+      })
     }
 
     const { events, count } = await eventService.getByAccount(params.address, {
@@ -38,12 +41,17 @@ const eventMixin = {
 
     const hasEnded = count <= LIMIT
 
-    if (!params.address) { return { events, count, hasEnded } }
+    if (!params.address) {
+      return { events, count, hasEnded }
+    }
 
     const { balance } = await accountService.getByAddress(params.address)
 
     if (!balance) {
-      return error({ statusCode: 404, message: `The address ${params.address} was not found` })
+      return error({
+        statusCode: 404,
+        message: `The address ${params.address} was not found`
+      })
     }
 
     return { events, count, hasEnded, balance }
@@ -51,13 +59,19 @@ const eventMixin = {
 
   computed: {
     filteredEvents () {
-      if (!this.filter) { return this.events }
+      if (!this.filter) {
+        return this.events
+      }
 
       return this.events.filter(e => {
-        if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) { return false }
+        if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) {
+          return false
+        }
 
-        return (e.metaData.returnValues._to.includes(this.filter)) ||
-          (e.metaData.returnValues._from.includes(this.filter))
+        return (
+          e.metaData.returnValues._to.includes(this.filter) ||
+          e.metaData.returnValues._from.includes(this.filter)
+        )
       })
     },
 
@@ -66,18 +80,29 @@ const eventMixin = {
     }
   },
 
-  mount () {
+  mounted () {
     socketService.on('NEW_EVENT', function newEventHandler (event) {
       const address = this.$route.params.address
-      if (address && event.metaData.returnValues._from !== address &&
-        event.metaData.returnValues._to !== address) { return }
+      if (
+        address &&
+        event.metaData.returnValues._from !== address &&
+        event.metaData.returnValues._to !== address
+      ) {
+        return
+      }
 
       this.count += 1
       if (this.skip === 0) {
-        if (this.events.length === LIMIT) { this.events.pop() }
+        if (this.events.length === LIMIT) {
+          this.events.pop()
+        }
         this.events.unshift(event)
       }
     })
+  },
+
+  destroyed () {
+    socketService.removeAllListeners()
   },
 
   methods: {
@@ -92,7 +117,10 @@ const eventMixin = {
       }
 
       if (this.$route.params.address) {
-        let { events } = await eventService.getByAccount(this.$route.params.address, params)
+        let { events } = await eventService.getByAccount(
+          this.$route.params.address,
+          params
+        )
         this.setNewPage(events)
       } else {
         let { events } = await eventService.get(params)
@@ -116,13 +144,17 @@ const eventMixin = {
     },
 
     getNextPage () {
-      if (!this.skip) { return }
+      if (!this.skip) {
+        return
+      }
       this.skip -= LIMIT
       this.getEvents()
     },
 
     getPreviousPage () {
-      if (this.skip >= this.count) { return }
+      if (this.skip >= this.count) {
+        return
+      }
       this.skip += LIMIT
       this.getEvents()
     }
