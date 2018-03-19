@@ -28,13 +28,15 @@ div
             span(v-if="hasAddresses(e)")
               i.fa.fa-copy(v-clipboard="e.metaData.returnValues._from || e.metaData.returnValues._owner")
               b(v-if="isMinter(e)") MINTER
+              b(v-else-if="isConverter(e)") CONVERTER
               a(v-else, @click="goToAddress(e)") {{ e.metaData.returnValues._from || e.metaData.returnValues._owner  }}
             span(v-else) N/A
           td
             span.title To
             span(v-if="hasAddresses(e)")
               i.fa.fa-copy(v-clipboard="e.metaData.returnValues._to || e.metaData.returnValues._spender")
-              a(@click="goToAddress(e, 'to')") {{ e.metaData.returnValues._to || e.metaData.returnValues._spender  }}
+              b(v-if="isConverter(e, 'to')") CONVERTER
+              a(v-else, @click="goToAddress(e, 'to')") {{ e.metaData.returnValues._to || e.metaData.returnValues._spender  }}
             span(v-else) N/A
           td.text-right
             span.title Amount
@@ -51,6 +53,8 @@ div
 <script>
 import MtnPagination from '~/components/Pagination'
 import MtnTextTooltip from '~/components/TextTooltip'
+
+import eventService from '~/services/event'
 
 export default {
 
@@ -70,26 +74,22 @@ export default {
       this.$emit('previous-page')
     },
 
-    isMinter (e) {
-      if (!e.metaData.returnValues) { return false }
-
-      const minter = '0x0000000000000000000000000000000000000000'
-      if (e.metaData.returnValues._from === minter) { return true }
-      if (e.metaData.returnValues._owner === minter) { return true }
-
-      return false
+    isMinter (event) {
+      return eventService.isMinterEvent(event)
     },
 
-    goToAddress (e, type = 'from') {
-      const address = type === 'from' ? e.metaData.returnValues._from || e.metaData.returnValues._owner
-        : e.metaData.returnValues._to || e.metaData.returnValues._spender
+    isConverter (event, type) {
+      return eventService.isConverterEvent(event, type)
+    },
+
+    goToAddress (event, type) {
+      const address = eventService.getEventAddress(event, type)
 
       this.$router.push({ name: 'accounts-address', params: { address } })
     },
 
-    hasAddresses (e) {
-      return (e.metaData.returnValues && e.metaData.returnValues._from) ||
-        (e.metaData.returnValues && e.metaData.returnValues._owner)
+    hasAddresses (event) {
+      return eventService.hasEventAddress(event)
     },
 
     nextPage () {
