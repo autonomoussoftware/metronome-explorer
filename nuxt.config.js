@@ -1,5 +1,5 @@
-const path = require('path')
 require('dotenv').config()
+const path = require('path')
 
 if (process.env.MEM_WATCH === 'true') {
   const REPORT_PATH = process.env.MEM_DUMP_PATH
@@ -75,7 +75,9 @@ module.exports = {
     apiUrl: process.env.MTN_API_URL || 'http://localhost:3000',
     socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3000',
     ethUrl: process.env.ETH_NODE_URL || 'http://parity.bloqrock.net:8545',
-    tracerUrl: process.env.TRACER_URL || 'http://tracer.bloqrock.net'
+    tracerUrl: process.env.TRACER_URL || 'http://tracer.bloqrock.net',
+    converterAddress: process.env.CONVERTER_ADDRESS || '0x25d99454d94d9459f0abb06009840a48bd04ca44',
+    minterAddress: '0x0000000000000000000000000000000000000000'
   },
 
   serverMiddleware: [{ path: '/health', handler: '~/middlewares/health.js' }],
