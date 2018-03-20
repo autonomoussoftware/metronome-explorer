@@ -24,6 +24,9 @@
 <script>
 import eventMixin from '~/mixins/event'
 
+import eventService from '~/services/event'
+import socketService from '~/services/socket.io'
+
 import MtnLoader from '~/components/Loader'
 import MtnEventTable from '~/components/EventTable'
 import MtnAccountFilter from '~/components/AccountFilter'
@@ -44,6 +47,14 @@ export default {
     return {
       title: `Account: ${this.$route.params.address} | Metronome Explorer`
     }
+  },
+
+  mounted () {
+    socketService.on('BALANCE_UPDATED', account => {
+      if (eventService.compareAddress(account.address, this.$route.params.address)) {
+        this.balance = account.balance
+      }
+    })
   }
 }
 </script>
