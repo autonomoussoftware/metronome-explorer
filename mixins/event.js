@@ -22,7 +22,7 @@ const eventMixin = {
     }
   },
 
-  async asyncData ({ params, error }) {
+  async asyncData ({ params, query, error }) {
     if (params.address) {
       params.address = web3.utils.toChecksumAddress(params.address)
     }
@@ -36,7 +36,8 @@ const eventMixin = {
 
     const { events, count } = await eventService.getByAccount(params.address, {
       $sort: SORT,
-      $limit: LIMIT
+      $limit: LIMIT,
+      $skip: query.skip || 0
     })
 
     const hasEnded = count <= LIMIT
@@ -75,6 +76,16 @@ const eventMixin = {
 
     showPagination () {
       return !this.filter
+    }
+  },
+
+  created () {
+    if (this.$route.query.skip) {
+      try {
+        this.skip = parseInt(this.$route.query.skip)
+      } catch (err) {
+        this.skip = 0
+      }
     }
   },
 
@@ -140,6 +151,8 @@ const eventMixin = {
 
       this.skip -= LIMIT
       this.getEvents()
+
+      this.$router.push({ query: { skip: this.skip } })
     },
 
     getPreviousPage () {
@@ -147,6 +160,8 @@ const eventMixin = {
 
       this.skip += LIMIT
       this.getEvents()
+
+      this.$router.push({ query: { skip: this.skip } })
     }
   }
 }
