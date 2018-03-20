@@ -13,8 +13,11 @@
 
   a:not([href]):not([tabindex]) {
     color: $VIOLET;
-    text-decoration: underline;
     cursor: pointer;
+  }
+
+  a:not([href]):not([tabindex]):hover {
+    text-decoration: underline;
   }
 
   .title-container {
@@ -52,44 +55,48 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   color: #525252;
-  background: #282828
+  background: #282828;
 }
 
 *,:after,:before {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 a,a:visited {
-  color: $VIOLET
+  color: $VIOLET;
 }
 
 h1,h2,h3,h4,h5,h6 {
-  color: $VIOLET
+  color: $VIOLET;
 }
 
 h1 {
   color: $VIOLET;
   font-weight: 300;
-  font-size: 40px
+  font-size: 40px;
 }
 
 h2 {
   font-size: 35px;
-  font-weight: 800
+  font-weight: 800;
 }
 
 img {
   max-width: 100%;
-  height: auto
+  height: auto;
 }
 
 ol,ul {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 ol li {
-  list-style-position: inside
+  list-style-position: inside;
+}
+
+bold {
+  font-weight: bold;
 }
 
 input[type=email],input[type=text],input[type=search] {
@@ -104,19 +111,19 @@ input[type=email],input[type=text],input[type=search] {
   box-sizing: border-box;
   vertical-align: middle;
   border-radius: 0;
-  pointer-events: auto
+  pointer-events: auto;
 }
 
 input::-webkit-input-placeholder {
-  color: $WHITE
+  color: $WHITE;
 }
 
 input:-ms-input-placeholder {
-  color: $WHITE
+  color: $WHITE;
 }
 
 input::placeholder {
-  color: $WHITE
+  color: $WHITE;
 }
 
 .btn {
@@ -132,12 +139,12 @@ input::placeholder {
   box-sizing: border-box;
   vertical-align: middle;
   cursor: pointer;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
   .btn {
-      padding:10px 30px
+      padding:10px 30px;
   }
 }
 
@@ -148,13 +155,13 @@ input::placeholder {
 }
 
 .btn:visited {
-  color: $WHITE
+  color: $WHITE;
 }
 
 .btn:hover {
   color: $WHITE;
   background-color: #5742b0;
-  border: 3px solid #5742b0
+  border: 3px solid #5742b0;
 }
 
 .ellipsis {

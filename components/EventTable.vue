@@ -28,15 +28,17 @@ div
             span(v-if="hasAddresses(e)")
               i.fa.fa-copy(v-clipboard="e.metaData.returnValues._from || e.metaData.returnValues._owner")
               b(v-if="isMinter(e)") MINTER
-              b(v-else-if="isConverter(e)") CONVERTER
-              a(v-else, @click="goToAddress(e)") {{ e.metaData.returnValues._from || e.metaData.returnValues._owner  }}
+              a(v-else, @click="goToAddress(e)")
+                b(v-if="isConverter(e)") CONVERTER
+                span(v-else) {{ e.metaData.returnValues._from || e.metaData.returnValues._owner }}
             span(v-else) N/A
           td
             span.title To
             span(v-if="hasAddresses(e)")
               i.fa.fa-copy(v-clipboard="e.metaData.returnValues._to || e.metaData.returnValues._spender")
-              b(v-if="isConverter(e, 'to')") CONVERTER
-              a(v-else, @click="goToAddress(e, 'to')") {{ e.metaData.returnValues._to || e.metaData.returnValues._spender  }}
+              a( @click="goToAddress(e, 'to')")
+                b(v-if="isConverter(e, 'to')") CONVERTER
+                span(v-else) {{ e.metaData.returnValues._to || e.metaData.returnValues._spender }}
             span(v-else) N/A
           td.text-right
             span.title Amount

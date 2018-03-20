@@ -19,10 +19,12 @@
             th Balance
             th Updated At
         tbody
-          tr(v-if="a._id !== '0x0000000000000000000000000000000000000000'", v-for='a in filteredAccounts', :key='a._id')
+          tr(v-for='a in filteredAccounts', :key='a._id')
             td
-              span.title ID
-              nuxt-link(:to="{ name: 'accounts-address', params: { address: a._id }}") {{ a._id }}
+              span.title Address
+              nuxt-link(:to="{ name: 'accounts-address', params: { address: a._id }}")
+                b(v-if="isConverter(a._id)") CONVERTER
+                span(v-else) {{ a._id }}
             td
               span.title Balance
               span {{ a.balance | mtn }}
@@ -47,6 +49,7 @@ import MtnAccountFilter from '~/components/AccountFilter'
 import accountService from '~/services/account'
 
 const LIMIT = 20
+const SORT = '-metaData.timestamp'
 
 export default {
   name: 'AccountList',
@@ -66,10 +69,11 @@ export default {
     }
   },
 
-  async asyncData ({ params }) {
+  async asyncData ({ params, query }) {
     const { accounts, count } = await accountService.get({
-      $sort: '-metaData.timestamp',
-      $limit: LIMIT
+      $sort: SORT,
+      $limit: LIMIT,
+      $skip: query.skip || 0
     })
 
     const hasEnded = count <= LIMIT
@@ -99,18 +103,32 @@ export default {
     }
   },
 
+  created () {
+    if (this.$route.query.skip) {
+      try {
+        this.skip = parseInt(this.$route.query.skip)
+      } catch (err) {
+        this.skip = 0
+      }
+    }
+  },
+
   methods: {
     async getAccounts () {
       this.isLoading = true
       this.hasEnded = false
 
       let { accounts } = await accountService.get({
-        $sort: '-metaData.timestamp',
+        $sort: SORT,
         $limit: LIMIT,
         $skip: this.skip
       })
 
       this.setNewPage(accounts)
+    },
+
+    isConverter (address) {
+      return accountService.isConverterAddress(address)
     },
 
     setNewPage (accounts) {
@@ -130,14 +148,20 @@ export default {
 
     getNextPage () {
       if (!this.skip) { return }
+
       this.skip -= LIMIT
       this.getAccounts()
+
+      this.$router.push({ query: { skip: this.skip } })
     },
 
     getPreviousPage () {
       if (this.skip >= this.count) { return }
+
       this.skip += LIMIT
       this.getAccounts()
+
+      this.$router.push({ query: { skip: this.skip } })
     }
   }
 }
