@@ -72,8 +72,8 @@ module.exports = {
   },
 
   env: {
-    apiUrl: process.env.MTN_API_URL || 'http://localhost:3000',
-    socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3000',
+    apiUrl: process.env.MTN_API_URL || 'http://localhost:3002',
+    socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3002',
     ethUrl: process.env.ETH_NODE_URL || 'http://parity.bloqrock.net:8545',
     tracerUrl: process.env.TRACER_URL || 'http://tracer.bloqrock.net',
     converterAddress: process.env.CONVERTER_ADDRESS || '0x25d99454d94d9459f0abb06009840a48bd04ca44',
