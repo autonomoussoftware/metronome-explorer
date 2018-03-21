@@ -6,30 +6,25 @@ if (process.env.MEM_WATCH === 'true') {
     ? process.env.MEM_DUMP_PATH
     : './analytics/'
 
-  var heapdump = require('heapdump')
-  var memwatch = require('memwatch-next')
+  const heapdump = require('heapdump')
+  const memwatch = require('memwatch-next')
 
-  console.log('starting memwatch and heapdump')
+  console.log('Starting memwatch and heapdump...')
 
   const createSnapshot = dir => {
-    heapdump.writeSnapshot(dir, function (err, filename) {
-      if (err) {
-        console.log(err)
-        return
-      }
+    heapdump.writeSnapshot(dir, (err, filename) => {
+      if (err) { return console.log(err) }
       console.log('dump written to', filename)
     })
   }
 
-  setInterval(function () {
-    createSnapshot(path.join(REPORT_PATH, Date.now() + '.heapsnapshot'))
+  setInterval(() => {
+    createSnapshot(path.join(REPORT_PATH, `${Date.now()}.heapsnapshot`))
   }, process.env.MEM_WATCH_INTERVAL)
 
   memwatch.on('leak', info => {
     console.error('Memory leak detected:\n', info)
-    createSnapshot(
-      path.join(REPORT_PATH, Date.now() + '-leaked' + '.heapsnapshot')
-    )
+    createSnapshot(path.join(REPORT_PATH, `${Date.now()}-leaked.heapsnapshot`))
   })
 }
 
