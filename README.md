@@ -47,7 +47,7 @@ The following environment variables are needed for the explorer to work:
 # install dependencies
 $ npm install # Or yarn install
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:3333
 $ npm run dev
 ```
 
@@ -55,13 +55,21 @@ $ npm run dev
 
 Install dependencies and connect with the test server. You will also need to add the env variables to setup the memory snapshot process:
 
-  - `MEM_WATCH_INTERVAL=60000`: Interval time tyo take a Memory snapshot
-  - `MEM_WATCH=true`: Switch to enable Memory snapshot
-  - `MEM_DUMP_PATH=./analytics/`: Path where leave the taked snapshots, please create the directory before run the explorer in this mode.
+  - `MEM_WATCH_INTERVAL`: Interval time tyo take a Memory snapshot
 
-  ```bash
-  $ MEM_WATCH_INTERVAL=60000 MEM_WATCH=true MEM_DUMP_PATH=./analytics/ npm run dev:test
-  ```
+    I.E. `60000`
+
+  - `MEM_WATCH`: Switch to enable Memory snapshot
+
+    I.E. `true`
+
+  - `MEM_DUMP_PATH`: Path where leave the taked snapshots, please create the directory before run the explorer in this mode.
+
+    I.E. `./analytics/`
+
+
+  > To run the explorer with the memory watch you can do: `$ MEM_WATCH_INTERVAL=60000 MEM_WATCH=true MEM_DUMP_PATH=./analytics/ npm run dev`.
+
 
 ## Prod Setup
 
