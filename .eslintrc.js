@@ -8,13 +8,19 @@ module.exports = {
   },
 
   extends: [
-    'standard'
+    'bloq'
   ],
 
   plugins: [
     'html'
   ],
 
-  rules: {},
-  globals: {}
+  parserOptions: {
+    sourceType: 'module'
+  },
+
+  rules: {
+    'no-shadow': [2, {'builtinGlobals': false, 'hoist': 'functions', 'allow': ['Vue']}],
+    'arrow-body-style': ['error', 'as-needed']
+  }
 }

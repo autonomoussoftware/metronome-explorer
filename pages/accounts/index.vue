@@ -69,7 +69,7 @@ export default {
     }
   },
 
-  async asyncData ({ params, query }) {
+  async asyncData ({ query }) {
     const { accounts, count } = await accountService.get({
       $sort: SORT,
       $limit: LIMIT,
@@ -118,7 +118,7 @@ export default {
       this.isLoading = true
       this.hasEnded = false
 
-      let { accounts } = await accountService.get({
+      const { accounts } = await accountService.get({
         $sort: SORT,
         $limit: LIMIT,
         $skip: this.skip

@@ -2,7 +2,7 @@
 .container-fluid
   .row.title-container
     .col-sm-8
-      h4.ellipsis Account {{ $route.params.address }}
+      h4.ellipsis Account {{ address }}
       p
         b Balance: {{ balance | mtn }}
     .col-sm-4(v-show="events.length")
@@ -25,6 +25,7 @@
 import eventMixin from '~/mixins/event'
 
 import eventService from '~/services/event'
+import accountService from '~/services/account'
 import socketService from '~/services/socket.io'
 
 import MtnLoader from '~/components/Loader'
@@ -39,19 +40,36 @@ export default {
 
   data () {
     return {
-      balance: 0
+      balance: 0,
+      address: ''
     }
   },
 
   head () {
     return {
-      title: `Account: ${this.$route.params.address} | Metronome Explorer`
+      title: `Account: ${this.address} | Metronome Explorer`
     }
+  },
+
+  async created () {
+    this.address = this.$route.params.address
+    this.isLoading = true
+    const { balance } = await accountService.getByAddress(this.address)
+
+    if (!balance) {
+      return this.$error({
+        statusCode: 404,
+        message: `The address ${this.address} was not found`
+      })
+    }
+
+    this.isLoading = false
+    this.balance = balance
   },
 
   mounted () {
     socketService.on('BALANCE_UPDATED', account => {
-      if (eventService.compareAddress(account.address, this.$route.params.address)) {
+      if (eventService.compareAddress(account.address, this.address)) {
         this.balance = account.balance
       }
     })
