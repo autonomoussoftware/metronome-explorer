@@ -1,7 +1,6 @@
 import web3 from '~/services/web3'
 import eventService from '~/services/event'
 import socketService from '~/services/socket.io.js'
-import accountService from '~/services/account'
 
 const LIMIT = 20
 const SORT = '-_id'
@@ -42,20 +41,9 @@ const eventMixin = {
 
     const hasEnded = count <= LIMIT
 
-    if (!params.address) {
-      return { events, count, hasEnded }
-    }
-
-    const { balance } = await accountService.getByAddress(params.address)
-
-    if (!balance) {
-      return error({
-        statusCode: 404,
-        message: `The address ${params.address} was not found`
-      })
-    }
-
-    return { events, count, hasEnded, balance }
+    // if (!params.address) {
+    return { events, count, hasEnded }
+    // }
   },
 
   computed: {
@@ -92,11 +80,7 @@ const eventMixin = {
   mounted () {
     socketService.on('NEW_EVENT', event => {
       const address = this.$route.params.address
-      if (
-        address &&
-        event.metaData.returnValues._from !== address &&
-        event.metaData.returnValues._to !== address
-      ) { return }
+      if (eventService.belongsToAddress(event, address)) { return }
 
       this.count += 1
       if (this.skip === 0) {
@@ -122,13 +106,13 @@ const eventMixin = {
       }
 
       if (this.$route.params.address) {
-        let { events } = await eventService.getByAccount(
+        const { events } = await eventService.getByAccount(
           this.$route.params.address,
           params
         )
         this.setNewPage(events)
       } else {
-        let { events } = await eventService.get(params)
+        const { events } = await eventService.get(params)
         this.setNewPage(events)
       }
     },

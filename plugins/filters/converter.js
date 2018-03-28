@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const getNumber = function (value, prefix) {
+const getNumber = function (value) {
   if (!value) { return '' }
 
   return value === process.env.converterAddress ? 'CONVERTER' : value

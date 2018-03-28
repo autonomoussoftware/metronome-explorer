@@ -25,6 +25,7 @@
 import eventMixin from '~/mixins/event'
 
 import eventService from '~/services/event'
+import accountService from '~/services/account'
 import socketService from '~/services/socket.io'
 
 import MtnLoader from '~/components/Loader'
@@ -47,6 +48,19 @@ export default {
     return {
       title: `Account: ${this.$route.params.address} | Metronome Explorer`
     }
+  },
+
+  async asyncData ({ params, error }) {
+    const { balance } = await accountService.getByAddress(params.address)
+
+    if (!balance) {
+      return error({
+        statusCode: 404,
+        message: `The address ${params.address} was not found`
+      })
+    }
+
+    return { balance }
   },
 
   mounted () {

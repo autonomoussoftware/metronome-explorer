@@ -60,7 +60,7 @@ export default {
     },
 
     isMinter (address) {
-      return this.search === '0x0000000000000000000000000000000000000000'
+      return address === '0x0000000000000000000000000000000000000000'
     },
 
     toggleCollapse () {

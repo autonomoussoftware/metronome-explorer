@@ -43,8 +43,17 @@ eventService.getEventAddress = function (event, type = 'from') {
 }
 
 eventService.hasEventAddress = function (event) {
-  return (event.metaData.returnValues && event.metaData.returnValues._from) ||
-    (event.metaData.returnValues && event.metaData.returnValues._owner)
+  return event.metaData.returnValues &&
+    (event.metaData.returnValues._from || event.metaData.returnValues._owner)
+}
+
+eventService.belongsToAddress = function (event, address) {
+  if (!address) { return false }
+
+  return utils.compareAddress(event.metaData.returnValues._from, address) ||
+      utils.compareAddress(event.metaData.returnValues._owner, address) ||
+      utils.compareAddress(event.metaData.returnValues._to, address) ||
+      utils.compareAddress(event.metaData.returnValues._spender, address)
 }
 
 export default eventService
