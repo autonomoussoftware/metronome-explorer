@@ -41,9 +41,7 @@ const eventMixin = {
 
     const hasEnded = count <= LIMIT
 
-    // if (!params.address) {
     return { events, count, hasEnded }
-    // }
   },
 
   computed: {
