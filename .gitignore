@@ -11,3 +11,4 @@ build
 !.elasticbeanstalk/*.global.yml
 /analytics
 .env
+newrelic_agent.log
