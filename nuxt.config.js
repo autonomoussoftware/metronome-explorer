@@ -1,5 +1,6 @@
 require('dotenv').config()
 const path = require('path')
+require('newrelic')
 
 if (process.env.MEM_WATCH === 'true') {
   const REPORT_PATH = process.env.MEM_DUMP_PATH

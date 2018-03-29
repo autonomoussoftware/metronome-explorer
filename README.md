@@ -73,12 +73,19 @@ Install dependencies and connect with the test server. You will also need to add
 
 ## Prod Setup
 
+Remember setup the next ENV variables: 
+
+- `NEW_RELIC_API_KEY`
+- `MTN_API_URL`
+- `MTN_SOCKET_URL`
+- `ETH_NODE_URL`
+
 ``` bash
 # install dependencies
 $ npm install # Or yarn install
 
 # run nuxt release build
-$ MTN_API_URL=http://api.metronome.io MTN_SOCKET_URL=ws://api.metronome.io ETH_NODE_URL=ws://node.metronome.io:8546 npm run build
+$ NEW_RELIC_API_KEY="xxxxxxxx" MTN_API_URL=http://api.metronome.io MTN_SOCKET_URL=ws://api.metronome.io ETH_NODE_URL=ws://node.metronome.io:8546 npm run build
 
 $ PORT=8080 HOST=0.0.0.0 npm run prod
 ```
