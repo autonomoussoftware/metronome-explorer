@@ -11,6 +11,7 @@
   .row(v-show="isLoading")
     .col.text-center
       mtn-loader
+  
   .row(v-show="!isLoading")
     .col
       mtn-event-table(
@@ -24,8 +25,9 @@
 <script>
 import eventMixin from '~/mixins/event'
 
-import eventService from '~/services/event'
+import utilsService from '~/services/utils'
 import socketService from '~/services/socket.io'
+import accountService from '~/services/account'
 
 import MtnLoader from '~/components/Loader'
 import MtnEventTable from '~/components/EventTable'
@@ -49,9 +51,26 @@ export default {
     }
   },
 
+  async created () {
+    this.isLoading = true
+    const address = this.$route.params.address
+
+    try {
+      const { balance } = await accountService.getByAddress(address)
+
+      this.balance = balance
+      this.isLoading = false
+    } catch (err) {
+      return this.$nuxt.error({
+        statusCode: 404,
+        message: `The address ${address} was not found`
+      })
+    }
+  },
+
   mounted () {
     socketService.on('BALANCE_UPDATED', account => {
-      if (eventService.compareAddress(account.address, this.$route.params.address)) {
+      if (utilsService.compareAddress(account.address, this.$route.params.address)) {
         this.balance = account.balance
       }
     })
