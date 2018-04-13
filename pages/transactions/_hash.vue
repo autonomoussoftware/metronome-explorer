@@ -19,10 +19,18 @@ import tracer from '~/services/tracer'
 export default {
   name: 'TransactionDetail',
 
-  async asyncData ({ params }) {
+  async asyncData ({ params, error }) {
     const transaction = await web3.eth.getTransaction(params.hash)
-    const trace = await tracer.transaction(params.hash)
-    return { transaction, trace }
+    if (!transaction) {
+      return error({ statusCode: 404, message: `The transaction ${params.hash} was not found` })
+    }
+
+    try {
+      const trace = await tracer.transaction(params.hash)
+      return { transaction, trace }
+    } catch (error) {
+      return { transaction }
+    }
   },
 
   created () {},
