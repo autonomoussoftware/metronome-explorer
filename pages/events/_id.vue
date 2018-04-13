@@ -20,13 +20,12 @@ export default {
   name: 'EventDetail',
 
   async asyncData ({ params, error }) {
-    const event = await eventService.getById(params.id)
-
-    if (!event) {
+    try {
+      const event = await eventService.getById(params.id)
+      return { event }
+    } catch (err) {
       return error({ statusCode: 404, message: `The event ${params.id} was not found` })
     }
-
-    return { event }
   },
 
   head () {
