@@ -8,7 +8,6 @@ const tracer = {}
 tracer.transaction = function (transactionHash) {
   return tracerApi.get(`/transactions/${transactionHash}`)
     .then(res => res.data)
-    .catch(() => {})
 }
 
 export default tracer
