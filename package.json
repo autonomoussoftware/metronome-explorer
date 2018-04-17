@@ -61,8 +61,6 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "jsdom": "^11.8.0",
-    "mock-socket": "^7.1.0",
-    "nock": "^9.2.5",
-    "proxyquire": "^2.0.1"
+    "nock": "^9.2.5"
   }
 }
