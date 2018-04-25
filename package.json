@@ -10,7 +10,7 @@
     "prestart": "nuxt build",
     "start": "nuxt start",
     "prod": "nuxt start",
-    "test": "echo 'TBA'",
+    "test": "ava --verbose test/**/*.spec.js ",
     "generate": "nuxt generate",
     "precommit": "npm run lint",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -22,8 +22,7 @@
     "babel-eslint": "^7.2.3",
     "backpack-core": "^0.4.1",
     "bignumber.js": "^5.0.0",
-    "bootstrap": "4.0.0-beta.2",
-    "dotenv": "^5.0.1",
+    "bootstrap": "4.1.0",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
@@ -48,5 +47,20 @@
   "engines": {
     "node": "8",
     "npm": "5"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "jsdom": "^11.8.0",
+    "nock": "^9.2.5"
   }
 }
