@@ -1,5 +1,6 @@
 import axios from './axios'
 import utils from './utils'
+import Metronome from './metronome'
 
 const accountService = {}
 const endpoint = '/account'
@@ -15,7 +16,7 @@ accountService.getByAddress = function (address) {
 }
 
 accountService.isConverterAddress = function (address) {
-  return utils.compareAddress(address, process.env.converterAddress)
+  return utils.compareAddress(address, Metronome.AUTONOMOUS_CONVERTER_ADDRESS)
 }
 
 export default accountService

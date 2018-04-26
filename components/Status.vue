@@ -7,15 +7,18 @@
   .row(v-show="!isLoading")
     .col-sm-12.col-md-4.ellipsis
       span.title Current Price
-      span.violet {{ auctionStatus.currentPrice | eth }}
+      span.violet(v-if="auctionStatus.currentPrice") {{ auctionStatus.currentPrice | eth }}
+      span.violet(v-else) ...
 
     .col-sm-12.col-md-2.ellipsis
       span.title Block Height
-      span.violet {{ block.number }}
+      span.violet(v-if="block.number") {{ block.number }}
+      span.violet(v-else) ...
 
     .col-sm-12.col-md-6.ellipsis
       span.title Token Circulation
-      span.violet {{ auctionStatus.tokenCirculation | mtn }}
+      span.violet(v-if="auctionStatus.tokenCirculation") {{ auctionStatus.tokenCirculation | mtn }}
+      span.violet(v-else) ...
 
   .row(v-show="!isLoading")
     .col-sm-12.col-md-8.ellipsis
@@ -30,9 +33,9 @@
 <script>
 import MtnLoader from '~/components/Loader'
 
-import socketService from '~/services/socket.io.js'
+import Metronome from '~/services/metronome'
 import statusService from '~/services/status'
-import configService from '~/services/config'
+import socketService from '~/services/socket.io.js'
 
 export default {
 
@@ -41,7 +44,7 @@ export default {
   data () {
     return {
       block: {},
-      tokenAddress: '',
+      tokenAddress: Metronome.MET_TOKEN_ADDRESS,
       auctionStatus: {},
       apiStatus: 'OFF',
       isLoading: true
@@ -54,9 +57,8 @@ export default {
     socketService.on('AUCTION_STATUS_TASK', auctionStatus => (this.auctionStatus = auctionStatus))
     socketService.on('LATEST_BLOCK', block => (this.block = block))
 
-    const results = await this.getStatus()
-    this.tokenAddress = results[0].tokenAddress
-    this.apiStatus = socketService.connected && results[1] === 204 ? 'ON' : 'OFF'
+    const status = await this.getStatus()
+    this.apiStatus = socketService.connected && status === 204 ? 'ON' : 'OFF'
     this.isLoading = false
   },
 
@@ -66,7 +68,7 @@ export default {
 
   methods: {
     async getStatus () {
-      return Promise.all([configService.get(), statusService.get()])
+      return statusService.get()
     }
   }
 }
