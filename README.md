@@ -51,24 +51,6 @@ $ npm install # Or yarn install
 $ npm run dev
 ```
 
-## Memory watch
-
-Install dependencies and connect with the test server. You will also need to add the env variables to setup the memory snapshot process:
-
-  - `MEM_WATCH_INTERVAL`: Interval time tyo take a Memory snapshot
-
-    I.E. `60000`
-
-  - `MEM_WATCH`: Switch to enable Memory snapshot
-
-    I.E. `true`
-
-  - `MEM_DUMP_PATH`: Path where leave the taked snapshots, please create the directory before run the explorer in this mode.
-
-    I.E. `./analytics/`
-
-
-  > To run the explorer with the memory watch you can do: `$ MEM_WATCH_INTERVAL=60000 MEM_WATCH=true MEM_DUMP_PATH=./analytics/ npm run dev`.
 
 
 ## Prod Setup

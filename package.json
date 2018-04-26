@@ -31,8 +31,6 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "heapdump": "^0.3.9",
-    "memwatch-next": "^0.3.0",
     "metronomejs": "git@github.com:MetronomeToken/metronomejs.git",
     "newrelic": "^3.3.0",
     "node-sass": "^4.6.1",
