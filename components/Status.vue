@@ -44,7 +44,7 @@ export default {
   data () {
     return {
       block: {},
-      tokenAddress: Metronome.MET_TOKEN_ADDRESS,
+      tokenAddress: Metronome.addresses[process.env.chain].metToken,
       auctionStatus: {},
       apiStatus: 'OFF',
       isLoading: true
