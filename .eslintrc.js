@@ -7,14 +7,20 @@ module.exports = {
     node: true
   },
 
+  parserOptions: {
+    sourceType: 'module'
+  },
+
   extends: [
-    'standard'
+    'bloq'
   ],
 
   plugins: [
     'html'
   ],
 
-  rules: {},
+  rules: {
+    complexity: 'off'
+  },
   globals: {}
 }
