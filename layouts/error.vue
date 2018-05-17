@@ -13,12 +13,7 @@
 </template>
 
 <script>
-import MtnFooter from '~/components/Footer.vue'
-import MtnHeader from '~/components/Header.vue'
-
 export default {
-  components: { MtnFooter, MtnHeader },
-
   props: {
     error: { type: Object }
   }

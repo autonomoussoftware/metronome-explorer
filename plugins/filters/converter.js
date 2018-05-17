@@ -7,9 +7,9 @@ const getNumber = function (value) {
   return accountService.isConverter(value) ? 'CONVERTER' : value
 }
 
-const mtnFilter = {
+const metFilter = {
   install (Vue) {
-    Vue.filter('mtn', function (value) {
+    Vue.filter('met', function (value) {
       return getNumber(value, 'MET')
     })
   }
@@ -23,5 +23,5 @@ const ethFilter = {
   }
 }
 
-Vue.use(mtnFilter)
+Vue.use(metFilter)
 Vue.use(ethFilter)

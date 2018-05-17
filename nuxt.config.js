@@ -41,12 +41,12 @@ module.exports = {
   },
 
   env: {
-    apiUrl: process.env.MTN_API_URL || 'http://localhost:3002',
-    socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3002',
+    apiUrl: process.env.MET_API_URL || 'http://localhost:3002',
+    socketUrl: process.env.MET_SOCKET_URL || 'http://localhost:3002',
     ethUrl: process.env.ETH_NODE_URL || 'http://localhost:8545',
     tracerUrl: process.env.TRACER_URL || 'http://localhost:3006',
-    minterAddress: '0x0000000000000000000000000000000000000000',
-    chain: process.env.ETH_CHAIN || 'ropsten'
+    chain: process.env.ETH_CHAIN || 'ropsten',
+    minterAddress: '0x0000000000000000000000000000000000000000'
   },
 
   serverMiddleware: [{ path: '/health', handler: '~/middlewares/health.js' }],

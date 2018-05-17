@@ -5,14 +5,14 @@ div
       .col-sm-8
         h4 Recent Events
       .col-sm-4(v-show="events.length")
-        mtn-account-filter.hidden-md-down(:filter.sync="filter")
+        met-account-filter.hidden-md-down(:filter.sync="filter")
 
     .row(v-show="isLoading")
       .col.text-center
-        mtn-loader
+        met-loader
     .row(v-show="!isLoading")
       .col
-        mtn-event-table(
+        met-event-table(
           v-show="filteredEvents.length", :events="filteredEvents", :count="count",
           :skip="skip", :has-ended="hasEnded", :show-pagination="showPagination",
           :limit="limit", @next-page="getNextPage", @previous-page="getPreviousPage"
@@ -23,15 +23,15 @@ div
 <script>
 import eventMixin from '~/mixins/event'
 
-import MtnLoader from '~/components/Loader'
-import MtnEventTable from '~/components/EventTable'
-import MtnAccountFilter from '~/components/AccountFilter'
+import MetLoader from '~/components/Loader'
+import MetEventTable from '~/components/EventTable'
+import MetAccountFilter from '~/components/AccountFilter'
 
 export default {
   name: 'EventList',
 
   mixins: [eventMixin],
-  components: { MtnLoader, MtnEventTable, MtnAccountFilter },
+  components: { MetLoader, MetEventTable, MetAccountFilter },
 
   head () {
     return {

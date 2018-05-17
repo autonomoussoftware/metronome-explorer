@@ -4,11 +4,11 @@
     .col-sm-8
       h4 Accounts
     .col-sm-4(v-show="accounts.length")
-      mtn-account-filter.hidden-md-down(:filter.sync="filter")
+      met-account-filter.hidden-md-down(:filter.sync="filter")
 
   .row(v-show="isLoading")
       .col.text-center
-        mtn-loader
+        met-loader
 
   .row(v-show="!isLoading")
     .col-sm-12
@@ -27,13 +27,13 @@
                 span(v-else) {{ a._id }}
             td
               span.title Balance
-              span {{ a.balance | mtn }}
+              span {{ a.balance | met }}
             td
               span.title Updated At
               span {{ a.updatedAt | moment('from') }}
       p(v-show="!filteredAccounts.length") No accounts were found.
 
-      mtn-pagination(
+      met-pagination(
         v-show="showPagination", :limit="limit", :page-count="accounts.length",
         :total-count="count", :skip="skip", :has-ended="hasEnded",
         @next-page="getNextPage", @previous-page="getPreviousPage"
@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import MtnLoader from '~/components/Loader'
-import MtnPagination from '~/components/Pagination'
-import MtnAccountFilter from '~/components/AccountFilter'
+import MetLoader from '~/components/Loader'
+import MetPagination from '~/components/Pagination'
+import MetAccountFilter from '~/components/AccountFilter'
 
 import accountService from '~/services/account'
 
@@ -54,7 +54,7 @@ const SORT = '-metaData.timestamp'
 export default {
   name: 'AccountList',
 
-  components: { MtnLoader, MtnAccountFilter, MtnPagination },
+  components: { MetLoader, MetAccountFilter, MetPagination },
 
   data () {
     return {

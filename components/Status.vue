@@ -2,7 +2,7 @@
 .container-fluid
   .row(v-show="isLoading")
     .col.text-center
-      mtn-loader(:width="44")
+      met-loader(:width="44")
 
   .row(v-show="!isLoading")
     .col-sm-12.col-md-4.ellipsis
@@ -17,7 +17,7 @@
 
     .col-sm-12.col-md-6.ellipsis
       span.title Token Circulation
-      span.violet(v-if="auctionStatus.tokenCirculation") {{ auctionStatus.tokenCirculation | mtn }}
+      span.violet(v-if="auctionStatus.tokenCirculation") {{ auctionStatus.tokenCirculation | met }}
       span.violet(v-else) ...
 
   .row(v-show="!isLoading")
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import MtnLoader from '~/components/Loader'
+import MetLoader from '~/components/Loader'
 
 import Metronome from '~/services/metronome'
 import statusService from '~/services/status'
@@ -39,7 +39,7 @@ import socketService from '~/services/socket.io.js'
 
 export default {
 
-  components: { MtnLoader },
+  components: { MetLoader },
 
   data () {
     return {

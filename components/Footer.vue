@@ -2,7 +2,7 @@
   footer.container
     .row
       .col-sm-12
-        mtn-status
+        met-status
 
     p Copyright &copy; {{ new Date().getFullYear() }} Bloq, Inc. All Rights Reseverd
       br
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import MtnStatus from '~/components/Status.vue'
+import MetStatus from '~/components/Status.vue'
 
 export default {
-  components: { MtnStatus }
+  components: { MetStatus }
 }
 </script>
 

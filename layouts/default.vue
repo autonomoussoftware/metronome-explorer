@@ -1,18 +1,18 @@
 <template lang="pug">
   main
-    mtn-header
+    met-header
 
     .main-container
       nuxt.app
 
-    mtn-footer
+    met-footer
 </template>
 
 <script>
-import MtnFooter from '~/components/Footer.vue'
-import MtnHeader from '~/components/Header.vue'
+import MetFooter from '~/components/Footer.vue'
+import MetHeader from '~/components/Header.vue'
 
 export default {
-  components: { MtnFooter, MtnHeader }
+  components: { MetFooter, MetHeader }
 }
 </script>

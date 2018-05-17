@@ -17,9 +17,9 @@ const getNumber = function (value, prefix) {
   return `${ret.dividedBy(divisor).toFormat()} ${prefix}`
 }
 
-const mtnFilter = {
+const metFilter = {
   install (Vue) {
-    Vue.filter('mtn', function (value) {
+    Vue.filter('met', function (value) {
       return getNumber(value, 'MET')
     })
   }
@@ -33,5 +33,5 @@ const ethFilter = {
   }
 }
 
-Vue.use(mtnFilter)
+Vue.use(metFilter)
 Vue.use(ethFilter)

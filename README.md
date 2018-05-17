@@ -25,11 +25,11 @@
 
 The following environment variables are needed for the explorer to work:
 
-- `MTN_API_URL`: The Metronome JSON-RTP API server URL.
+- `MET_API_URL`: The Metronome JSON-RTP API server URL.
 
   I.E. `http://api.metronome.io`.
 
-- `MTN_SOCKET_URL`: The Metronome WS API server URL.
+- `MET_SOCKET_URL`: The Metronome WS API server URL.
 
   I.E. `ws://api.metronome.io`.
 
@@ -41,13 +41,17 @@ The following environment variables are needed for the explorer to work:
 
   I.E. `ws://node.metronome.io:8546`.
 
+- `ETH_CHAIN`: Name of the Ethereum chain. Possible values are: `main` and `ropsten`.
+
+  I.E. `main`.
+
 ## Development Setup
 
 ``` bash
 # install dependencies
-$ npm install # Or yarn install
+$ npm install
 
-# serve with hot reload at localhost:3333
+# serve with hot reload at localhost:3004
 $ npm run dev
 ```
 
@@ -55,19 +59,20 @@ $ npm run dev
 
 ## Prod Setup
 
-Remember setup the next ENV variables: 
+Remember setup the next ENV variables:
 
 - `NEW_RELIC_API_KEY`
-- `MTN_API_URL`
-- `MTN_SOCKET_URL`
+- `MET_API_URL`
+- `MET_SOCKET_URL`
 - `ETH_NODE_URL`
+- `ETH_CHAIN`
 
 ``` bash
 # install dependencies
 $ npm install # Or yarn install
 
 # run nuxt release build
-$ NEW_RELIC_API_KEY="xxxxxxxx" MTN_API_URL=http://api.metronome.io MTN_SOCKET_URL=ws://api.metronome.io ETH_NODE_URL=ws://node.metronome.io:8546 npm run build
+$ NEW_RELIC_API_KEY="xxxxxxxx" MET_API_URL=http://api.metronome.io MET_SOCKET_URL=ws://api.metronome.io ETH_NODE_URL=ws://node.metronome.io:8546 ETH_CHAIN=main npm run build
 
 $ PORT=8080 HOST=0.0.0.0 npm run prod
 ```
