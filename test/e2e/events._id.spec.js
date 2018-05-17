@@ -10,11 +10,16 @@ const event = require('../fixtures/event')
 
 let nuxt = null
 
-test.before('Init Nuxt.js', async t => {
+test.before('Init Nuxt.js', async function () {
   const rootDir = resolve(__dirname, '../../')
   let config = {}
 
-  try { config = require(resolve(rootDir, 'nuxt.config.js')) } catch (e) {}
+  try {
+    config = require(resolve(rootDir, 'nuxt.config.js'))
+  } catch (err) {
+    throw err
+  }
+
   config.rootDir = rootDir
   config.dev = false
 
@@ -27,17 +32,15 @@ test.before('Init Nuxt.js', async t => {
   nuxt.listen(4000, 'localhost')
 })
 
-test('Route / exits and render HTML', async t => {
+test('Route / exits and render HTML', async function (t) {
   nock('http://localhost:3002')
     .get(`/event/${event._id}`)
     .reply(200, event)
 
-  let context = {}
+  const context = {}
   const { html } = await nuxt.renderRoute(`/events/${event._id}`, context)
 
   t.true(html.includes(`Event ${event._id}`))
 })
 
-test.after('Closing server', t => {
-  nuxt.close()
-})
+test.after('Closing server', () => nuxt.close())

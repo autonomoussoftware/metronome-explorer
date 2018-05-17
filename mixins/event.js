@@ -1,5 +1,6 @@
 import web3 from '~/services/web3'
 import eventService from '~/services/event'
+import accountService from '~/services/account'
 import socketService from '~/services/socket.io.js'
 
 const LIMIT = 20
@@ -25,7 +26,7 @@ const eventMixin = {
       params.address = web3.utils.toChecksumAddress(params.address)
     }
 
-    if (params.address === '0x0000000000000000000000000000000000000000') {
+    if (accountService.isMinter(params.address)) {
       return error({
         statusCode: 500,
         message: 'Minter address is not allowed '
@@ -47,7 +48,7 @@ const eventMixin = {
     filteredEvents () {
       if (!this.filter) { return this.events }
 
-      return this.events.filter(e => {
+      return this.events.filter(function (e) {
         if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) {
           return false
         }
@@ -75,7 +76,7 @@ const eventMixin = {
   },
 
   mounted () {
-    socketService.on('NEW_EVENT', event => {
+    socketService.on('NEW_EVENT', function (event) {
       const address = this.$route.params.address
       if (
         address &&
@@ -107,13 +108,13 @@ const eventMixin = {
       }
 
       if (this.$route.params.address) {
-        let { events } = await eventService.getByAccount(
+        const { events } = await eventService.getByAccount(
           this.$route.params.address,
           params
         )
         this.setNewPage(events)
       } else {
-        let { events } = await eventService.get(params)
+        const { events } = await eventService.get(params)
         this.setNewPage(events)
       }
     },

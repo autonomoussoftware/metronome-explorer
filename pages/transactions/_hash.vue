@@ -28,7 +28,7 @@ export default {
     try {
       const trace = await tracer.transaction(params.hash)
       return { transaction, trace }
-    } catch (error) {
+    } catch (err) {
       return { transaction }
     }
   },

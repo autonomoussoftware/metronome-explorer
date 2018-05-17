@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-let options = { baseURL: process.env.tracerUrl }
-
-const tracerApi = axios.create(options)
+const tracerApi = axios.create({ baseURL: process.env.tracerUrl })
 const tracer = {}
 
 tracer.transaction = function (transactionHash) {

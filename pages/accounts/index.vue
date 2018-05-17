@@ -69,7 +69,7 @@ export default {
     }
   },
 
-  async asyncData ({ params, query }) {
+  async asyncData ({ query }) {
     const { accounts, count } = await accountService.get({
       $sort: SORT,
       $limit: LIMIT,
@@ -84,12 +84,7 @@ export default {
   computed: {
     filteredAccounts () {
       if (!this.filter) { return this.accounts }
-
-      return this.accounts.filter(a => {
-        if (!a._id) { return false }
-
-        return a._id.includes(this.filter.toLowerCase())
-      })
+      return this.accounts.filter(a => !a._id ? false : a._id.includes(this.filter.toLowerCase()))
     },
 
     showPagination () {
@@ -118,7 +113,7 @@ export default {
       this.isLoading = true
       this.hasEnded = false
 
-      let { accounts } = await accountService.get({
+      const { accounts } = await accountService.get({
         $sort: SORT,
         $limit: LIMIT,
         $skip: this.skip
@@ -128,7 +123,7 @@ export default {
     },
 
     isConverter (address) {
-      return accountService.isConverterAddress(address)
+      return accountService.isConverter(address)
     },
 
     setNewPage (accounts) {

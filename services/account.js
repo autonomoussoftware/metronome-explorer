@@ -15,8 +15,12 @@ accountService.getByAddress = function (address) {
     .then(res => res.data)
 }
 
-accountService.isConverterAddress = function (address) {
-  return utils.compareAddress(address, Metronome.AUTONOMOUS_CONVERTER_ADDRESS)
+accountService.isConverter = function (address) {
+  return utils.compareAddress(address, Metronome.addresses[process.env.chain].autonomousConverter)
+}
+
+accountService.isMinter = function (address) {
+  return utils.compareAddress(address, process.env.minterAddress)
 }
 
 export default accountService

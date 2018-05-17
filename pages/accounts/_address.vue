@@ -11,7 +11,7 @@
   .row(v-show="isLoading")
     .col.text-center
       mtn-loader
-  
+
   .row(v-show="!isLoading")
     .col
       mtn-event-table(
@@ -69,7 +69,7 @@ export default {
   },
 
   mounted () {
-    socketService.on('BALANCE_UPDATED', account => {
+    socketService.on('BALANCE_UPDATED', function (account) {
       if (utilsService.compareAddress(account.address, this.$route.params.address)) {
         this.balance = account.balance
       }

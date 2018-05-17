@@ -1,5 +1,3 @@
-const path = require('path')
-
 if (process.env.NEW_RELIC_API_KEY) {
   require('newrelic')
 }
@@ -47,7 +45,8 @@ module.exports = {
     socketUrl: process.env.MTN_SOCKET_URL || 'http://localhost:3002',
     ethUrl: process.env.ETH_NODE_URL || 'http://localhost:8545',
     tracerUrl: process.env.TRACER_URL || 'http://localhost:3006',
-    minterAddress: '0x0000000000000000000000000000000000000000'
+    minterAddress: '0x0000000000000000000000000000000000000000',
+    chain: process.env.ETH_CHAIN || 'ropsten'
   },
 
   serverMiddleware: [{ path: '/health', handler: '~/middlewares/health.js' }],

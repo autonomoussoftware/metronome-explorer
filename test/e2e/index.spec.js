@@ -6,14 +6,19 @@ const nock = require('nock')
 const socketServices = require('../../services/socket.io')
 socketServices.on = function () {}
 
-const event = require('../fixtures/event')
+const metEvent = require('../fixtures/event')
 let nuxt = null
 
-test.before('Init Nuxt.js', async t => {
+test.before('Init Nuxt.js', async function () {
   const rootDir = resolve(__dirname, '../../')
   let config = {}
 
-  try { config = require(resolve(rootDir, 'nuxt.config.js')) } catch (e) {}
+  try {
+    config = require(resolve(rootDir, 'nuxt.config.js'))
+  } catch (err) {
+    throw err
+  }
+
   config.rootDir = rootDir
   config.dev = false
 
@@ -26,21 +31,21 @@ test.before('Init Nuxt.js', async t => {
   nuxt.listen(4000, 'localhost')
 })
 
-test('Route / exits and render HTML', async t => {
+test('Route / exits and render HTML', async function (t) {
   nock('http://localhost:3002')
     .get('/event?$sort=-_id&$limit=20&$skip=0')
     .reply(200, {
-      events: [event],
+      events: [metEvent],
       count: 1
     })
 
-  let context = {}
+  const context = {}
   const { html } = await nuxt.renderRoute('/', context)
 
   t.true(html.includes('<h4>Recent Events</h4>'))
 })
 
-test('Route / exits and render HTML with CSS applied', async t => {
+test('Route / exits and render HTML with CSS applied', async function (t) {
   nock('http://localhost:3003')
     .get(() => true)
     .reply(200, {})
@@ -48,7 +53,7 @@ test('Route / exits and render HTML with CSS applied', async t => {
   nock('http://localhost:3002')
     .get('/event?$sort=-_id&$limit=20&$skip=0')
     .reply(200, {
-      events: [event],
+      events: [metEvent],
       count: 1
     })
 
@@ -63,13 +68,11 @@ test('Route / exits and render HTML with CSS applied', async t => {
     .get('/status')
     .reply(204)
 
-  const window = await nuxt.renderAndGetWindow('http://localhost:4000')
+  const window = await nuxt.renderAndGetWindow('http://localhost:4000') // eslint-disable-line
   const elements = window.document.querySelectorAll('.table tbody tr')
 
   t.not(elements, null)
   t.true(elements.length === 1)
 })
 
-test.after('Closing server', t => {
-  nuxt.close()
-})
+test.after('Closing server', () => nuxt.close())

@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import accountService from '~/services/account'
+
 const SEARCH_PATTERN = /^0x[a-fA-F0-9]{40}$|^0x[a-fA-F0-9]{64}$/
 
 export default {
@@ -35,7 +37,7 @@ export default {
 
   computed: {
     isSearchValid () {
-      if (this.isMinter(this.search)) { return false }
+      if (this.isSearchMinter(this.search)) { return false }
       return this.search.match(SEARCH_PATTERN)
     },
 
@@ -48,7 +50,7 @@ export default {
     goToAccount () {
       if (!this.search) { return }
 
-      if (this.isMinter(this.search)) { return }
+      if (this.isSearchMinter(this.search)) { return }
 
       if (this.search.length > 60) {
         this.$router.push({ name: 'transactions-hash', params: { hash: this.search } })
@@ -59,8 +61,8 @@ export default {
       this.search = ''
     },
 
-    isMinter (address) {
-      return this.search === '0x0000000000000000000000000000000000000000'
+    isSearchMinter () {
+      return accountService.isMinter(this.search)
     },
 
     toggleCollapse () {

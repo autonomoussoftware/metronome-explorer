@@ -2,6 +2,8 @@ import axios from './axios'
 import utils from './utils'
 import Metronome from './metronome'
 
+const AUTONOMOUS_CONVERTER_ADDRESS = Metronome.addresses[process.env.chain].autonomousConverter
+
 const eventService = {}
 const endpoint = '/event'
 
@@ -24,12 +26,12 @@ eventService.getByAccount = function (address, params) {
 
 eventService.isConverterEvent = function (event, type = 'from') {
   if (type === 'from') {
-    return utils.compareAddress(event.metaData.returnValues._from, Metronome.AUTONOMOUS_CONVERTER_ADDRESS) ||
-      utils.compareAddress(event.metaData.returnValues._owner, Metronome.AUTONOMOUS_CONVERTER_ADDRESS)
+    return utils.compareAddress(event.metaData.returnValues._from, AUTONOMOUS_CONVERTER_ADDRESS) ||
+      utils.compareAddress(event.metaData.returnValues._owner, AUTONOMOUS_CONVERTER_ADDRESS)
   }
 
-  return utils.compareAddress(event.metaData.returnValues._to, Metronome.AUTONOMOUS_CONVERTER_ADDRESS) ||
-    utils.compareAddress(event.metaData.returnValues._spender, Metronome.AUTONOMOUS_CONVERTER_ADDRESS)
+  return utils.compareAddress(event.metaData.returnValues._to, AUTONOMOUS_CONVERTER_ADDRESS) ||
+    utils.compareAddress(event.metaData.returnValues._spender, AUTONOMOUS_CONVERTER_ADDRESS)
 }
 
 eventService.isMinterEvent = function (event) {

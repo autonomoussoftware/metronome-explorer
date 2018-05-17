@@ -11,16 +11,13 @@ module.exports = {
     sourceType: 'module'
   },
 
-  extends: [
-    'bloq'
-  ],
-
-  plugins: [
-    'html'
-  ],
+  extends: ['bloq'],
+  plugins: ['html'],
 
   rules: {
-    complexity: 'off'
+    complexity: 'off',
+    'no-shadow': ['error', { allow: ['event', 'Vue'] }]
   },
+
   globals: {}
 }

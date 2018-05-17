@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import Metronome from '~/services/metronomejs'
+import accountService from '~/services/account'
 
-const getNumber = function (value, prefix) {
+const getNumber = function (value) {
   if (!value) { return '' }
 
-  return value === Metronome.AUTONOMOUS_CONVERTER_ADDRESS ? 'CONVERTER' : value
+  return accountService.isConverter(value) ? 'CONVERTER' : value
 }
 
 const mtnFilter = {
