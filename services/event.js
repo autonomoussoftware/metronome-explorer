@@ -2,9 +2,6 @@ import axios from './axios'
 import utils from './utils'
 import Metronome from './metronome'
 
-console.log(Metronome.addresses) // eslint-disable-line
-console.log(Metronome)  // eslint-disable-line
-
 const AUTONOMOUS_CONVERTER_ADDRESS = Metronome.addresses[process.env.chain].autonomousConverter
 
 const eventService = {}
