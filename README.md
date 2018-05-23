@@ -16,10 +16,10 @@
 1. [License](#license)
 
 # Requirements
-  - [Node.js v8]()
-  - [Metronome API]()
-  - [ETH Tracer]()
-  - Ethereum node (i.e. [Geth]() or [Parity]())
+  - Node.js v8
+  - Metronome API
+  - ETH Tracer
+  - Ethereum node (i.e. Geth or Parity)
 
 ## Configuration
 
@@ -31,7 +31,7 @@ The following environment variables are needed for the explorer to work:
 
 - `MET_SOCKET_URL`: The Metronome WS API server URL.
 
-  I.E. `ws://api.metronome.io`.
+  I.E. `http://api.metronome.io`.
 
 - `ETH_NODE_URL` WebSocket URL of the Ethereum node.
 
@@ -39,7 +39,7 @@ The following environment variables are needed for the explorer to work:
 
 - `TRACER_URL`: API URL of the Ethereum Parity tracer.
 
-  I.E. `ws://node.metronome.io:8546`.
+  I.E. `http://tracer.metronome.io`.
 
 - `ETH_CHAIN`: Name of the Ethereum chain. Possible values are: `main` and `ropsten`.
 
@@ -48,33 +48,40 @@ The following environment variables are needed for the explorer to work:
 ## Development Setup
 
 ``` bash
-# install dependencies
-$ npm install
+# Install dependencies
+npm install
 
-# serve with hot reload at localhost:3004
-$ npm run dev
+# Serve with hot reloading at localhost:3004
+npm run dev
 ```
-
-
 
 ## Prod Setup
 
 Remember setup the next ENV variables:
 
-- `NEW_RELIC_API_KEY`
+- `ETH_CHAIN`
+- `ETH_NODE_URL`
 - `MET_API_URL`
 - `MET_SOCKET_URL`
-- `ETH_NODE_URL`
-- `ETH_CHAIN`
+- `NEW_RELIC_API_KEY`
+- `TRACER_URL`
 
 ``` bash
-# install dependencies
-$ npm install # Or yarn install
+# Install dependencies
+npm install
+# Or
+# yarn install
 
-# run nuxt release build
-$ NEW_RELIC_API_KEY="xxxxxxxx" MET_API_URL=http://api.metronome.io MET_SOCKET_URL=ws://api.metronome.io ETH_NODE_URL=ws://node.metronome.io:8546 ETH_CHAIN=main npm run build
-
-$ PORT=8080 HOST=0.0.0.0 npm run prod
+# Run nuxt release build
+ETH_CHAIN=main \
+ETH_NODE_URL=ws://node.metronome.io:8546 \
+HOST=0.0.0.0 \
+MET_API_URL=http://api.metronome.io \
+MET_SOCKET_URL=http://api.metronome.io \
+NEW_RELIC_API_KEY="xxxxxxxx" \
+PORT=8080 \
+TRACER_URL=http://tracer.metronome.io \
+npm start
 ```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
