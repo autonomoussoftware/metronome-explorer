@@ -5,7 +5,7 @@
 🔎 Metronome Token Explorer
 
 [![Build Status](https://travis-ci.com/MetronomeToken/metronome-explorer.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Code Style](https://img.shields.io/badge/code%20style-bloq-0063a6.svg)](https://github.com/bloq/eslint-config-bloq)
 
 ## Index
 1. [Requirements](#requirements)
@@ -58,7 +58,6 @@ Remember setup the next ENV variables:
 - `ETH_CHAIN`
 - `ETH_NODE_URL`
 - `MET_API_URL`
-- `MET_SOCKET_URL`
 - `NEW_RELIC_API_KEY`
 - `TRACER_URL`
 
