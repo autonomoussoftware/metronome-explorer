@@ -29,10 +29,6 @@ The following environment variables are needed for the explorer to work:
 
   I.E. `http://api.metronome.io`.
 
-- `MET_SOCKET_URL`: The Metronome WS API server URL.
-
-  I.E. `http://api.metronome.io`.
-
 - `ETH_NODE_URL` WebSocket URL of the Ethereum node.
 
   I.E. `ws://node.metronome.io:8546`.
@@ -76,8 +72,7 @@ npm install
 ETH_CHAIN=main \
 ETH_NODE_URL=ws://node.metronome.io:8546 \
 HOST=0.0.0.0 \
-MET_API_URL=http://api.metronome.io \
-MET_SOCKET_URL=http://api.metronome.io \
+MET_API_URL=ws://api.metronome.io \
 NEW_RELIC_API_KEY="xxxxxxxx" \
 PORT=8080 \
 TRACER_URL=http://tracer.metronome.io \

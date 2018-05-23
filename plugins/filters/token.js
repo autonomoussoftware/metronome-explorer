@@ -13,7 +13,7 @@ BigNumber.config({
 const getNumber = function (value, prefix) {
   if (!value) { return 0 }
   const ret = new BigNumber(value.toString())
-  const divisor = (new BigNumber(10)).toPower(18)
+  const divisor = (new BigNumber(10)).exponentiatedBy(18)
   return `${ret.dividedBy(divisor).toFormat()} ${prefix}`
 }
 
