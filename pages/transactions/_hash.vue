@@ -19,6 +19,12 @@ import tracer from '~/services/tracer'
 export default {
   name: 'TransactionDetail',
 
+  data () {
+    return {
+      trace: null
+    }
+  },
+
   async asyncData ({ params, error }) {
     const transaction = await web3.eth.getTransaction(params.hash)
     if (!transaction) {
@@ -32,8 +38,6 @@ export default {
       return { transaction }
     }
   },
-
-  created () {},
 
   head () {
     return {
