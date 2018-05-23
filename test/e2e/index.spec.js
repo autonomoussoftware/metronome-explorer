@@ -24,7 +24,6 @@ test.before('Init Nuxt.js', async function () {
 
   config.css = []
   config.env.apiUrl = 'http://localhost:3002'
-  config.env.socketUrl = 'http://localhost:3003'
 
   nuxt = new Nuxt(config)
   await new Builder(nuxt).build()

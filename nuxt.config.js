@@ -42,7 +42,6 @@ module.exports = {
 
   env: {
     apiUrl: process.env.MET_API_URL || 'http://localhost:3002',
-    socketUrl: process.env.MET_SOCKET_URL || 'http://localhost:3002',
     ethUrl: process.env.ETH_NODE_URL || 'http://localhost:8545',
     tracerUrl: process.env.TRACER_URL || 'http://localhost:3006',
     chain: process.env.ETH_CHAIN || 'ropsten',
