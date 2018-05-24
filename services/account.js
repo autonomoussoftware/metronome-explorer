@@ -1,6 +1,6 @@
 import axios from './axios'
 import utils from './utils'
-import Metronome from './metronome'
+import MetronomeContracts from './metronome-contracts'
 
 const accountService = {}
 const endpoint = '/account'
@@ -16,7 +16,7 @@ accountService.getByAddress = function (address) {
 }
 
 accountService.isConverter = function (address) {
-  return utils.compareAddress(address, Metronome.addresses[process.env.chain].autonomousConverter)
+  return utils.compareAddress(address, MetronomeContracts.addresses[process.env.chain].autonomousConverter)
 }
 
 accountService.isMinter = function (address) {

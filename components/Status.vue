@@ -33,7 +33,7 @@
 <script>
 import MetLoader from '~/components/Loader'
 
-import Metronome from '~/services/metronome'
+import MetronomeContracts from '~/services/metronome-contracts'
 import statusService from '~/services/status'
 import socketService from '~/services/socket.io.js'
 
@@ -44,7 +44,7 @@ export default {
   data () {
     return {
       block: {},
-      tokenAddress: Metronome.addresses[process.env.chain].metToken,
+      tokenAddress: MetronomeContracts.addresses[process.env.chain].metToken,
       auctionStatus: {},
       apiStatus: 'OFF',
       isLoading: true

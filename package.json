@@ -21,7 +21,7 @@
     "axios": "0.18.0",
     "bignumber.js": "7.2.0",
     "bootstrap": "4.1.1",
-    "metronomejs": "git@github.com:MetronomeToken/metronomejs.git#ropsten",
+    "metronome-contracts": "1.1.0",
     "nuxt": "1.4.0",
     "socket.io": "2.1.1",
     "vue-clipboards": "1.2.4",

@@ -1,8 +1,8 @@
 import axios from './axios'
 import utils from './utils'
-import Metronome from './metronome'
+import MetronomeContracts from './metronome-contracts'
 
-const AUTONOMOUS_CONVERTER_ADDRESS = Metronome.addresses[process.env.chain].autonomousConverter
+const AUTONOMOUS_CONVERTER_ADDRESS = MetronomeContracts.addresses[process.env.chain].autonomousConverter
 
 const eventService = {}
 const endpoint = '/event'

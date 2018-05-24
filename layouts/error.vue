@@ -15,7 +15,7 @@
 <script>
 export default {
   props: {
-    error: { type: Object }
+    error: { type: [Object, Error] }
   }
 }
 </script>
