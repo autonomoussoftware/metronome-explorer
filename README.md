@@ -11,7 +11,6 @@
 1. [Requirements](#requirements)
 1. [Configuration](#configuration)
 1. [Dev Setup](#dev-Setup)
-1. [Memory Watch](#memory-watch)
 1. [Prod Setup](#prod-setup)
 1. [License](#license)
 
@@ -37,9 +36,9 @@ The following environment variables are needed for the explorer to work:
 
   I.E. `http://tracer.metronome.io`.
 
-- `ETH_CHAIN`: Name of the Ethereum chain. Possible values are: `main` and `ropsten`.
+- `ETH_CHAIN`: Name of the Ethereum chain (`mainnet` or `ropsten`).
 
-  I.E. `main`.
+  I.E. `mainnet`.
 
 ## Development Setup
 
@@ -64,8 +63,6 @@ Remember setup the next ENV variables:
 ``` bash
 # Install dependencies
 npm install
-# Or
-# yarn install
 
 # Run nuxt release build
 ETH_CHAIN=main \
@@ -81,4 +78,4 @@ npm start
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
 ## LICENSE
-[MIT License](https://github.com/MetronomeToken/metronome-explorer/blob/develop/LICENSE).
+[MIT](https://github.com/MetronomeToken/metronome-explorer/blob/develop/LICENSE).
