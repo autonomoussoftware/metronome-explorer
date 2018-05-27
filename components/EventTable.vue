@@ -125,7 +125,6 @@ export default {
   }
 
   @media (max-width: 768px) {
-
     .fa-copy {
       display: none;
     }

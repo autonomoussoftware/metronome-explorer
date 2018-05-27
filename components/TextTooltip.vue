@@ -22,8 +22,8 @@ span {
   position: relative;
   z-index: 2;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     visibility: hidden;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -31,7 +31,7 @@ span {
     pointer-events: none;
   }
 
-  &:before {
+  &::before {
     position: absolute;
     bottom: 150%;
     left: 50%;
@@ -51,7 +51,7 @@ span {
     line-height: 1.2;
   }
 
-  &:after {
+  &::after {
     position: absolute;
     bottom: 150%;
     left: 50%;
@@ -66,8 +66,8 @@ span {
     line-height: 0;
   }
 
-  &:hover:before,
-  &:hover:after {
+  &:hover::before,
+  &:hover::after {
     visibility: visible;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";

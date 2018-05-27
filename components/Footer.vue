@@ -30,7 +30,7 @@ export default {
     height: 140px;
     padding: 22px 0;
     text-align: center;
-    color: #4D4D4D;
+    color: #4d4d4d;
 
     p {
       font-size: 0.9em;

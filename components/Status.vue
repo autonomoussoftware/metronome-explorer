@@ -77,15 +77,15 @@ export default {
 
 <style lang="scss" scoped>
   .green {
-    color: green
+    color: green;
   }
 
   .red {
-    color: tomato
+    color: tomato;
   }
 
   .violet {
-    color: #7e61f8
+    color: #7e61f8;
   }
 
   @media (max-width: 768px) {
@@ -104,4 +104,3 @@ export default {
     margin-right: 5px;
   }
 </style>
-

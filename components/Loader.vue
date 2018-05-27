@@ -21,27 +21,28 @@ export default {
 
 <style type="text/css" scoped>
   .st0 {
-    fill:none;
-    stroke:#7E61F8;
-    stroke-width:5;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    stroke-miterlimit:10;
+    fill: none;
+    stroke: #7e61f8;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
   }
 
   .st1 {
-    fill:none;
-    stroke:#7E61F8;
-    stroke-width:5;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    stroke-miterlimit:10;
+    fill: none;
+    stroke: #7e61f8;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
     animation: metronome 2s ease-in-out infinite;
     transform-origin: 50% 85%;
   }
 
   @keyframes metronome {
-    0%, 100% { transform: rotate(45deg); }
+    0%,
+    100% { transform: rotate(45deg); }
     50% { transform: rotate(-45deg); }
   }
 </style>

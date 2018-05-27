@@ -7,6 +7,7 @@
     "build": "nuxt build",
     "check:outdated": "npm-check ./package.json -i eslint-config* -i husky",
     "dev": "PORT=3004 nuxt",
+    "lint:css": "stylelint '**/*.vue' && stylelint '**/*.scss'",
     "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",

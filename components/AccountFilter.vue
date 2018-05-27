@@ -23,7 +23,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  input.form-control, input.form-control:focus {
+  input.form-control,
+  input.form-control:focus {
     border: none;
     border-bottom: 2px solid #525252;
     color: #000;

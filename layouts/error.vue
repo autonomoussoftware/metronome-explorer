@@ -24,7 +24,8 @@ export default {
   .main-container {
     padding: 50px 80px 100px 80px;
 
-    h5, h6 {
+    h5,
+    h6 {
       color: #525252;
       margin-bottom: 20px;
     }
