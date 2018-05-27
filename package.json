@@ -1,20 +1,18 @@
 {
   "name": "metronome-explorer",
-  "version": "1.0.0",
   "description": "🔎 Metronome Token Explorer",
   "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
-  "private": true,
   "scripts": {
     "build": "nuxt build",
     "check:outdated": "npm-check ./package.json -i eslint-config* -i husky",
     "dev": "PORT=3004 nuxt",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "prepush": "npm test",
     "prestart": "nuxt build",
-    "test": "ava --verbose test/**/*.spec.js ",
-    "start": "nuxt start"
+    "start": "nuxt start",
+    "test": "ava --verbose test/**/*.spec.js "
   },
   "dependencies": {
     "@nuxtjs/font-awesome": "1.0.3",
