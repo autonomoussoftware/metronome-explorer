@@ -6,6 +6,20 @@
   min-height: 600px;
 }
 
+a,
+a:visited {
+  color: $VIOLET;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $VIOLET;
+}
+
 .app {
   padding-bottom: 100px;
   background: $WHITE !important;
@@ -22,6 +36,7 @@
 
   .title-container {
     margin-bottom: 15px;
+
     h4 {
       margin-top: 10px;
     }
@@ -49,29 +64,22 @@
 
 body {
   position: relative;
-  font-family: Muli,sans-serif;
+  font-family: Muli, sans-serif;
   font-size: 15px;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
   max-width: 100%;
   overflow-x: hidden;
   color: #525252;
   background: #282828;
 }
 
-*,:after,:before {
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
-a,a:visited {
-  color: $VIOLET;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  color: $VIOLET;
-}
-
 h1 {
-  color: $VIOLET;
   font-weight: 300;
   font-size: 40px;
 }
@@ -86,7 +94,8 @@ img {
   height: auto;
 }
 
-ol,ul {
+ol,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -95,11 +104,9 @@ ol li {
   list-style-position: inside;
 }
 
-bold {
-  font-weight: bold;
-}
-
-input[type=email],input[type=text],input[type=search] {
+input[type=email],
+input[type=text],
+input[type=search] {
   display: inline-block;
   margin: 0;
   border: 3px solid $VIOLET;
@@ -134,7 +141,7 @@ input::placeholder {
   color: $WHITE;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   padding: 10px;
   box-sizing: border-box;
   vertical-align: middle;
@@ -144,7 +151,7 @@ input::placeholder {
 
 @media (min-width: 768px) {
   .btn {
-      padding:10px 30px;
+    padding: 10px 30px;
   }
 }
 
