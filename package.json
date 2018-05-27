@@ -1,6 +1,7 @@
 {
   "name": "metronome-explorer",
   "description": "🔎 Metronome Token Explorer",
+  "license": "MIT",
   "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
   "scripts": {
     "build": "nuxt build",

@@ -78,4 +78,5 @@ npm start
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
 ## LICENSE
-[MIT](https://github.com/MetronomeToken/metronome-explorer/blob/develop/LICENSE).
+
+MIT
