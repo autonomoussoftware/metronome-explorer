@@ -4,7 +4,7 @@
 
 🔎 Metronome Token Explorer
 
-[![Build Status](https://travis-ci.com/MetronomeToken/metronome-explorer.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
+[![Build Status](https://travis-ci.org/autonomoussoftware/metronome-explorer.svg?branch=master)](https://travis-ci.org/autonomoussoftware/metronome-explorer)
 [![Code Style](https://img.shields.io/badge/code%20style-bloq-0063a6.svg)](https://github.com/bloq/eslint-config-bloq)
 
 ## Index
