@@ -1,0 +1,17 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": ["bloq"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["html"],
+  "root": true,
+  "rules": {
+    "complexity": "off",
+    "no-shadow": ["error", { "allow": ["event", "Vue"] }]
+  }
+}

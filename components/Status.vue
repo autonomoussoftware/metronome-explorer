@@ -1,68 +1,93 @@
 <template lang="pug">
 .container-fluid
-  .row
+  .row(v-show="isLoading")
+    .col.text-center
+      met-loader(:width="44")
+
+  .row(v-show="!isLoading")
     .col-sm-12.col-md-4.ellipsis
       span.title Current Price
-      span.violet {{ auctionStatus.currentPrice | eth }}
+      span.violet(v-if="auctionStatus.currentPrice") {{ auctionStatus.currentPrice | eth }}
+      span.violet(v-else) ...
 
     .col-sm-12.col-md-2.ellipsis
       span.title Block Height
-      span.violet {{ block.number }}
+      span.violet(v-if="block.number") {{ block.number }}
+      span.violet(v-else) ...
 
     .col-sm-12.col-md-6.ellipsis
       span.title Token Circulation
-      span.violet {{ auctionStatus.tokenCirculation | mtn }}
+      span.violet(v-if="auctionStatus.tokenCirculation") {{ auctionStatus.tokenCirculation | met }}
+      span.violet(v-else) ...
 
-  .row
+  .row(v-show="!isLoading")
     .col-sm-12.col-md-8.ellipsis
       span.title Contract Address
       span.violet {{ tokenAddress }}
 
     .col-sm-12.col-md-2.ellipsis
       span.title Connection
-      b(:class="wsStatus === 'ON' ? 'green' : 'red'") {{ wsStatus }}
+      b(:class="apiStatus === 'ON' ? 'green' : 'red'") {{ apiStatus }}
 </template>
 
 <script>
-import web3 from '~/services/web3'
-import socketService from '~/services/socket.io.js'
+import MetLoader from '~/components/Loader'
+
+import MetronomeContracts from '~/services/metronome-contracts'
 import statusService from '~/services/status'
-import configService from '~/services/config'
+import socketService from '~/services/socket.io.js'
 
 export default {
+
+  components: { MetLoader },
 
   data () {
     return {
       block: {},
-      tokenAddress: '',
+      tokenAddress: MetronomeContracts.addresses[process.env.chain].metToken,
       auctionStatus: {},
-      apiStatus: 'ERROR',
-      wsStatus: 'OFF'
+      apiStatus: 'OFF',
+      isLoading: true
     }
   },
 
-  async created () {
+  async mounted () {
     socketService.on('connect', () => (this.wsStatus = 'ON'))
     socketService.on('disconnect', () => (this.wsStatus = 'OFF'))
     socketService.on('AUCTION_STATUS_TASK', auctionStatus => (this.auctionStatus = auctionStatus))
     socketService.on('LATEST_BLOCK', block => (this.block = block))
 
-    this.wsStatus = socketService.connected ? 'ON' : 'OFF'
+    const status = await this.getStatus()
+    this.apiStatus = socketService.connected && status === 204 ? 'ON' : 'OFF'
+    this.isLoading = false
+  },
 
-    const config = await configService.get()
-    this.tokenAddress = config.tokenAddress
+  destroyed () {
+    socketService.removeAllListeners()
+  },
 
-    const apiStatus = await statusService.get()
-    this.apiStatus = apiStatus
-
-    const block = await web3.eth.getBlock('latest')
-    this.block = block
+  methods: {
+    async getStatus () {
+      return statusService.get()
+    }
   }
 }
 </script>
 
 
 <style lang="scss" scoped>
+  .green {
+    color: green;
+  }
+
+  .red {
+    color: tomato;
+  }
+
+  .violet {
+    color: #7e61f8;
+  }
+
   @media (max-width: 768px) {
     .container-fluid {
       text-align: left;
@@ -79,4 +104,3 @@ export default {
     margin-right: 5px;
   }
 </style>
-

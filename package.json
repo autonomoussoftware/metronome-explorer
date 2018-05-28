@@ -1,47 +1,71 @@
 {
   "name": "metronome-explorer",
-  "version": "1.0.0",
   "description": "🔎 Metronome Token Explorer",
+  "license": "MIT",
   "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
-  "private": true,
   "scripts": {
-    "dev": "PORT=3333 nuxt",
-    "dev:test": "MTN_SOCKET_URL=ws://api.mtn.bloqrock.net MTN_API_URL=http://api.mtn.bloqrock.net PORT=3333 nuxt",
     "build": "nuxt build",
+    "check:outdated": "npm-check ./package.json -i eslint-config* -i husky",
+    "dev": "PORT=3004 nuxt",
+    "lint:css": "stylelint '**/*.vue' && stylelint '**/*.scss'",
+    "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint",
+    "prepush": "npm test",
     "prestart": "nuxt build",
     "start": "nuxt start",
-    "test": "echo 'TBA'",
-    "generate": "nuxt generate",
-    "precommit": "npm run lint",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint:fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
+    "test": "ava --verbose test/**/*.spec.js "
   },
   "dependencies": {
-    "axios": "^0.16.2",
-    "babel-eslint": "^7.2.3",
-    "backpack-core": "^0.4.1",
-    "bignumber.js": "^5.0.0",
-    "bootstrap": "4.0.0-beta.2",
-    "eslint": "^4.3.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^3.1.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "node-sass": "^4.6.1",
-    "nuxt": "1.0.0-rc11",
-    "pug": "^2.0.0-rc.4",
-    "sass-loader": "^6.0.6",
-    "socket.io": "^2.0.4",
-    "source-map-support": "^0.4.15",
-    "vue-clipboards": "^1.2.0",
-    "vue-moment": "^2.2.0",
-    "web3": "^1.0.0-beta.27"
+    "@nuxtjs/font-awesome": "1.0.3",
+    "axios": "0.18.0",
+    "bignumber.js": "7.2.1",
+    "bootstrap": "4.1.1",
+    "metronome-contracts": "1.1.1",
+    "nuxt": "1.4.0",
+    "socket.io": "2.1.1",
+    "vue-clipboards": "1.2.4",
+    "vue-moment": "3.2.0",
+    "web3": "1.0.0-beta.34"
+  },
+  "devDependencies": {
+    "ava": "0.25.0",
+    "babel-eslint": "7.2.3",
+    "backpack-core": "0.4.1",
+    "eslint": "4.19.1",
+    "eslint-config-bloq": "1.3.0",
+    "eslint-config-standard": "11.0.0",
+    "eslint-loader": "2.0.0",
+    "eslint-plugin-html": "4.0.3",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-jsdoc": "3.7.1",
+    "eslint-plugin-mocha": "5.0.0",
+    "eslint-plugin-node": "6.0.1",
+    "eslint-plugin-prefer-arrow": "1.1.2",
+    "eslint-plugin-promise": "3.8.0",
+    "eslint-plugin-standard": "3.1.0",
+    "husky": "0.14.3",
+    "jsdom": "11.11.0",
+    "newrelic": "4.1.2",
+    "nock": "9.2.6",
+    "node-sass": "4.9.0",
+    "npm-check": "5.7.1",
+    "pug": "2.0.3",
+    "sass-loader": "7.0.1",
+    "source-map-support": "0.5.6"
   },
   "engines": {
     "node": "8",
     "npm": "5"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }

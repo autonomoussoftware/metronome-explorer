@@ -13,14 +13,14 @@ BigNumber.config({
 const getNumber = function (value, prefix) {
   if (!value) { return 0 }
   const ret = new BigNumber(value.toString())
-  const divisor = (new BigNumber(10)).toPower(18)
+  const divisor = (new BigNumber(10)).exponentiatedBy(18)
   return `${ret.dividedBy(divisor).toFormat()} ${prefix}`
 }
 
-const mtnFilter = {
+const metFilter = {
   install (Vue) {
-    Vue.filter('mtn', function (value) {
-      return getNumber(value, 'MTN')
+    Vue.filter('met', function (value) {
+      return getNumber(value, 'MET')
     })
   }
 }
@@ -33,5 +33,5 @@ const ethFilter = {
   }
 }
 
-Vue.use(mtnFilter)
+Vue.use(metFilter)
 Vue.use(ethFilter)

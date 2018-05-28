@@ -1,0 +1,178 @@
+@import './variables.scss';
+
+.main-container {
+  overflow: auto;
+  background: $WHITE;
+  min-height: 600px;
+}
+
+a,
+a:visited {
+  color: $VIOLET;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $VIOLET;
+}
+
+.app {
+  padding-bottom: 100px;
+  background: $WHITE !important;
+  padding-top: 50px;
+
+  a:not([href]):not([tabindex]) {
+    color: $VIOLET;
+    cursor: pointer;
+  }
+
+  a:not([href]):not([tabindex]):hover {
+    text-decoration: underline;
+  }
+
+  .title-container {
+    margin-bottom: 15px;
+
+    h4 {
+      margin-top: 10px;
+    }
+  }
+
+  thead {
+    th {
+      border-top: 2px solid $VIOLET;
+      border-bottom: 2px solid $VIOLET;
+    }
+  }
+
+  td {
+    padding: 15px 25px 15px 5px;
+    font-size: 0.7em;
+  }
+}
+
+@media (min-width: 992px) {
+  .app {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+body {
+  position: relative;
+  font-family: Muli, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.05rem;
+  max-width: 100%;
+  overflow-x: hidden;
+  color: #525252;
+  background: #282828;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 35px;
+  font-weight: 800;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ol li {
+  list-style-position: inside;
+}
+
+input[type=email],
+input[type=text],
+input[type=search] {
+  display: inline-block;
+  margin: 0;
+  border: 3px solid $VIOLET;
+  background: transparent;
+  color: $WHITE;
+  padding: 10px 6px;
+  font-size: 13px;
+  line-height: 12px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-radius: 0;
+  pointer-events: auto;
+}
+
+input::-webkit-input-placeholder {
+  color: $WHITE;
+}
+
+input:-ms-input-placeholder {
+  color: $WHITE;
+}
+
+input::placeholder {
+  color: $WHITE;
+}
+
+.btn {
+  display: inline-block;
+  background-color: $VIOLET;
+  border-radius: 0;
+  border: 3px solid $VIOLET;
+  color: $WHITE;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  padding: 10px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 10px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hidden-md-down {
+    display: none;
+  }
+}
+
+.btn:visited {
+  color: $WHITE;
+}
+
+.btn:hover {
+  color: $WHITE;
+  background-color: #5742b0;
+  border: 3px solid #5742b0;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

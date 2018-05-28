@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import accountService from '~/services/account'
+
 const SEARCH_PATTERN = /^0x[a-fA-F0-9]{40}$|^0x[a-fA-F0-9]{64}$/
 
 export default {
@@ -35,7 +37,7 @@ export default {
 
   computed: {
     isSearchValid () {
-      if (this.isMinter(this.search)) { return false }
+      if (this.isSearchMinter(this.search)) { return false }
       return this.search.match(SEARCH_PATTERN)
     },
 
@@ -48,7 +50,7 @@ export default {
     goToAccount () {
       if (!this.search) { return }
 
-      if (this.isMinter(this.search)) { return }
+      if (this.isSearchMinter(this.search)) { return }
 
       if (this.search.length > 60) {
         this.$router.push({ name: 'transactions-hash', params: { hash: this.search } })
@@ -59,8 +61,8 @@ export default {
       this.search = ''
     },
 
-    isMinter (address) {
-      return this.search === '0x0000000000000000000000000000000000000000'
+    isSearchMinter () {
+      return accountService.isMinter(this.search)
     },
 
     toggleCollapse () {
@@ -81,7 +83,7 @@ export default {
     border-bottom: 3px solid #7e61f8;
   }
 
-  .collapse.navbar-collapse{
+  .collapse.navbar-collapse {
     margin-left: 40px;
   }
 
@@ -90,29 +92,44 @@ export default {
   }
 
   .navbar-toggler.collapsed:focus {
-    outline: 0
+    outline: 0;
   }
 
   .navbar-nav {
-    padding-top: 25px
+    padding-top: 25px;
   }
 
   .navbar-brand img {
-    max-width: 253px
+    max-width: 253px;
   }
 
-  .navbar .nav-link.nuxt-link-exact-active,.navbar .nav-link:hover {
-    color: #7e61f8!important;
+  .navbar .container {
+    position: relative;
+  }
+
+  .navbar .nav-link {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
     border-bottom: 2px solid;
-    border-color: #7e61f8;
-    transition: border-color .5s ease-out
+    border-color: transparent;
+    color: #fff !important;
+    font-size: 16px;
+    font-weight: 100;
+    margin: 5px 10px;
+  }
+
+  .navbar .nav-link.nuxt-link-exact-active,
+  .navbar .nav-link:hover {
+    color: #7e61f8 !important;
+    border-bottom: #7e61f8 2px solid;
+    transition: border-color 0.5s ease-out;
   }
 
   .navbar-toggler {
     border: 1px solid #7e61f8;
 
     .navbar-toggler-icon {
-      background-image: url("~/assets/img/hamburger.svg")
+      background-image: url("~/assets/img/hamburger.svg");
     }
   }
 
@@ -147,6 +164,33 @@ export default {
     }
   }
 
+  @media (max-width: 768px) {
+    .collapse.navbar-collapse {
+      margin: 0;
+    }
+
+    .form-inline {
+      margin: 20px 0;
+    }
+
+    .navbar .nav-link.nuxt-link-exact-active,
+    .navbar .nav-link:hover {
+      color: #7e61f8 !important;
+      border: none;
+      transition: border-color 0.5s ease-out;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .form-inline {
+      margin: 0;
+    }
+
+    .input-group {
+      width: 100%;
+    }
+  }
+
   @media (min-width: 992px) {
     .navbar-brand {
       margin-left: 80px;
@@ -159,28 +203,12 @@ export default {
 
   @media (min-width: 1200px) {
     .navbar {
-        background-color:#282828;
-        transition: background-color .25s ease-out
+      background-color: #282828;
+      transition: background-color 0.25s ease-out;
     }
 
     .navbar.top {
-      background-color: transparent
+      background-color: transparent;
     }
-  }
-
-  .navbar .container {
-    position: relative
-  }
-
-  .navbar .nav-link {
-    margin: 10px 3px;
-    padding-right: 0!important;
-    padding-left: 0!important;
-    border-bottom: 2px solid;
-    border-color: transparent;
-    color: #fff!important;
-    font-size:16px;
-    font-weight: 100;
-    margin: 5px 10px
   }
 </style>

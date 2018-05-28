@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 .pagination {
   .btn {
-    background: #EDEDED;
+    background: #ededed;
     margin-left: 5px;
     border: none;
     padding: 5px 15px;
@@ -54,4 +54,3 @@ export default {
   }
 }
 </style>
-

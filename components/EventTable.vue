@@ -8,7 +8,7 @@ div
           th Date
           th From
           th To
-          th Amount
+          th.amount Amount
       tbody
         tr(v-for="e in events", :key="e._id")
           td.inline
@@ -19,27 +19,32 @@ div
             span {{ e.metaData.event }}
           td.inline
             span.title Date
-            mtn-text-tooltip(:text="new Date(e.metaData.timestamp * 1000) | moment('from')", :tooltip="new Date(e.metaData.timestamp * 1000) | moment('LLLL')")
+            met-text-tooltip(
+              :text="new Date(e.metaData.timestamp * 1000) | moment('from')",
+              :tooltip="new Date(e.metaData.timestamp * 1000) | moment('LLLL')"
+            )
           td
             span.title From
-            span(v-if="e.metaData.returnValues && e.metaData.returnValues._from")
-              b(v-if="e.metaData.returnValues._from === '0x0000000000000000000000000000000000000000'") MINTER
-              nuxt-link(v-else, :to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._from }}") {{ e.metaData.returnValues._from }}
-              //- img.clippy(v-clipboard="e.metaData.returnValues._from", src="~/assets/svg/clippy.svg")
+            span(v-if="hasAddresses(e)")
+              i.fa.fa-copy(v-clipboard="e.metaData.returnValues._from || e.metaData.returnValues._owner")
+              b(v-if="isMinter(e)") MINTER
+              a(v-else, @click="goToAddress(e)")
+                b(v-if="isConverter(e)") CONVERTER
+                span(v-else) {{ e.metaData.returnValues._from || e.metaData.returnValues._owner }}
             span(v-else) N/A
           td
             span.title To
-            span(v-if="e.metaData.returnValues && e.metaData.returnValues._to")
-              b(v-if="e.metaData.returnValues._to === '0x0000000000000000000000000000000000000000'") MINTER
-              nuxt-link(:to="{ name: 'accounts-address', params: { address: e.metaData.returnValues._to }}") {{ e.metaData.returnValues._to }}
-              //- img.clippy(v-clipboard="e.metaData.returnValues._to", src="~/assets/svg/clippy.svg")
+            span(v-if="hasAddresses(e)")
+              i.fa.fa-copy(v-clipboard="e.metaData.returnValues._to || e.metaData.returnValues._spender")
+              a( @click="goToAddress(e, 'to')")
+                b(v-if="isConverter(e, 'to')") CONVERTER
+                span(v-else) {{ e.metaData.returnValues._to || e.metaData.returnValues._spender }}
             span(v-else) N/A
           td.text-right
             span.title Amount
-            span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value | mtn }}
-            span(v-else) N/A
+            span(v-if="e.metaData.returnValues") {{ e.metaData.returnValues._value || 0 | met }}
 
-  mtn-pagination(
+  met-pagination(
     v-show="showPagination", :limit="limit", :page-count="events.length"
     :total-count="count", :skip="skip", :has-ended="hasEnded",
     @next-page="nextPage", @previous-page="previousPage"
@@ -48,12 +53,14 @@ div
 </template>
 
 <script>
-import MtnPagination from '~/components/Pagination'
-import MtnTextTooltip from '~/components/TextTooltip'
+import MetPagination from '~/components/Pagination'
+import MetTextTooltip from '~/components/TextTooltip'
+
+import eventService from '~/services/event'
 
 export default {
 
-  components: { MtnPagination, MtnTextTooltip },
+  components: { MetPagination, MetTextTooltip },
 
   props: {
     events: { type: Array, default: () => [] },
@@ -69,6 +76,24 @@ export default {
       this.$emit('previous-page')
     },
 
+    isMinter (event) {
+      return eventService.isMinterEvent(event)
+    },
+
+    isConverter (event, type) {
+      return eventService.isConverterEvent(event, type)
+    },
+
+    goToAddress (event, type) {
+      const address = eventService.getEventAddress(event, type)
+
+      this.$router.push({ name: 'accounts-address', params: { address } })
+    },
+
+    hasAddresses (event) {
+      return eventService.hasEventAddress(event)
+    },
+
     nextPage () {
       this.$emit('next-page')
     }
@@ -77,11 +102,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .clippy {
-    margin-left: 10px;
-    cursor: copy;
-  }
-
   @media (min-width: 768px) {
     .table-responsive {
       display: table;
@@ -94,7 +114,20 @@ export default {
     }
   }
 
+  .amount {
+    text-align: right;
+    padding-right: 25px;
+  }
+
+  .fa-copy {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
   @media (max-width: 768px) {
+    .fa-copy {
+      display: none;
+    }
 
     td {
       display: block;

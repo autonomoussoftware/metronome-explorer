@@ -1,6 +1,7 @@
+import web3 from '~/services/web3'
 import eventService from '~/services/event'
-import socketService from '~/services/socket.io.js'
 import accountService from '~/services/account'
+import socketService from '~/services/socket.io.js'
 
 const LIMIT = 20
 const SORT = '-_id'
@@ -8,45 +9,54 @@ const SORT = '-_id'
 const eventMixin = {
   data () {
     return {
-      balance: 0,
       events: [],
       count: 0,
 
       filter: '',
       hasEnded: false,
+      isLoading: false,
 
       skip: 0,
       limit: LIMIT
     }
   },
 
-  async asyncData ({ params, error }) {
-    if (params.address === '0x0000000000000000000000000000000000000000') {
-      return error({ statusCode: 404, message: 'Address not found' })
+  async asyncData ({ params, query, error }) {
+    if (params.address) {
+      params.address = web3.utils.toChecksumAddress(params.address)
+    }
+
+    if (accountService.isMinter(params.address)) {
+      return error({
+        statusCode: 500,
+        message: 'Minter address is not allowed '
+      })
     }
 
     const { events, count } = await eventService.getByAccount(params.address, {
       $sort: SORT,
-      $limit: LIMIT
+      $limit: LIMIT,
+      $skip: query.skip || 0
     })
 
     const hasEnded = count <= LIMIT
 
-    if (!params.address) { return { events, count, hasEnded } }
-
-    const { balance } = await accountService.getByAddress(params.address)
-    return { events, count, hasEnded, balance }
+    return { events, count, hasEnded }
   },
 
   computed: {
     filteredEvents () {
       if (!this.filter) { return this.events }
 
-      return this.events.filter(e => {
-        if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) { return false }
+      return this.events.filter(function (e) {
+        if (!e.metaData.returnValues._to || !e.metaData.returnValues._from) {
+          return false
+        }
 
-        return (e.metaData.returnValues._to.includes(this.filter)) ||
-          (e.metaData.returnValues._from.includes(this.filter))
+        return (
+          e.metaData.returnValues._to.includes(this.filter) ||
+          e.metaData.returnValues._from.includes(this.filter)
+        )
       })
     },
 
@@ -56,10 +66,23 @@ const eventMixin = {
   },
 
   created () {
-    socketService.on('NEW_EVENT', (event) => {
+    if (this.$route.query.skip) {
+      try {
+        this.skip = parseInt(this.$route.query.skip)
+      } catch (err) {
+        this.skip = 0
+      }
+    }
+  },
+
+  mounted () {
+    socketService.on('NEW_EVENT', function (event) {
       const address = this.$route.params.address
-      if (address && event.metaData.returnValues._from !== address &&
-        event.metaData.returnValues._to !== address) { return }
+      if (
+        address &&
+        event.metaData.returnValues._from !== address &&
+        event.metaData.returnValues._to !== address
+      ) { return }
 
       this.count += 1
       if (this.skip === 0) {
@@ -69,9 +92,15 @@ const eventMixin = {
     })
   },
 
+  destroyed () {
+    socketService.removeAllListeners()
+  },
+
   methods: {
     async getEvents () {
+      this.isLoading = true
       this.hasEnded = false
+
       const params = {
         $sort: SORT,
         $limit: LIMIT,
@@ -79,37 +108,46 @@ const eventMixin = {
       }
 
       if (this.$route.params.address) {
-        let { events } = await eventService.getByAccount(this.$route.params.address, params)
+        const { events } = await eventService.getByAccount(
+          this.$route.params.address,
+          params
+        )
         this.setNewPage(events)
       } else {
-        let { events } = await eventService.get(params)
+        const { events } = await eventService.get(params)
         this.setNewPage(events)
       }
     },
 
     setNewPage (events) {
+      this.isLoading = false
+
       if (!events || !events.length) {
         this.hasEnded = true
         return
       }
 
-      if (events.length < LIMIT) {
-        this.hasEnded = true
-      }
+      if (events.length < LIMIT) { this.hasEnded = true }
 
       this.events = events
     },
 
     getNextPage () {
       if (!this.skip) { return }
+
       this.skip -= LIMIT
       this.getEvents()
+
+      this.$router.push({ query: { skip: this.skip } })
     },
 
     getPreviousPage () {
       if (this.skip >= this.count) { return }
+
       this.skip += LIMIT
       this.getEvents()
+
+      this.$router.push({ query: { skip: this.skip } })
     }
   }
 }
