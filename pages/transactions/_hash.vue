@@ -6,10 +6,10 @@
         pre
           code {{ transaction }}
 
-      .col-sm-12(v-if="trace")
+      .col-sm-12(v-if="traces")
         h4 Raw Trace
         pre
-          code {{ trace.result }}
+          code(v-for="t in traces") {{ t }}
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
 
   data () {
     return {
-      trace: null
+      traces: null
     }
   },
 
@@ -32,8 +32,8 @@ export default {
     }
 
     try {
-      const trace = await tracer.transaction(params.hash)
-      return { transaction, trace }
+      const traces = await tracer.transaction(params.hash)
+      return { transaction, traces }
     } catch (err) {
       return { transaction }
     }
@@ -51,5 +51,10 @@ export default {
 pre {
   max-width: 100%;
   overflow: auto;
+
+  code {
+    display: block;
+    margin-bottom: 10px;
+  }
 }
 </style>
