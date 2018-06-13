@@ -28,9 +28,9 @@ The following environment variables are needed for the explorer to work:
 
   I.E. `http://api.metronome.io`.
 
-- `ETH_NODE_URL` WebSocket URL of the Ethereum node.
+- `ETH_NODE_URL` JSON RPC URL of the Ethereum node.
 
-  I.E. `ws://node.metronome.io:8546`.
+  I.E. `http://node.metronome.io:8545`.
 
 - `TRACER_URL`: API URL of the Ethereum Parity tracer.
 

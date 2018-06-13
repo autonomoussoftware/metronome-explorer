@@ -6,7 +6,7 @@
         pre
           code {{ transaction }}
 
-      .col-sm-12(v-if="traces")
+      .col-sm-12(v-if="traces && traces.length")
         h4 Raw Trace
         pre
           code(v-for="t in traces") {{ t }}
