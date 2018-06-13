@@ -21,7 +21,7 @@
     "axios": "0.18.0",
     "bignumber.js": "7.2.1",
     "bootstrap": "4.1.1",
-    "metronome-contracts": "1.2.0",
+    "metronome-contracts": "1.4.0",
     "nuxt": "1.4.0",
     "socket.io": "2.1.1",
     "vue-clipboards": "1.2.4",
