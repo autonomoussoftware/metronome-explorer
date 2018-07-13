@@ -20,7 +20,7 @@
     "@nuxtjs/font-awesome": "1.0.3",
     "axios": "0.18.0",
     "bignumber.js": "7.2.1",
-    "bootstrap": "4.1.1",
+    "bootstrap": "4.1.2",
     "metronome-contracts": "1.4.0",
     "nuxt": "1.4.0",
     "socket.io": "2.1.1",
