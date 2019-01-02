@@ -14,7 +14,9 @@
     "prepush": "npm test",
     "prestart": "nuxt build",
     "start": "nuxt start",
-    "test": "ava --verbose test/**/*.spec.js "
+    "test": "ava --verbose test/**/*.spec.js ",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@nuxtjs/font-awesome": "1.0.3",
@@ -26,7 +28,8 @@
     "socket.io": "2.1.1",
     "vue-clipboards": "1.2.4",
     "vue-moment": "3.2.0",
-    "web3": "1.0.0-beta.34"
+    "web3": "1.0.0-beta.34",
+    "snyk": "^1.120.0"
   },
   "devDependencies": {
     "ava": "0.25.0",
@@ -67,5 +70,6 @@
     "presets": [
       "env"
     ]
-  }
+  },
+  "snyk": true
 }
