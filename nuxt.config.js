@@ -54,7 +54,10 @@ module.exports = {
 
   css: ['bootstrap/dist/css/bootstrap.css', '~/assets/scss/main.scss'],
 
-  modules: ['@nuxtjs/font-awesome'],
+  modules: [
+    '@nuxtjs/font-awesome',
+    ['@nuxtjs/google-analytics', { id: 'UA-116275666-7' }]
+  ],
 
   plugins: ['~/plugins/filters', '~/plugins/directives'],
 
