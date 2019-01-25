@@ -56,7 +56,7 @@ module.exports = {
 
   modules: [
     '@nuxtjs/font-awesome',
-    ['@nuxtjs/google-analytics', { id: 'UA-116275666-7' }]
+    ['@nuxtjs/google-analytics', { id: 'UA-116275666-7', debug: { sendHitTask: false } }]
   ],
 
   plugins: ['~/plugins/filters', '~/plugins/directives'],
