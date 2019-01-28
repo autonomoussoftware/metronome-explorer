@@ -4,10 +4,7 @@
       .col-sm-12
         met-status
 
-    p Copyright &copy; {{ new Date().getFullYear() }} Bloq, Inc. All Rights Reseverd
-      br
-      | Metronome was build by &nbsp;
-      a(href="https://bloq.com") BloqLabs.
+    p Copyright &copy; {{ new Date().getFullYear() }} Bloq, Inc. All Rights Reserved
 </template>
 
 <script>
